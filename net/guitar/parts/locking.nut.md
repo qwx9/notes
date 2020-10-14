@@ -15,3 +15,6 @@ by immobilizing them
 - requires good fine tuners on the bridge
 
 - in other words, perfectly fine if pre-installed
+
+- requires bridge capable of fine tuning,
+locking the nut detunes the strings somewhat
