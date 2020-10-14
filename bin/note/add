@@ -1,0 +1,12 @@
+#!/bin/rc
+if(~ $#* 0){
+	echo usage: $0 path
+	exit usage
+}
+p=$home/p/notes/net/$1^.md
+if(test -e $p)
+	B $p
+if not{
+	mkdir -p $home/p/notes/net/`{basename -d $1}
+	B $p
+}
