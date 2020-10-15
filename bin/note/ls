@@ -1,0 +1,8 @@
+#!/bin/rc
+rfork n
+cd $home/p/notes/net || exit 'no notes repo'
+if(! test -d $1){
+	echo usage: $0 '[dir]'
+	exit 'path not found'
+}
+walk -fep $1 | sort | sed 's,\.md$,,;s,^,note/add ,'
