@@ -3,10 +3,18 @@ if(~ $#* 0){
 	echo usage: $0 path
 	exit usage
 }
-p=$home/p/notes/net/$1^.md
-if(test -e $p)
+p=$home/p/notes/net/$1
+if(test -d $p){
+	echo is an existing directory
+	exit 'not a file'
+}
+p=$p^.md
+if(test -f $p)
 	B $p
 if not{
 	mkdir -p $home/p/notes/net/`{basename -d $1}
+	# either this or modify /sys/lib/plumbing to start $editor
+	# even if file doesn't exist
+	touch $p
 	B $p
 }
