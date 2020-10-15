@@ -1,7 +1,7 @@
 #!/bin/rc
 rfork n
 cd $home/p/notes/net || exit 'no notes repo'
-if(! test -d $1){
+if(! ~ $#* 0 && ! test -d $1){
 	echo usage: $0 '[dir]'
 	exit 'path not found'
 }
