@@ -1,0 +1,10 @@
+#!/bin/rc
+if(~ $#* 0){
+	echo usage: $0 path
+	exit usage
+}
+p=$home/p/notes/net/$1^.md
+if(! test -f $p)
+	exit
+while(rm $p >[2]/dev/null)
+	p=`{basename -d $p}
