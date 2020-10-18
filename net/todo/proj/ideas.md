@@ -4,3 +4,4 @@
 
 	* draw a curve -> validate -> fit as best as possible
 	* maybe choose family first
+- ftart: multiplayer french tarot + ai

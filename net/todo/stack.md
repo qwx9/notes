@@ -12,6 +12,17 @@
 - check rendering with discount
 - get started on underlying mechanisms
 
+### pplay
+
+- zooming is unbearable: at least let one use arrow keys to scroll
+- check the controls
+- loading the waveform stops when pausing, sucks, and not fast enough
+- loop selection is stupid too
+- fplay integration
+- basic editing
+- fork into another project for all the new shit,
+keep the simple visualization/player separate
+
 ### site
 
 - [rework backend](proj/nopenopenope/backend)
@@ -20,6 +31,7 @@
 - automate updating site tars (+ contrib), cron or w/e
 - gardening page
 - git server
+- local setup, we never did it
 
 
 
@@ -46,3 +58,8 @@
 - [rsam plumbing](9front/sam/rsam.plumb)
 - bug: messing with window placement and plumbing files
 can cause freezing
+
+### git9
+
+- .gitignore or something
+- git log -p

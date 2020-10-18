@@ -11,4 +11,5 @@
 - master todo
 - adm todo
 - daily todo, habits/daily dir with food, sport etc
+- weekly recipe list: possibles, etc
 - notes on cycling
