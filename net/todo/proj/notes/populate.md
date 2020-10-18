@@ -13,3 +13,7 @@
 - daily todo, habits/daily dir with food, sport etc
 - weekly recipe list: possibles, etc
 - notes on cycling
+- daily on guitar: learn new shit; details -> which
+- guitar: fpga/soft effects
+- links for interesting projects, see starred and others
+- basic mathshit: ode, polynomials from last time

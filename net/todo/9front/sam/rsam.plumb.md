@@ -6,3 +6,5 @@
 and url isn't open
 
 - investigate the plumbing
+
+- sam plumb eventually dies
