@@ -1,17 +1,16 @@
 # riow tweaks
 
+## improvements?
+
 - reverting full screen would be nice, but needs state;
 simple enough to modify riow script?
 
 
-## rio file list
+## bugs/peculiarities
 
-see [rio todo](/todo/setup/9front/rio/tweaks)
-
-- rio window list is now obtrusive since it lists everything
-
-- selecting a window in it will move that window to current
-desktop
+- needs to set kbmap to us or w/e, otherwise Kmod4 never seen
+- too much flashing, seems some windows get hidden then unhidden
+then hidden again while switching
 
 
 ## remove forced sticky windows

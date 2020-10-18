@@ -1,8 +1,15 @@
 # riow for window management inside rio
 
-- start automatically by adding to riostart:
+## setup
 
-	window 'riow </srv/riogkbd*'
+- lib/profile (see [riow weirdness](/todo/9front/rio/riow)):
+
+	cat /sys/lib/kbmap/us >/dev/kbmap
+	rio -i riostart
+
+- riostart
+
+	window -hide -r 1818 1152 1920 1200 'label riow; riow </srv/riogkbd*'
 
 
 ## usability

@@ -3,7 +3,6 @@
 ## unknown
 
 - pendelum
-
 - amin toofani - gratitude
 
 
@@ -15,7 +14,6 @@
 ## dub
 
 - very varied
-
 - try: rakoon
 
 
@@ -32,14 +30,11 @@
 ## electro hardcore
 
 - act of rage: diving board session
-
 - vini vici
 
 
 ## classical
 
 - liszt
-
 - camille saint-saens: la danse macabre
-
 - thaikovsky 1812 ouverture

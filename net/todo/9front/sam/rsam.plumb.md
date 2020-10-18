@@ -1,10 +1,4 @@
-# rsam subrio script
-
-- automatic window labeling would be nice,
-but perhaps superfluous with riow
-
-
-## plumbing issues
+# rsam plumbing issues
 
 - page(1) can die with image port inaccessible or something
 
