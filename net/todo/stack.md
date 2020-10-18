@@ -186,6 +186,7 @@ keep the simple visualization/player separate
 can cause freezing (?)
 - default focus on start up should be command window
 - resize -> window too small -> crash
+- rsam: higher sam window
 
 ### git9
 
