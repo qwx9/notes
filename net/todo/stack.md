@@ -49,6 +49,26 @@
 
 
 
+## music
+
+### guitar
+
+- practice picking technique and speed
+- practice songs
+- learn new shit
+- learn basic solfege, scales, moving them around, chords
+
+### drums
+
+- learn all basic rudiments
+- practice rudiments
+
+### voice
+
+- basic breathing
+- vocal exercises
+
+
 ## jobs
 
 - rework cv in latex
