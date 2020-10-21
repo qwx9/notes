@@ -2,8 +2,7 @@
 
 ## vocal range
 
-- regular voice: g3 - f♯5, contralto?? countertenor?
-
+- f2-c5 extreme range, basically classic tenor
 
 ## keyboard
 
