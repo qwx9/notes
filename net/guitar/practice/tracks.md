@@ -2,8 +2,10 @@
 
 ## working on
 
-- killing in the name of
+- killing in the name of (stdc, not dropped)
+- kill the king
 - ignominious and pale
+- running from evil
 
 
 ## partial
@@ -27,7 +29,6 @@
 - harvester of sorrow
 - hit the lights
 - good times bad times
-- kill the king
 - disciple
 - reign in blood
 - message in a dream
@@ -39,6 +40,9 @@
 
 ## todo
 
+- led zeppelin stuff
+- deep purple, jimi hendrix stuff
+- psychostick, ultravomit
 - rest of necrophagist tracks
 - to breathe in a casket
 - other vinnie moore

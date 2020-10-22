@@ -1,12 +1,5 @@
 # tasks
 
-## top
-
-- sba lectures for next tuesday
-- epfl for monday
-- s3proj startup
-
-
 ## weekday, 9h classes
 
 - 8h sleep: 16h left
