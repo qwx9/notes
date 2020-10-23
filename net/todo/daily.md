@@ -47,6 +47,9 @@
 ## thu 20201022
 
 - drums
+- guitar
+- gardening
+
 
 
 ## common
@@ -56,10 +59,12 @@
 - voice
 - guitar
 - light gardening
+- research: pitch tracking, guitar-related rsi
 
 
 ## stack top and more random shit
 
+- macsf < november
 - s3proj: basic design and implementation
 	* modelize entries as in nlartillot's lecture
 	* reread cdc to list the shit we need to look into today and overall
@@ -68,6 +73,30 @@
 		. visualization
 	* start from an end node, the phylogenetic process
 	* models on branches of the trees etc should be possible
+- import and format sce notes + others
+- split pitch todo into proj/stack entries
+	* display
+	* notes on fft
+	* analysis
+	* etc
+- note: figure out how to script splitting todo's
+and navigating between them easily
+	* just use like mothra?
+	* still want to be able to edit them directly with sam
+- asif: dcd shit
+	* mine directory
+- asif: add pathfinding here
+	* path directory
+	* will contain testing algos/impl shit too?
+	* path(1) would use drop-in files from asif
+- asif: add simple pitch tracking?
+	* dsp directory
+	* fft file
+	* filtering
+	* windowing
+	* etc
+	* single file simple fft audio pitch tracker that pitch would use
+- notes on guitar rsi and prevention
 - sba+dcd+vdb lectures for next week
 - no voice practice until we've watched the basic exercises section
 - epfl
@@ -75,13 +104,12 @@
 - sce: convert shadows to argb images
 - pitch: check that mic recording replicates left chan to right
 - pitch: can use norm to amplify when above threshold
-- asif: bitwise round up to nearest power of two (from fplay)
-- asif: single-file complex and real fft (from pitch)
 - pplay: shorter input -> why aren't we zeroing out the rest of the fft buffer?
 - pplay: fix fft from pitch, nuke fplay
 - fork pplay for guitarshit and editing, come up with a name
 - pplay: once we have another program for editing, remove shit like writing short buffers
 - pplay: better controls, esp looping/panning
+- pplay: better performance, esp redraw (riow -> force redraw)
 - pplay fork: modify controls
 - mbioinf: populate, nuke vdb repo
 - såmtörm: samterm fork with ham tweaks and other ± såm if we change shit
@@ -118,8 +146,6 @@
 
 ## notes
 
-- numerical recipes has sections on linear and dynamic programming,
-among others
 - situation as of next week:
 	* no sba/vdb/dcd until week after
 	* looking quickly at last vdb lectures
@@ -131,3 +157,5 @@ among others
 	* 10 3h gge sessions left, 7 done
 	⇒ have to go through sba+dcd+vdb as quickly as possible,
 	and move on to gge
+- numerical recipes has sections on linear and dynamic programming,
+among others

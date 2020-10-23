@@ -90,6 +90,36 @@
 - check rendering with discount
 - get started on underlying mechanisms
 
+### pitch
+
+- [notes](proj/pitch/notes)
+
+### sce
+
+- [draw lists](proj/sce/drawlists)
+- [notes](proj/sce/notes)
+- fix halting distance using db halt values instead of shitty heuristic,
+still fails sometimes
+- pathfinding fucks out in rare instances (while moving?)
+- start working on the client/server part
+- no ipconfig -> dial: no route -> fail to launch
+	* maybe don't use ip until we actually have to connect remotely,
+	and shunt all the networking stack for local
+- add an air unit: mutalisk (mutalid.grp):
+extract it, add it to scripts, get the offsets
+- decouple simulation time from client graphics
+	* fixes scrolling
+	* unit sprites etc still work in real time
+	even on minimum speed
+- it's slightly weird that units move
+with their upper left corner towards the destination,
+rather than the unit's center (esp. when scaling)
+- move to using sigrid's clock logic;
+reused in various projects: nanosec() etc in treason et al
+- grab mouse and mouse scrolling, scrolling with keyboard, remove middle click
+- unit selection -> selection ellipses of varying size (on top of shadows?)
+- cursors?
+
 ### pplay
 
 - zooming is unbearable: at least let one use arrow keys to scroll
