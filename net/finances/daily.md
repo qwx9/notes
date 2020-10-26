@@ -9,3 +9,14 @@
 
 - -36 gardening
 - -18 food -24 order
+
+
+## 20201023
+
+- -50 food
+- -3 parts
+
+
+## 20201024
+
+- -20 food

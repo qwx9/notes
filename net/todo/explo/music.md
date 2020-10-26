@@ -1,9 +1,21 @@
 # exploration
 
-## unknown
 
+## misc
+
+- morbid angel
+- king diamond
+- def leppard
+- nightwish
+- cradle of filth
+- mercyful fate
+- obituary
+- opeth
+- tangerine dream
 - pendelum
 - amin toofani - gratitude
+- mixes /tmp/madd/mix /tmp/madd2/mix $home/mm u26b:m
+- jl ponty
 
 
 ## trans/fusion
@@ -20,7 +32,6 @@
 ## black metal
 
 - mgla
-
 
 ## techno
 

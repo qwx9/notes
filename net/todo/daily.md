@@ -49,6 +49,37 @@
 - drums
 - guitar
 - gardening
+- research: pitch tracking, guitar-related rsi
+
+
+## fri 20201023
+
+- 3+4h s3proj
+- 3h reorganize, clean materials
+
+
+## sat 20201024
+
+- 1h drums
+- improved audio setup
+- 3h sorted papers
+- 3h rearranged room
+- reorganized music
+- paid dues
+- sport
+- copy files over from w520, swap ssds
+- repair w520 middle mouse key
+- reinstall w520
+
+
+## sun 20201025
+
+- 2h30 sport
+- voice
+- light gardening
+
+
+## mon 20201026
 
 
 
@@ -57,14 +88,27 @@
 - sport
 - drums
 - voice
-- guitar
+- guitar, right hand at least
 - light gardening
-- research: pitch tracking, guitar-related rsi
 
 
 ## stack top and more random shit
 
 - macsf < november
+- vue3+d3+ts courses → build d3 interactive graph
+- recipes: tacos, gelatinous shit
+- ask for latest pay stub
+- ask for att m1 med at bh
+- reorganize music, build playlists
+- rearrange room
+- clean room
+- clean appt
+- replace bv9100 battery
+- diy: check what other projects we had stacked before
+- diy: single coil pickups
+- diy: modify fender circuitry
+- diy: distorsion pedal
+- work on better reward circuits: limit/remove pleasure activities (food etc)
 - s3proj: basic design and implementation
 	* modelize entries as in nlartillot's lecture
 	* reread cdc to list the shit we need to look into today and overall
@@ -82,7 +126,8 @@
 - note: figure out how to script splitting todo's
 and navigating between them easily
 	* just use like mothra?
-	* still want to be able to edit them directly with sam
+	* still want to be able to edit them directly with sam => plumbable links?
+	* mothra's selection sucks anyway, maybe fix it
 - asif: dcd shit
 	* mine directory
 - asif: add pathfinding here

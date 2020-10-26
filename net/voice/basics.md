@@ -3,6 +3,8 @@
 ## vocal range
 
 - f2-c5 extreme range, basically classic tenor
+- according to whatever, could go as low as d2, but it's forcing it
+- so maaaaaaybe 3 octaves - 3-4 semitons
 
 ## keyboard
 

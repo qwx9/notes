@@ -141,6 +141,8 @@ keep the simple visualization/player separate
 - gardening page
 - git server
 - local setup, we never did it
+- make it look a bit better via just css, check newest werc's
+- track on git, expose .md files?
 
 ### 9dump.net
 
