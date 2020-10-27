@@ -61,6 +61,7 @@
 ## sat 20201024
 
 - 1h drums
+- RSI!
 - improved audio setup
 - 3h sorted papers
 - 3h rearranged room
@@ -81,6 +82,18 @@
 
 ## mon 20201026
 
+- rearranged room
+- cleaned room
+- sport
+- gardening
+- voice
+- bug report
+
+
+## tue 20201027
+
+- 3h s3proj: d3
+- new d3graph repo: develop the graph package idea first with d3 only, then ts then vue3 also
 
 
 ## common
@@ -94,15 +107,22 @@
 
 ## stack top and more random shit
 
+- mails
+- sba
+- sce! pitch!
+- chrab
 - macsf < november
+- epfl: notify that will continue until financing certain
 - vue3+d3+ts courses → build d3 interactive graph
-- recipes: tacos, gelatinous shit
+- sba+dcd+vdb lectures for next week
+	* feed mbioinf and notes with them
 - ask for latest pay stub
 - ask for att m1 med at bh
 - reorganize music, build playlists
 - rearrange room
 - clean room
 - clean appt
+- continue w520 and t60p setup
 - replace bv9100 battery
 - diy: check what other projects we had stacked before
 - diy: single coil pickups
@@ -123,6 +143,7 @@
 	* notes on fft
 	* analysis
 	* etc
+- recipes: tacos, gelatinous shit
 - note: figure out how to script splitting todo's
 and navigating between them easily
 	* just use like mothra?
@@ -142,9 +163,6 @@ and navigating between them easily
 	* etc
 	* single file simple fft audio pitch tracker that pitch would use
 - notes on guitar rsi and prevention
-- sba+dcd+vdb lectures for next week
-- no voice practice until we've watched the basic exercises section
-- epfl
 - more samples and verbose output for sigrid
 - sce: convert shadows to argb images
 - pitch: check that mic recording replicates left chan to right
@@ -160,6 +178,7 @@ and navigating between them easily
 - såmtörm: samterm fork with ham tweaks and other ± såm if we change shit
 	* -a by default
 	* color tweaks (no direct display->white/black, etc)
+	* or break it down entirely and integrate with rio directly
 - notes: integrate lectures and formatting
 - notes: generate html for page or tree or pdf/whatever for page
 - notes: modify discount markdown if necessary
