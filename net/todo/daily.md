@@ -92,8 +92,47 @@
 
 ## tue 20201027
 
-- 3h s3proj: d3
-- new d3graph repo: develop the graph package idea first with d3 only, then ts then vue3 also
+- 7h s3proj: d3
+- 3h classes
+- new d3graph repo with data from exercises
+- mails pt1
+- drums
+- sport
+- guitar, right hand
+- music reorganization
+
+
+## wen 20201028
+
+- 3h classes
+- replaced broken cccp by syncab using derp and awk
+
+
+- p/sce bin
+	. games/sce or sce/sce
+	. sce/... tools
+	. remove from /amd64 /386 /arm
+	. add in profile
+- p/pico: add to profile → /bin/pico
+- p/rc: readme with description of scripts
+- p/rc, p/rc2: add fn scripts
+- update rc git, just add rc2 for additional scripts
+- p/rc: add a script to add all the bullshit to /bin like in profile
+	. with option for prefix for remote
+- add p/sm2 repo? /bin/sm2/ ? might be a good idea esp if we do other algos
+	. with pinyin scripts, lib/ for dicts etc
+- remove cccp repo
+- update $home/bin/rc/webshit
+- move p/dot/fn to p/rc (update p/rcgit/fn)
+	. but make most shit as scripts instead
+- s3proj
+- sce, pitch
+- chrab
+- voice
+- sport
+- sba, vdb
+- epfl: notify that will continue until financing certain
+
 
 
 ## common
@@ -107,20 +146,13 @@
 
 ## stack top and more random shit
 
-- mails
-- sba
-- sce! pitch!
-- chrab
-- macsf < november
-- epfl: notify that will continue until financing certain
-- vue3+d3+ts courses → build d3 interactive graph
+- plan food better to reduce costs...
+- music, playlists
+- d3graph: develop the graph package idea first with d3 only, then ts then vue3 also
 - sba+dcd+vdb lectures for next week
 	* feed mbioinf and notes with them
 - ask for latest pay stub
 - ask for att m1 med at bh
-- reorganize music, build playlists
-- rearrange room
-- clean room
 - clean appt
 - continue w520 and t60p setup
 - replace bv9100 battery
@@ -137,7 +169,6 @@
 		. visualization
 	* start from an end node, the phylogenetic process
 	* models on branches of the trees etc should be possible
-- import and format sce notes + others
 - split pitch todo into proj/stack entries
 	* display
 	* notes on fft
@@ -162,9 +193,6 @@ and navigating between them easily
 	* windowing
 	* etc
 	* single file simple fft audio pitch tracker that pitch would use
-- notes on guitar rsi and prevention
-- more samples and verbose output for sigrid
-- sce: convert shadows to argb images
 - pitch: check that mic recording replicates left chan to right
 - pitch: can use norm to amplify when above threshold
 - pplay: shorter input -> why aren't we zeroing out the rest of the fft buffer?

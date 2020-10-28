@@ -96,8 +96,16 @@
 
 ### sce
 
+- [rgba for shawdows](proj/sce/rgba)
 - [draw lists](proj/sce/drawlists)
 - [notes](proj/sce/notes)
+- [pathfinding fixes and notes](proj/sce/pathfinding)
+- [networking notes](proj/sce/networking)
+- [clean ups](proj/sce/cleanup)
+- [attack command](proj/sce/attack)
+- [sprite improvements](proj/sce/sprites)
+- [ofire.pcx adjustments](proj/sce/ofire)
+- [mineral patches](proj/sce/minerals)
 - fix halting distance using db halt values instead of shitty heuristic,
 still fails sometimes
 - pathfinding fucks out in rare instances (while moving?)
@@ -119,6 +127,37 @@ reused in various projects: nanosec() etc in treason et al
 - grab mouse and mouse scrolling, scrolling with keyboard, remove middle click
 - unit selection -> selection ellipses of varying size (on top of shadows?)
 - cursors?
+- extraction scripts could probably use an overhaul, after we deal with sprite db
+- genspr script
+	. add extract script, which should do grp -s and sctile and genmap
+	. add terrain sprites
+	. add grp -s shit to automate all extraction (in tree)
+- zerg spawn with 3 larvae THEN 4 workers (for blockmap)
+	. zerg species
+	. larva behavior
+- drones should still spawn below hatchery? (wrt larvae)
+- movement waypoints, building rally points
+- implement unit behaviors in a lib.c file or something
+	. either point specifically to a db name
+	. or specify behaviors and attribute them in the db arbitrarily
+- implement creep
+- player races (and race-unspecific map starts)
+- gathering command and behavior
+- fog of war, sight range: building sight range, set to 1 for now
+- music and sound effects
+	. in their own proc?
+		* schedule sound effects via channels
+	. could just spawn audio/wavdec or audio/opusdec or even play(1)
+- better maps, converting from real maps to our own format
+- hud improvements
+	. multiple selection
+	. display resources
+	. reuse scbw graphics for this
+- spawning
+	. animations
+	. requirements: resources, tech
+- building constraints per race
+- build trees
 
 ### pplay
 
