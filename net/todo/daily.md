@@ -106,32 +106,32 @@
 
 - 3h classes
 - replaced broken cccp by syncab using derp and awk
-
-
-- p/sce bin
-	. games/sce or sce/sce
-	. sce/... tools
-	. remove from /amd64 /386 /arm
-	. add in profile
-- p/pico: add to profile → /bin/pico
-- p/rc: readme with description of scripts
-- p/rc, p/rc2: add fn scripts
-- update rc git, just add rc2 for additional scripts
-- p/rc: add a script to add all the bullshit to /bin like in profile
-	. with option for prefix for remote
-- add p/sm2 repo? /bin/sm2/ ? might be a good idea esp if we do other algos
-	. with pinyin scripts, lib/ for dicts etc
-- remove cccp repo
-- update $home/bin/rc/webshit
-- move p/dot/fn to p/rc (update p/rcgit/fn)
-	. but make most shit as scripts instead
-- s3proj
-- sce, pitch
-- chrab
-- voice
+- drums
 - sport
-- sba, vdb
-- epfl: notify that will continue until financing certain
+- learned silly drumstick tricks
+- food challenge day 1
+
+
+## thu 20201029
+
+- light cleaning
+- cosmetics
+- 3h gardening
+- sport++
+- food challenge day 2
+
+
+## fri 20201030
+
+- fender research
+- synced u26b appropriately
+- resized, backed up radeon winxp disk for w500
+- sport++
+- food challenge day 3
+
+
+## sat 20201031
+
 
 
 
@@ -146,20 +146,46 @@
 
 ## stack top and more random shit
 
-- plan food better to reduce costs...
+- s3proj: check that existing models would be representable as dag
+- s3proj: if yes, just fucking do it
+- sba, dcd, vdb for monday
+- epfl for monday
+- p/sce bin
+	* games/sce or sce/sce
+	* sce/... tools
+	* remove from /amd64 /386 /arm
+	* add in profile
+- sce: rgba for shadows
+- pitch: basic implementation
+- chrab
+- p/rc: readme with description of scripts
+- p/rc/fn -> rc scripts
+- bindbins: option for prefix for remote
+- replace lr with walk in scripts and fn, remove lr from misc
+- consider doing classes for skillshare/whatever or something like it
+- report arm rc breakage
+- debug file(1) flac failures
 - music, playlists
 - d3graph: develop the graph package idea first with d3 only, then ts then vue3 also
 - sba+dcd+vdb lectures for next week
 	* feed mbioinf and notes with them
 - ask for latest pay stub
 - ask for att m1 med at bh
+- ask for toeic
 - clean appt
 - continue w520 and t60p setup
 - replace bv9100 battery
 - diy: check what other projects we had stacked before
 - diy: single coil pickups
 - diy: modify fender circuitry
-- diy: distorsion pedal
+- diy: distorsion pedal, better than what we already have? or a preamp? or an eq? or other effects?
+- script to regen cmus playlists on u26b
+- fender mods: come up with a test bed so we can test things directly
+	* either on the guitar itself
+	* or a mock setup with a strings/pickups outside of body
+	* maybe get discarded pickups to fuck around with
+	* or just make one
+- more notes on diy pickups etc, from bookmarks
 - work on better reward circuits: limit/remove pleasure activities (food etc)
 - s3proj: basic design and implementation
 	* modelize entries as in nlartillot's lecture
@@ -174,7 +200,6 @@
 	* notes on fft
 	* analysis
 	* etc
-- recipes: tacos, gelatinous shit
 - note: figure out how to script splitting todo's
 and navigating between them easily
 	* just use like mothra?
