@@ -1,0 +1,7 @@
+type	is text
+data	matches	'\(([^/][^\)]*)\)'
+plumb	start	note/add $wdir/$1
+
+type	is text
+data	matches	'\(/([^\)]+)\)'
+plumb	start	note/add $1

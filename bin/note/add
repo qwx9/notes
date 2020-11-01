@@ -3,7 +3,11 @@ if(~ $#* 0){
 	echo usage: $0 path
 	exit usage
 }
-p=$home/p/notes/net/$1
+p=`{echo $1 | grep '^'^$home^'/p/notes/net/'}
+if(! ~ $#p 0)
+	p=$1
+if not
+	p=$home/p/notes/net/$1
 if(test -d $p){
 	echo is an existing directory
 	exit 'not a file'
