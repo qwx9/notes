@@ -47,3 +47,8 @@
 ## 20201030
 
 - -5 parts
+
+
+## 20201102
+
+- -30 single coil pickups

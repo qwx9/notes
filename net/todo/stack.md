@@ -174,10 +174,9 @@ keep the simple visualization/player separate
 ### nopenopenope.net
 
 - [rework backend](proj/nopenopenope/backend)
-- sce post
-- wl3d post
+- [new posts](proj/nopenopenope/posts)
+- [new pages](proj/nopenopenope/pages)
 - automate updating site tars (+ contrib), cron or w/e
-- gardening page
 - git server
 - local setup, we never did it
 - make it look a bit better via just css, check newest werc's
@@ -199,6 +198,7 @@ keep the simple visualization/player separate
 - bisqwit block-based opengl dos engine
 - wolf3d engine based on sanglard's book
 - doom-like engine
+- tinyref tutorial
 
 ### pico
 
@@ -237,6 +237,9 @@ keep the simple visualization/player separate
 
 - tweak theme for visibility or use sigrid's tools, esp for t60p
 - kvik's rc scripts, x
+- look into mycroftiv's patches again
+	* modify parent namespace
+	* root namespace
 
 ### unix
 
@@ -256,6 +259,8 @@ keep the simple visualization/player separate
 
 - igfx regression: t61p hwgc igfx no longer functions (w500 works fine)
 - page doesn't display a8r8g8b8 correctly (?)
+- report arm rc breakage
+- debug file(1) flac failures
 
 ### rio
 

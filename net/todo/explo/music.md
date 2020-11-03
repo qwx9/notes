@@ -16,6 +16,14 @@
 - amin toofani - gratitude
 - mixes /tmp/madd/mix /tmp/madd2/mix $home/mm u26b:m
 - jl ponty
+- latest tool album
+- lance's dark mood party
+- doom4 ost
+- zztop
+- warioland4
+- daikatana
+- verdi
+- mace - planet funk
 
 
 ## trans/fusion
@@ -33,6 +41,7 @@
 
 - mgla
 
+
 ## techno
 
 - hybrid(?)
@@ -40,7 +49,6 @@
 
 ## electro hardcore
 
-- act of rage: diving board session
 - vini vici
 
 

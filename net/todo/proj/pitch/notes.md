@@ -71,6 +71,9 @@ but naive use is insufficient
 - http://blog.bjornroche.com/2012/07/frequency-detection-using-fft-aka-pitch.html
 	* technical term = pitch tracking
 	* at minima, we need low-pass filtering and windowing
+- !! this isn't a tuner, we don't need that much accuracy;
+a tuner can spend a bigger delay analyzing the signal and it's ok,
+here we want fast output
 
 
 ## improvements
