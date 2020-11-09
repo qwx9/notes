@@ -1,0 +1,18 @@
+#!/bin/rc
+if(! ~ $#* 1){
+	echo usage: $0 path >[1=2]
+	exit usage
+}
+noteroot=$home^/p/notes/net
+notepath=`{echo $1 | grep '^'^$noteroot}
+if(! ~ $#notepath 0)
+	notepath=$1
+if not
+	notepath=$noteroot/$1
+if(test -d $notepath){
+	echo is an existing directory >[1=2]
+	exit 'not a file'
+}
+notedir=`{basename -d $notepath}
+mkdir -p $notedir || exit
+# wet floor
