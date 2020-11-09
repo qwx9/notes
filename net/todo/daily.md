@@ -225,6 +225,9 @@
 - voice, exercises, stretching, practice
 - enounciation
 - sport
+- dcd
+- small rc fixes
+- notes: add note/mkdir, note/png
 - food challenge day 12: 3
 - quantity challenge day 1
 - abstinence challenge day 0
@@ -280,6 +283,7 @@ and long term massive information stores
 - dcd: project, already started? need for next week
 - vdb
 - gge: first lectures
+- dcd: classes/dcd/kdd.introduction.itemsets (cours1-3)
 - user install of texlive on obsd
 - cv in latex
 - reinstall kertex, see tlaronde mails, take notes
@@ -303,7 +307,6 @@ and long term massive information stores
 		- etc
 	* etc
 	* merge bookmarks from obsd and linux
-- voice: breathing exercises + warm ups
 - mkey seems off by one octave, jesus
 	* mst as well
 	* piano, piano32 are fine
