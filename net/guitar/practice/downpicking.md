@@ -22,13 +22,21 @@ E |:   3 2   3   3 2   3 2   3   3 2   3 2   3   3 2   3 2   3   3 2 :|
 ## simple downpicking routine
 
 - add one stroke per 1 or more measures
-- tempo 160 → 200
+- tempo 170 → 200
 - take it very slowly at 4+ strokes
 - limit 200, 7 strokes
 - limit 240, 6 strokes
 - limit 250, 5 strokes
 - limit 350, 4 strokes
 
+
+## better: for each step
+
+- same as before
+- but add werstler routine
+- add master of puppets rhythm, just right hand
+- add postmorten rhythm, just right hand
+- can sort of reach 250 this way now, sort of
 
 
 ## songs

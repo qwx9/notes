@@ -170,7 +170,81 @@
 - 5h s3proj
 - installed work obsd disk
 - new challenge day 2: 1
-- food challenge day 7
+- food challenge day 7: 1
+
+
+## wen 20201104
+
+- 3h classes
+- drums
+- gardening
+- sport
+- guitar, right hand
+- retouch cover letters, translate to french
+- new challenge day 3: 2
+- food challenge day 8: 2
+
+
+## thu 20201105
+
+- finished letters, sent requests
+- more u27 setup
+- sport
+- s3proj
+- rsi on both hands now
+- new challenge day 4: 3
+- food challenge day 9: 2
+
+
+## fri 20201106
+
+- 5h s3proj
+- sport
+- drums
+- new challenge day 5: 4 ⇒ scratched
+- food challenge day 10: 3
+
+
+## sat 20201107
+
+- drums
+- voice, exercises and practice
+- food challenge day 11: 3
+- rewards/quantity challenge day 0
+	* nothing special we can do more, just better
+	* strict food/exercise are already 75% of it,
+	and stimulate/reorder everything, incl dopamine circuits
+	* only other: structure/consistency, strict orchestration
+
+
+## sun 20201108
+
+- drums, finger technique, speed practice, rhythm
+	* successfully reducing strain
+- cosmetics
+- voice, exercises, stretching, practice
+- enounciation
+- sport
+- food challenge day 12: 3
+- quantity challenge day 1
+- abstinence challenge day 0
+
+
+- s3proj
+- lectures: sba/dcd/vdb/gge
+- programming
+	* sce
+	* notes, see below
+	* pplay/fplay/pitch
+	* sam
+	* new project: graphical crop
+	* new project: pplay-based audio editor
+	* new project: gfx editor
+- chrab
+- kertex
+- plan9 server and setup work
+- drum: rest of rudiments
+
 
 
 ## common
@@ -178,27 +252,35 @@
 - sport
 - drums
 - voice
+- enounciation
 - guitar, right hand at least
 - light gardening
 
 
 ## stack top and more random shit
 
-- s3proj: ok, fuck
-	* we need notes dir
-	* problem is as complicated as it seems, we're not crazy
-	* two approaches: forms and graph
-	* both attractive, both complex
-	* need a prototype for at least one
-- openbsd notes: dpb, texlive
-- cover letter
-- recheck cv us/fr
-- send requests
+- drum:
+	* anatomy of drumming and related books
+	* pinky/ring finger grip technique
+	* minimizing strain, see common injuries
+	* get fucking goddamn sheet music from somewhere
+- find out about quick memorization techniques,
+and long term massive information stores
+	* vidid fun stories with strong connections for quick sequences
+		- this is practically sufficient, when well used,
+		for memory world competetions
+		- but have to learn to do it
+	* spaced repetition for massive knowledge
+	* others? more fun? easier? more adapted?
+	* mindmap/wiki -> ?
+- latest files from emails et al
+- more applications
 - sba: this week and another 2 left, imperative all is done this week
-- dcd
+- dcd: lectures
+- dcd: project, already started? need for next week
 - vdb
-- get started on gge
-- dcd: check out project guide and get started
+- gge: first lectures
+- user install of texlive on obsd
 - cv in latex
 - reinstall kertex, see tlaronde mails, take notes
 - cover letters in kertex
@@ -207,11 +289,11 @@
 - notes on latex
 - u28 obsd disk: make it a work env
 	* R, python, etc.
-	* all the shit we'd need from the linux
-	* ffmpeg and env
+	* all the shit we'd need from the linux: .??* etc
 	* scripts
 	* inkscape, gimp and the other one
 	* see all installed programs + ~/s (=> some sys dir)
+	* ~/s programs
 	* latex
 	* discord et al
 	* default shit to communicate with plan9 and use from there
@@ -219,9 +301,8 @@
 		- vnc
 		- 9pfs
 		- etc
-	* reinstall if root isn't ffs2
-	* back up first: archer7, etc => skr/skp
 	* etc
+	* merge bookmarks from obsd and linux
 - voice: breathing exercises + warm ups
 - mkey seems off by one octave, jesus
 	* mst as well
@@ -329,6 +410,12 @@ using an ascii delimiter like sigrid suggested
 	weird program-specific formats
 	* check what sigrid/hundredrabbits/gridders have done wrt image editing
 	* come up with a clever name
+	* like page(1): call external programs for certain operations,
+	let user pipe to programs on his own,
+	let user define functions doing this
+		⇒ pico, resize, etc
+- some program to write a plan9 image as a c byte or u32int array
+
 
 ## notes
 

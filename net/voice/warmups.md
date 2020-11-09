@@ -4,8 +4,10 @@
 ## routine: do this FIRST
 
 - z's 5-4-3-2-1
+	* c♯3:f♯2 - f♯3:
 	* feel the expansion of the ribcage and dump
 - z's 1-2-3-2-1
+	* g2 - c♯3
 - french doorbell: "æn", 3 sounds setting up above the pencil
 	* e02 8:00
 	* tight like steel bookshelf on cheekbones
@@ -21,6 +23,15 @@
 	* use your arm, scooping up: reach up
 	* feel but don't sound: we don't want a bend
 	* clear jump, no tremors, no hesitations
+- mee-gee ee ee e e e
+- gee-yah
+- wee-yewps
+- ee-a-ee-a-e
+- gee-ya-gee-ya-gee
+- wee-ee-ee
+- wee-ee-wee-ee-wee-ee-wee
+- ya-yah
+- ee-ee-ee-ee-hey-hey
 
 
 ## common

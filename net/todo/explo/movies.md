@@ -59,7 +59,6 @@
 - fallen (denzel washington)
 - bill ted excellent adventure
 - 1967 dirty dozen
-- the good the bad and the ugly (ours is fucked)
 - jeeves and wooster
 - 13 moons
 - abott and castello
