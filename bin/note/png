@@ -1,0 +1,31 @@
+#!/bin/rc
+rfork n
+if(! ~ $#* 2){
+	echo usage $0 winid pathspec >[1=2]
+	exit usage
+}
+win=/dev/wsys/$1/window
+if(! test -f $win){
+	echo $0 ''$win'' directory not found >[1=2]
+	exit notfound
+}
+note/mkdir $2 || exit
+cd $noteroot || exit
+f=`{awk \
+	-v 'pref='^$notepath \
+'BEGIN{
+	n = 1
+	do{
+		if(n >= 1000){
+			err = "too many pics, asshole"
+			print err > "/fd/2"
+			exit(err)
+		}
+		f = sprintf("%s.%03d.png", pref, n++)
+	}while(system("test -f " f) != "1")
+	print f
+}'}
+if(! ~ $status '')
+	exit 'too many pics'
+topng <$win >$f
+echo '[]('/$f')'
