@@ -4,11 +4,11 @@ if(! ~ $#* 1){
 	exit usage
 }
 noteroot=$home^/p/notes/net
-notepath=`{echo $1 | grep '^'^$noteroot}
-if(! ~ $#notepath 0)
-	notepath=$1
-if not
-	notepath=$noteroot/$1
+cd $noteroot || exit
+notepath=`{echo $1 | sed s,'^'^$noteroot^/,,}
+notedir=''
+if(~ $notepath '')
+	exit
 if(test -d $notepath){
 	echo is an existing directory >[1=2]
 	exit 'not a file'

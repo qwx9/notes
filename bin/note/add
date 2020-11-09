@@ -7,6 +7,7 @@ if(! ~ $#* 1){
 note/mkdir $1
 if(! ~ $status '')
 	exit mkdir
+cd $noteroot || exit
 p=$notepath^.md
 # either this or modify /sys/lib/plumbing to start $editor
 # even if file doesn't exist
