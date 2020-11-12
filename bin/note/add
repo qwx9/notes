@@ -1,14 +1,11 @@
 #!/bin/rc
-rfork n
 if(! ~ $#* 1){
 	echo usage: $0 path
 	exit usage
 }
-note/mkdir $1
-if(! ~ $status '')
-	exit mkdir
-cd $noteroot || exit
-p=$notepath^.md
+vars=`{note/mkdir $1} || exit
+cd $vars(3) || exit
+p=$vars(1)^.md
 # either this or modify /sys/lib/plumbing to start $editor
 # even if file doesn't exist
 touch $p
