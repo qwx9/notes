@@ -2,11 +2,9 @@
 
 ## vocal range
 
-- f2-c5 extreme range, basically classic tenor
-- maybe leeway for 1-2 semitones lower and higher,
-but with a lot of effort
-- going this high is straining
+- f2-c5 right now, but hard
 - piano32 practice helps
+- vocal exercises help reach extremes
 
 
 ## keyboard

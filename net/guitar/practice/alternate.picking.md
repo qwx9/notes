@@ -7,31 +7,56 @@
 
 ## one string
 
-G 6 7 9
-etc. in all three positions
+- tempo ≥280
+- in all three positions, G string
 
-G 9 6 7 9 7 6
-etc. in all three positions
+	6 7 9
 
-G 9 7 6
-etc. in all three positions
+	9 6 7 9 7 6
 
-G 6 7 9 7 6
-etc. in all three positions
+	9 7 6
 
-G 7 9 7 6
-etc. in all three positions
+	6 7 9 7 6
+
+	7 9 7 6
 
 
 ## two strings
 
-G 6 7 9
-D 6 7 9
+	      6
+	6 7 9   9 7 6
 
-G 4 6 7
-D 4 6 7
+	      6 7 9
+	6 7 9
 
-G 7 9 11
-D 7 9 11
+	9 7 6
+	      9 7 6
 
-- tempo 200
+	  7   6   9
+	6   9   7
+
+	      6     6 7   6 7 9
+	6 7 9   7 9     9
+
+	9 7 6   7 6     6
+	      9     9 7   9 7 6
+
+	      6   7 6 9
+	6 9 7   9
+
+	9 7 6   6
+	      9   7 9 6
+
+
+## scales
+
+- major A (major F for us) scale 7 mode positions
+	* 5th, 4th, 2nd, 7th, 9th, 11th, 12th position (0th)
+	* traverse 4 notes at a time,
+	move up by 1 note each time,
+	from lowest to highest then back
+- intervals
+	* traverse scale on each position
+	* 2 note, 3 note, 4 note, etc.
+	* recognize actual intervals
+- same thing, moving between positions

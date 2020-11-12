@@ -224,7 +224,7 @@
 - cosmetics
 - voice, exercises, stretching, practice
 - enounciation
-- sport
+- sport++
 - dcd
 - small rc fixes
 - notes: add note/mkdir, note/png
@@ -233,6 +233,43 @@
 - abstinence challenge day 0
 
 
+## mon 20201109
+
+- 6h classes
+- drums
+- guitar
+- food challenge day 13: 3
+- quantity challenge day 2
+- abstinence challenge day 1: 1
+
+
+## tue 20201110
+
+- 5h classes
+- voice
+- drums
+- sport++
+- gardening
+- research into diy projects
+- food challenge day 14: 4
+- quantity challenge day 3
+- abstinence challenge day 2: 2
+
+
+## wen 20201111
+
+- guitar++
+- voice
+- sport++
+- update install
+- food challenge day 15: 4
+- quantity challenge day 4
+- abstinence challenge day 3: 2
+
+
+- guitar: learn gsc4 + necrophagist/metallica
+- notes: 8string build
+- vdb proj
 - s3proj
 - lectures: sba/dcd/vdb/gge
 - programming
