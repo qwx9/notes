@@ -6,6 +6,22 @@
 - would be nice to not change the pickups
 
 
+## list
+
+- refret with jumbo xl 6100
+- swap nut with self-lubricating one
+- locking tuners
+- better bridge: ?
+- rewire
+	* change cap value
+	* individual tone/volume for each pickup: push/pull pots?
+	* different pot, log pots
+- shield with copper tape
+- swap output jack?
+- integrated preamp? tuner? active electronics, msp420?
+- stiffer switch
+
+
 ## project notes
 
 - we want a useful fucking guitar without modifying essential parts

@@ -3,19 +3,12 @@
 
 ## misc
 
-- morbid angel
 - king diamond
-- def leppard
 - nightwish
 - cradle of filth
-- mercyful fate
-- obituary
-- opeth
-- tangerine dream
 - pendelum
 - amin toofani - gratitude
 - mixes /tmp/madd/mix /tmp/madd2/mix $home/mm u26b:m
-- jl ponty
 - latest tool album
 - lance's dark mood party
 - doom4 ost
@@ -24,6 +17,31 @@
 - daikatana
 - verdi
 - mace - planet funk
+- napalm death
+- djentoids bands
+
+
+## grungoids in the category of punkofunctors
+
+- pearl jam
+- nirvana
+- soundgarden
+- green river
+- alice in chains
+- the melvins
+- fastbacks
+- mudhoney
+
+
+## metaloids
+
+- pantera
+
+
+## ??? rock
+
+- arthur brown
+- screamin jay hawkins
 
 
 ## trans/fusion
@@ -35,16 +53,6 @@
 
 - very varied
 - try: rakoon
-
-
-## black metal
-
-- mgla
-
-
-## techno
-
-- hybrid(?)
 
 
 ## electro hardcore

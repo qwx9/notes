@@ -3,6 +3,7 @@
 ## vocal range
 
 - f2-c5 right now, but hard
+	* expanded to d♯2-c5!
 - piano32 practice helps
 - vocal exercises help reach extremes
 

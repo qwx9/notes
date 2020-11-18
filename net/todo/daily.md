@@ -267,24 +267,71 @@
 - abstinence challenge day 3: 2
 
 
-- guitar: learn gsc4 + necrophagist/metallica
-- notes: 8string build
-- vdb proj
-- s3proj
-- lectures: sba/dcd/vdb/gge
-- programming
-	* sce
-	* notes, see below
-	* pplay/fplay/pitch
-	* sam
-	* new project: graphical crop
-	* new project: pplay-based audio editor
-	* new project: gfx editor
-- chrab
-- kertex
-- plan9 server and setup work
-- drum: rest of rudiments
+## thu 20201112
 
+- gardening
+- research into better setup
+- fixed ndb/auth networking issues
+- set up bbb as openbsd server
+- food challenge day 16: 5
+- quantity challenge day 5
+- abstinence challenge day 4: 2
+
+
+## fri 20201113
+
+- s3proj++
+- rework shitphone setup
+- rework w520 setup
+- sport
+- food challenge day 17: 5
+- quantity challenge day 6
+- abstinence challenge day 5: 3
+
+
+## sat 20201114
+
+- more work on setup
+- guitar/drums/voice
+- sport
+- food challenge day 18: 5
+- quantity challenge day 7
+- abstinence challenge day 6: 3
+
+
+## sun 20201115
+
+- guitar++
+- drums
+- voice
+- enounciation
+- gardening
+- sport++
+- food challenge day 19: 5
+- quantity challenge day 8
+- abstinence challenge day 7: 3
+
+
+## mon 20201116
+
+- 3h classes
+- vdb
+- guitar++
+- drums
+- voice
+- food challenge day 20: 5
+- quantity challenge day 9: 1
+- abstinence challenge day 8: 3
+
+
+## tue 20201117
+
+- 7h classes
+- sport++
+- small git9 bugs
+- food challenge day 21: 5
+- quantity challenge day 10: 2
+- abstinence challenge day 9: 4
 
 
 ## common
@@ -299,6 +346,19 @@
 
 ## stack top and more random shit
 
+- use unionfs to bind note resources together
+	* unionfs -m /mnt/notes p/notes2 p/notes
+- sba/dcd/vdb/gge, s3proj, vdb proj, dcd proj
+- notes: 8string build
+- learn guitar tracks
+	* to breathe in a casket
+	* ignominious and pale
+	* mop
+	* new millenium solo
+	* race with destiny
+	* prelude
+	* lzep
+- drum: rest of rudiments
 - drum:
 	* anatomy of drumming and related books
 	* pinky/ring finger grip technique

@@ -7,16 +7,18 @@
 
 ## stock specs
 
-- rosewood fretboard
+- ash body, maple neck, rosewood fretboard, 4-bolt neck plate
 - sapphire blue transparent finish
 - gold-plated hardware
-- 12" radius c-shaped maple neck
+- 12" (305mm) radius c-shaped maple neck
+- 1.650" (42mm) nut
 - 21 medium jumbo frets
-- traditional vintage-style synchronized tremolo
+- traditional 2-point vintage-style synchronized tremolo with bent-steel saddles
 - vintage tuners
 - 4-ply brown shell pickguard
-- 3 vintage noiseless single-coil pickups
-- wiring for 7 pickup configurations via push-button switch
+- 3 vintage noiseless single-coil pickups (SSS)
+- 25.5" (648mm) scale
+- wiring for 7 pickup configurations via push/push button
 - 0.022μF radial polyester capacitor
 - 250kΩ pot for second tone control, 500kΩ for first tone and volume
 - see service diagram in lib/doc
