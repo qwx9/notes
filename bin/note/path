@@ -16,4 +16,4 @@ if(test -d $notepath){
 }
 notedir=`{basename -d $notepath}
 mkdir -p $notedir || exit
-echo $notepath $notedir $noteroot
+echo $notepath $notedir $noteroot $noteroot/$notepath^.md

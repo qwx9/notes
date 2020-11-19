@@ -9,7 +9,7 @@ if(! test -f $win){
 	echo $0 ''$win'' directory not found >[1=2]
 	exit notfound
 }
-vars=`{note/mkdir $2} || exit
+vars=`{note/path $2} || exit
 cd $vars(3) || exit
 f=`{awk \
 	-v 'pref='^$vars(1) \
