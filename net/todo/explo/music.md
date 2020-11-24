@@ -36,12 +36,17 @@
 ## metaloids
 
 - pantera
+- queensrÿche
+- dream theater
+- atheist
 
 
 ## ??? rock
 
 - arthur brown
 - screamin jay hawkins
+- yes
+- king crimson
 
 
 ## trans/fusion

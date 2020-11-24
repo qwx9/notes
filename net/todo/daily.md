@@ -334,6 +334,75 @@
 - abstinence challenge day 9: 4
 
 
+## wen 20201118
+
+- 2h classes
+- proper firefox and unveil config
+- sport
+- drums
+- voice
+- food challenge day 22: 6
+- quantity challenge day 11: 2
+- abstinence challenge day 10: 4
+
+
+## thu 20201119
+
+- more openbsd setup: vmd et al
+- drums
+- gardening
+- sport++
+- food challenge day 23: 6
+- quantity challenge day 12: 2
+- abstinence challenge day 12: 5
+
+
+## fri 20201120
+
+- more openbsd setup
+- drums
+- guitar
+- food challenge day 24: 6
+- quantity challenge day 13: 2
+- abstinence challenge day 13: 5
+
+
+## sat 20201121
+
+- drums
+- clean, wash
+- updated drive, sync
+- reorganized guitar docs and shit
+- looked into soundproofing
+- gardening
+- guitar++
+- food challenge day 25: 6
+- quantity challenge day 14: 2
+- abstinence challenge day 14: 5
+
+
+## sun 20201122
+
+- drums
+- cleaned up
+- set up t43p as audio workstation
+- s3proj
+- food challenge day 26: 7
+- quantity challenge day 15: 2
+- abstinence challenge day 15: 6
+
+
+## mon 20201123
+
+- 7h classes
+- s3proj++
+- voice
+- sport++++
+- food challenge day 27: 8
+- quantity challenge day 16: 3
+- abstinence challenge day 16: 7
+
+
 ## common
 
 - sport
@@ -346,6 +415,7 @@
 
 ## stack top and more random shit
 
+- sam: 1,.d → /dev/snarf doesn't get the contents, normal?
 - use unionfs to bind note resources together
 	* unionfs -m /mnt/notes p/notes2 p/notes
 - sba/dcd/vdb/gge, s3proj, vdb proj, dcd proj
