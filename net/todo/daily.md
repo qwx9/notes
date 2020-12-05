@@ -403,6 +403,140 @@
 - abstinence challenge day 16: 7
 
 
+## tue 20201124
+
+- 2h exam
+- 3h classes
+- s3proj++
+- gardening
+- clean up
+- slightly improve drums sound isolation and setup
+- food challenge day 28: 8
+- quantity challenge day 17: 3
+- abstinence challenge day 17: 7
+
+
+## wen 20201125
+
+- 3h classes
+- guitar++
+- drums++
+- sport
+- food challenge day 29: 8
+- quantity challenge day 18: 3
+- abstinence challenge day 18: 7
+
+
+## thu 20201126
+
+- vdb
+- gardening
+- sport
+- guitar practice, snapped string
+- changed strings, fretboard maintenance, cleaned hardware
+- reviewed audio setup, mixing, tried old pedals again, new eq levels
+- food challenge day 30: 8
+- quantity challenge day 19: 3
+- abstinence challenge day 19: 8
+
+
+## fri 20201127
+
+- s3proj
+- drums
+- sport
+- richard iii (1995), straw dogs (1971)
+- quantity challenge day 20: 4 → scratched, not quantifiable
+- food challenge day 31: 8
+- abstinence challenge day 20: 9
+- sub 360 day 1
+
+
+## sat 20201128
+
+- s3proj
+- guitar
+- drums
+- sport
+- food challenge day 32: 9
+- abstinence challenge day 21: 10
+- sub 360 day 2: 1
+
+
+## sun 20201129
+
+- s3proj
+- drums
+- voice++
+- sport
+- food challenge day 33: 10
+- abstinence challenge day 22: 10
+- sub 360 day 3: 2
+
+
+## mon 20201130
+
+- s3proj
+- 3h classes
+- gardening
+- sport
+- food challenge day 34: 10
+- abstinence challenge day 23: 11
+- sub 360 day 4: 2
+
+
+## tue 20201201
+
+- 4h classes
+- s3proj
+- 5h sba
+- food challenge day 35: 11
+- abstinence challenge day 24: 12
+- sub 360 day 5: 3
+
+
+## wen 20201202
+
+- 3h classes
+- guitar, new shit
+- s3proj
+- music explo
+- sport
+- guitar++
+- drums
+- food challenge day 36: 11
+- abstinence challenge day 25: 13
+- sub 360 day 6: 4
+
+
+## thu 20201203
+
+- s3proj
+- music explo
+- voice
+- sport
+- guitar++
+- drums
+- food challenge day 37: 11
+- abstinence challenge day 26: 13
+- sub 360 day 7: 5
+
+
+## fri 20201204
+
+- gardening
+- guitar
+- drums
+- music explo
+- more guitar design
+- guitar: fermented offal discharge
+- guitar: beginner theory
+- food challenge day 38: 11
+- abstinence challenge day 27: 14
+- sub 360 day 8: 5
+- nospend day 1
+
+
 ## common
 
 - sport
@@ -415,11 +549,12 @@
 
 ## stack top and more random shit
 
+- audiohda record now broken on t61p
+- shelve pitch, sigrid beat us to it with simple fft approach :)
+	* try it out somehow... w500? t60p?
 - sam: 1,.d → /dev/snarf doesn't get the contents, normal?
 - use unionfs to bind note resources together
 	* unionfs -m /mnt/notes p/notes2 p/notes
-- sba/dcd/vdb/gge, s3proj, vdb proj, dcd proj
-- notes: 8string build
 - learn guitar tracks
 	* to breathe in a casket
 	* ignominious and pale
@@ -445,9 +580,7 @@ and long term massive information stores
 	* mindmap/wiki -> ?
 - latest files from emails et al
 - more applications
-- sba: this week and another 2 left, imperative all is done this week
 - dcd: lectures
-- dcd: project, already started? need for next week
 - vdb
 - gge: first lectures
 - dcd: classes/dcd/kdd.introduction.itemsets (cours1-3)
@@ -507,18 +640,10 @@ using an ascii delimiter like sigrid suggested
 - consider doing classes for skillshare/whatever or something like it
 - music, playlists
 - d3graph: develop the graph package idea first with d3 only, then ts then vue3 also
-- sba+dcd+vdb lectures for next week
-	* feed mbioinf and notes with them
 - clean appt
 - continue w520 and t60p setup
 - replace bv9100 battery
 - script to regen cmus playlists on u26b
-- fender mods: come up with a test bed so we can test things directly
-	* either on the guitar itself
-	* or a mock setup with a strings/pickups outside of body
-	* maybe get discarded pickups to fuck around with
-	* or just make one
-- more notes on diy pickups etc, from bookmarks
 - split pitch todo into proj/stack entries
 	* display
 	* notes on fft

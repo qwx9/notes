@@ -20,6 +20,7 @@
 - swap output jack?
 - integrated preamp? tuner? active electronics, msp420?
 - stiffer switch
+- stdd, or stdc, or lower (but scale not right?)
 
 
 ## project notes

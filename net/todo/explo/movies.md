@@ -96,6 +96,8 @@
 - 2012 nasa's unexplained files
 - citizen khan
 - pulna ludnica
+- ironside
+- macgyver
 
 
 ## authors/actors
