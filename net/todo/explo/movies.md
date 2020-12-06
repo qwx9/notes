@@ -2,8 +2,6 @@
 
 ## movies
 
-- h2g2 new movie
-- 2016 hail, ceasar
 - 1987 empire of the sun
 - 1980 dressed to kill
 - 1974 phantom of the paradise
@@ -17,7 +15,6 @@
 - 1968 rosemary's baby
 - 1988 talk radio
 - 1989 field of dreams
-- 1992 of mice and men
 - 1992 unforgiven
 - 1993 heaven & earth
 - 1995 carlito's way
@@ -27,11 +24,9 @@
 - 1997 manhunter
 - 1998 phoenix
 - 2000 down from the mountain
-- 2001 donnie darko
 - 2001 the royal tenenbaums
 - 2003 bad santa
 - 2003 intolerable cruelty
-- 2004 ray
 - 2004 sidewas
 - 2004 the ladykillers
 - 2005 capote
@@ -39,17 +34,14 @@
 - 2005 romance & cigarettes
 - 2005 syriana
 - 2006 delirious
-- 2008 burn after reading
 - 2009 the doors: when you're strange
 - 2013 parker
-- 2016 13 hours
 - 2017 before i fall
 - wet hot american summer
 - night on earth
 - the third man
 - f for fake
 - the bad seed
-- rko 281
 - death and the maiden
 - the ninth gate
 - true romance
@@ -60,7 +52,6 @@
 - bill ted excellent adventure
 - 1967 dirty dozen
 - jeeves and wooster
-- 13 moons
 - abott and castello
 - 2014 kung fu killer (yi ge ren de wu lin)
 - 1987 the princess bride
@@ -69,7 +60,6 @@
 - 2012 flight
 - 2004 mysterious skin
 - 2011 the art of scottchurch
-- 1997 donnie brasco
 - 2013 12 years a slave
 - 2011 margin call
 - 2008 appaloosa
@@ -106,6 +96,7 @@
 - roman polanski
 - matthew barney
 - belmondo
+- bernard blier
 
 
 ## youtube

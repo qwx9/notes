@@ -3,9 +3,7 @@
 
 ## misc
 
-- king diamond
 - nightwish
-- cradle of filth
 - pendelum
 - amin toofani - gratitude
 - mixes /tmp/madd/mix /tmp/madd2/mix $home/mm u26b:m
@@ -17,36 +15,9 @@
 - daikatana
 - verdi
 - mace - planet funk
-- napalm death
-- djentoids bands
-
-
-## grungoids in the category of punkofunctors
-
-- pearl jam
-- nirvana
-- soundgarden
-- green river
-- alice in chains
-- the melvins
-- fastbacks
-- mudhoney
-
-
-## metaloids
-
-- pantera
-- queensrÿche
-- dream theater
-- atheist
-
-
-## ??? rock
-
-- arthur brown
-- screamin jay hawkins
-- yes
-- king crimson
+- steve vai
+- joe satriani
+- buckethead
 
 
 ## trans/fusion

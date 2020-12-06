@@ -537,6 +537,51 @@
 - nospend day 1
 
 
+## sat 20201205
+
+- fix mst/mkey octave labels
+- design hmst
+- s3proj
+- sport
+- food challenge day 39: 12
+- abstinence challenge day 29: 14
+- sub 360 day 9: 6
+- nospend day 2: nope!
+
+
+## sun 20201206
+
+- light gardening
+- research on cwfs
+- update patches, add rio exit confirmation
+- food challenge day 40: 11
+- abstinence challenge day 30: 14
+- sub 360 day 10: 6
+- reallynospend day 1
+
+
+## ALL CAPS TITLE
+
+- the actual problem here: reward circuits wired for easy payoff and no effort
+- essentially need self cognitive behavioral therapy to change that
+- the blockage is mostly on INTELLECTUAL efforts
+	* daily drills for music: EASY, just training muscles
+	* attempt to learn new music: HEAD→WALL
+- ie. learning new things, solving new problems, either for work or for personal shit
+- so, there are daily behavior to alter
+	* abstinence, lower expenditure, lower food satisfiability
+	* easy but rewarding shit: music drills, guitar/drums/voice
+	* hard: daily programming on projects
+	* harder: study lectures
+	* harder: books: non-fiction, technical information
+	* harder: new intellectual skills
+- therefore, new daily challenges
+	* easy: technical drills
+	* med: combat discipline
+	* hard: daily programming
+	* harder: study and/or learn new shit
+
+
 ## common
 
 - sport
@@ -549,6 +594,46 @@
 
 ## stack top and more random shit
 
+- debug the goddamn motherfucking x11 clipboard vs devsnarf on vncv problem
+- vncv performance fucking BLOWS, ssh too(?), faster to vncviewer within vncv to another machine
+	* vncviewer uses compression etc
+	* because 9p? ssh→tmux sucks too
+	* if that's it, could we import obsd's network stack somehow? drawterm?
+	* hextile sucks for low speed networks!
+	* why do we not have zlib compression? if it's better, implement it
+		- zrle more interesting, but zlib should be trivial
+			http://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst
+			rfc6143
+			http://euccas.me/zlib
+			https://github.com/amitbet/vnc2video, go package
+		- tight combines zlib with (lossy) jpeg compression
+- relentless doppelganger-like neural network/w/e generating necrophagistisms or progressive metal
+	* making successful djent songs would be especially hilarious
+	* nice approach to songwriting!
+	* bandname?
+	* (9)band?
+	* metalfront/frontmetal?
+	* neintek? teknein? (haha)
+	* neudetek/tekdemet? neindetek?
+		- ni teknisk død metall progressiv/framskrittsvennlig
+		- neindøtek
+		- 9døtek
+		- nidøtek
+		- nidøjjek
+		- nidøran
+		- ndtk
+		- n'døtk
+		- n'døtoruük
+		- nydøtyränor
+		- semprini
+		- sømprini
+	* ma'ketytrøn
+	* random letters
+	* bullshit(1) approach to naming
+	* generate band logo using neural networks too, make sure it's ineligible
+	* generate artwork with neural networks
+	* generate lyrics with neural networks
+	* metal(1) seems very appropriate here
 - audiohda record now broken on t61p
 - shelve pitch, sigrid beat us to it with simple fft approach :)
 	* try it out somehow... w500? t60p?
@@ -607,14 +692,6 @@ and long term massive information stores
 		- etc
 	* etc
 	* merge bookmarks from obsd and linux
-- mkey seems off by one octave, jesus
-	* mst as well
-	* piano, piano32 are fine
-	* i don't understand wtf Amavect's pianoJI is about
-		looking at a chromatic tuner,
-		umbraticus' piano is hitting exact frequencies
-		whereas pianoJI is noticeably off
-		different application? amend post
 - p/sce bin
 	* games/sce or sce/sce
 	* sce/... tools
