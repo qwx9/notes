@@ -403,6 +403,7 @@ si on considere l'ensemble vide (colonne 0) → += 1
 et eventuellement ∅ de freq 8
 - donc en fait 4 motifs interessants,
 qui sont finalement suff pour representer les 90 autres
+	* 3 fermes + ∅
 - on appelle ca une representation condensee
 	* si on regarde les diff sous-ensemble,
 	tous les motifs sont dans des classes d'equivalence
@@ -1013,3 +1014,1093 @@ en utilisant du flou ou des hierarchies
 	* coca, pepsi ⇒ soda metaitem
 	* on essaye de resumer
 	* mais jamais tres satisfaisant comme solution
+
+
+## notion de fermeture
+
+- extraction efficace de motifs par approche dfs: on s'appuie sur la notion de fermeture
+- etant donne un motif X, on a un operateur de derivation ´
+qui donne l'ens des transactions de la bd tq X est inclu dans la transaction
+ 	== toutes les t de D qui verifient le motif X
+- autre operateur qui permet d'aller dans l'autre sens,
+dans un sens l'intersection de ces t,
+donc retourne le plus grand motif qui est verifie par toutes ces transactions
+	X ­´→ {t ∈ D, x ⊆ t}
+	  ←´­ 
+	   ∩tᵢ
+- exemple:
+	t₁ a b c
+	t₂ a b c
+	t₃ c
+	a´ → {t₁,t₂} ­´→ abc
+- operateur de fermeture == application successive de ces deux operateurs de derivation
+- le motif X est ferme si la fermeture de X est egale a X
+	X ferme si X¨ = X
+- dans l'exemple, abc est un motif ferme
+- pour rappel, dans l'espace de recherche, on a des classes d'equivalence ({} below),
+et un motif ferme est un element max de la classe d'equivalence,
+representant unique de cette classe
+
+[](/classes/dcd/preference.based.pattern.mining.021.png)
+
+- la classe d'equivalence capture exactement la meme semantique,
+ca identifie tous les motifs verifies par les meme transactions
+- on a une redondance d'information la dedans
+- au lieu de retourner autant de fois que d'elements qu'ont a la meme information dans la classe,
+on se concentre sur un representant, ici ferme
+- regle un probleme de sortie et un pb d'enumeration:
+on considere ces representants et pas les autres,
+donc on enumere bcp moins d'elements dans l'explo
+
+
+## operateur de fermeture
+
+- cet operateur est connu sous le nom de "correspondance de GALLOIS"
+(gallois connection)
+- on a des proprietes
+	X ⊆ X¨: dans le pire des cas, on aura au minimum X en appliquant l'op
+	X¨ = (X¨)¨: idempotence: necessaire une et une seule fois
+	X ⊆ Y ⇒ X¨ ⊆ Y¨
+- pour chercher des motifs fermes frequents,
+dans un dfs,
+au lieu d'enumerer a puis ab puis abc etc,
+on enumere directement de ferme en ferme
+- on enumere X puis on calcule la fermeture,
+puis on enumere a partir de cette fermeture ∪ autre element
+	X → X¨ → X¨ ∪ {e}
+	a → abc → abc ∪ {d}
+⇒ sauts dans l'espace de recherche
+- plus les classes d'equivalence sont grosses,
+plus on gagne du temps,
+avec des sauts de plus en plus grands
+
+
+## test de canonicite
+
+- autre probleme: faut arriver a enumerer
+au plus une fois chaque element de l'espace de recherche,
+cad les elements peu prometteurs enumeres 0 fois
+- on a vu aussi que l'espace de recherche a une structure de treillis
+	* on enumere ∅ jusqu'a potentiellement tous les elements du langage
+	* mettons qu'on a un point interessant dans l'espace,
+	on a plusieurs chemins pour y arriver
+	* l'idee c'est qu'on n'enumere ce point qu'une seule fois
+- il faut donc prioriser des chemins
+- pour ca, on va utiliser un test de canonicite
+- on definit un ordre sur les motifs,
+par exemple alphabetique/lexicographique
+- on utilise l'ordre quand on calcule la fermeture
+- pour un motif X on calcule la fermeture
+- deux possibilites: la fermeture a permis d'ajouter des elements,
+mais le motif resultant est apres X dans l'ordre lexicographique,
+donc on continue l'exploration
+- par contre si on decouvre un motif avant celui qu'on est en train d'explorer,
+ca veut dire que comme on fait un dfs,
+on tombe sur une branche qu'on a deja explore
+	L pour lexicographique
+	X <_L X¨: continue l'exploration
+	X >_L X¨: arret de l'exploration
+
+
+## application: exemple precedent
+
+[](/classes/dcd/preference.based.pattern.mining.006.png)
+
+- assumons un ordre alphabetique: a₁ < a₂ etc
+- on peut calculer ∅¨, qui retourne ∅ et le supp du nombre de transactions = 8
+(premiere colonne)
+- ici assez simple comme on a permute les lignes et colonnes pour avoir de jolis rectangles
+- on commence par a₁¨
+- a₁¨ supporte par les 3 objets o₁,o₂,o₃
+- o₁,o₂,o₃ supportent simultanement a₁,a₂,a₃,a₄,a₅
+- donc on peut continuer et la on a differentes techniques d'implementation
+- techniques travaillant sur les bases projetees:
+plus aucun item a inserer et backtrack
+- sinon on essaie d'ajouter un element, zB a₆:
+0 transactions le contiennent,
+donc on backtrack, etc
+- finalement la branche de prefix a₁ est donc terminee
+- on passe a la branche a₂: a₂¨ = a₁,a₂,a₃,a₄,a₅
+- cette fermeture est avant dans l'ordre lexicographique,
+on l'a deja explorer, donc on le barre et on arrete
+- pareil avec a₃-₅ → on arrete l'enumeration et on backtrack
+- on enumere a₆: a₆¨ = a₆,a₇,a₈,a₉,a₁₀
+- si on ajoute un element → rien, on backtrack
+- meme fermeture jusqu'a a₁₀,
+mais resultat de la fermeture avant dans l'ordre L,
+donc on arrete
+- donc en exploitant l'operateur de fermeture
+et le test de canonicite,
+on arrive a des enumerations extremement efficaces
+car on peu tres rapidement se rendre compte qu'on a deja enumere un element
+et qu'on retombe sur un partie de l'espace de recherche qu'on connait deja
+- en pratique, on a des extractions non-faisables avec a priori
+qui le deviennent en considerant les fermes,
+sinon on peut avoir des gains de l'ordre de 1e3 par exemple
+
+
+## pattern mining as an optimization problem
+
+[](/classes/dcd/preference.based.pattern.mining.023.png)
+
+- on va faire un shift dans la fouille des motifs,
+et voir ca comme un probleme d'optimisation
+- jusqu'a present on part du principe que l'utilisateur
+est capable de declarer son interet sous forme de contraintes
+- en soi, pas si trivial que ca,
+sachant qu'en general quand on a des contraintes,
+on a des seuils a fixer sur differents parametres,
+comme support minimum,
+qui necessitent une expertise sur les donnees,
+et difficiles a fixer car peuvent engendrer une explosion combinatoire,
+donc on aimerait bien se passer de fixer les seuils
+- tous les problemes qu'on a fait jusqu'a present,
+on peut les voir comme des pb de resolution,
+de satisfaction de contraintes,
+on cherche toutes les solutions qui satisfont certaines contraintes specifiees
+- maintenant on va apprehender le probleme comme un probleme d'optimisation
+par rapport a differents criteres:
+preferences que l'utilisateur a exprime sur les donnees,
+ou en se basant sur la theorie de l'information, etc
+- on va moins s'attarder sur les aspects algorithmique
+que juste voir ce qu'il est possible de faire
+- on va surtout regarder topk,
+pour voir ce qu'on peut integrer comme contrainte supplementaire
+pour elaguer l'espace de recherche
+
+
+## addressing pattern mining tasks
+
+[](/classes/dcd/preference.based.pattern.mining.024.png)
+
+- si on s'affranchit des contraintes de seuil,
+on peut tres bien emettre des preferences sur des mesures de qualite,
+par exemple plus la frequence des motifs est importante,
+plus c'est interessant
+- on peut aussi utiliser des mesures du domaine,
+par exemple pour des molecules comme des toxicophores,
+on peut utiliser des connaissances du domaine
+comme aromaticite qui depend du nombre de carbones,
+et plus c'est important, plus c'est interessant, etc.
+- on peut aussi mettre des preferences entre les motifs eux-meme,
+par exemple on prefere X₁ a X₂
+- motifs statistiquement significatifs etant donne une distribution,
+ou ceux qui sont surprenants
+- ces preferences permettent de selectionner les motifs les plus interessants
+du point de vue de l'utilisateur
+
+[](/classes/dcd/preference.based.pattern.mining.025.png)
+
+
+## top-k pattern mining
+
+[](/classes/dcd/preference.based.pattern.mining.026.png)
+
+- parmis les approches les plus simples et intuitives,
+c'est la recherche des top-k par rapport a une mesure
+- par exemple si on regarde les frequents,
+on peut regarder les k meilleurs motifs
+par rapport a la mesure de frequence
+- le probleme de top-k est extremement simple,
+notamment pour les frequents
+- pour rappel, l'espace de recherche est sous forme d'un treillis,
+avec ∅ en haut et l'ensemble de tous les items en bas
+- si on montre les k meilleurs base sur la frequence,
+du fait que la frequence est une mesure AM/M decroissante en fonction de la specialisation,
+on sait qu'en descendant, la frequence va diminuer,
+puisqu'on rajoute des items, et si on rajoute un item,
+la frequence du motif resultant va forcement diminuer,
+c'est une probabilite jointe
+	en descendant, on passe de generalisation a specialisation
+- donc les top-k sont sur la partie superieure du treillis,
+et sont faciles a identifier
+- en fonction de comment decroit la frequence en fonction de la specialisation,
+on peut avoir une branche plus profonde que les autres,
+mais globalement on a en haut les solutions
+
+## top-k pattern mining avec d'autres mesures
+
+[](/classes/dcd/preference.based.pattern.mining.027.png)
+
+- le probleme est plus difficile si on s'interesse a d'autres mesures de qualite
+- par exemple on veut les motifs qui maximisent une mesure d'aire
+- aire = frequence du motif * cardinalite du motif
+	area(X) = freq(X) * |X|
+- si on represente nos donnees sous forme d'une matrice,
+par exemple dans le tableau sur la diapo on met des croix a la place des lettres
+quand l'item apparait dans une transaction,
+l'aire du motif est le nombre de croix couvertes par le motif
+	freq(BCDE) = 4, |BCDE| = 4
+	area(BCDE) = 16
+	on retrouve bien 16 elements (4 fois BCDE)
+- cette mesure est particuliere,
+elle depend de la frequence
+qui a tendance a diminuer avec la specialisation,
+alors que la cardinalite du motif augmente avec la specialisation
+- contrairement aux freq avec les solutions en haut du treillis,
+on aura des solutions un peu partout dans le treilli
+- plus delicat, car on n'aura pas un chemin continu de solutions pour y acceder
+
+
+## pruning conditions
+
+[](/classes/dcd/preference.based.pattern.mining.028.png)
+
+- on peut faire un dfs pour chercher les topk par rapport a cette mesure,
+mais on peut ajouter des regles d'elaguage supplementaires
+- l'idee est qu'on a une liste k de solutions courantes triees,
+et on connait a n'importe quel moment quelle est dans cette liste la
+quelle est la plus "mauvaise" valeur,
+le score du k-ieme motif
+- donc on peut s'appuyer sur cette valeur
+pour essayer de definir des contraintes
+que doivent verifier les motifs qui peuvent esperer entrer dans le topk actuel
+- on va utiliser la valeur A pour dire
+que c'est la plus petite valeur du topk actuel
+- on sait que dans les transactions,
+la taille de la plus grande transaction est de 6
+- a partir de la, on peut definir un propriete
+qui dit que pour qu'un motif X puisse etre inserer dans l'ensemble des topk actuels,
+il faut qu'il batte ce plus mauvais topk
+- pour le battre, il faut qu'il ait une frequence > A/(taille de la plus grande transaction)
+	freq(X) ≥ A/L
+- ce qui est interessant qu'on a un support qui depend de A/L,
+mais au fur et a mesure de l'enumeration, 
+le A est amene a augmenter,
+car plus on enumere, plus le k-ieme devra etre bon
+- par exemple si on commence a enumerer avec {B,BE,BEC},
+le plus mauvait a une aire de 6
+	B present 6 fois, avec une cardinalite de 1
+- donc la frequence a battre est 6/6,
+donc on veut les motifs qui sont presents dans au moins une transaction
+- en continuant, a la place de B on rajoute BCDE
+- le plus mauvais motif dans {BE,BEC,BCDE};
+la le plus mauvais motif a une aire de 10,
+ce qui fait qu'on a un seuil a 10/6,
+plus stringent
+- plus on continue a enumerer,
+on met a jour la liste des topk
+et plus le seuil devient important
+et permet d'elaguer une grande partie de l'espace de recherche
+- avec les topk on peut definir des strategies de ce type
+ou des qu'on a une liste de topk remplie,
+on regarde la valeur du plus mauvais,
+et on peut ainsi deriver des proprietes
+que doivent respecter les motifs qu'on recherche
+pour rentrer dans la liste des topk
+- pour l'initialisation, si on fait un dfs,
+on peut prendre les k premiers elements dans le parcours
+
+
+## top-k: conclusion
+
+[](/classes/dcd/preference.based.pattern.mining.029.png)
+
+- on a plusieurs avantages,
+on cherche les k meilleurs sur une mesure
+- pas besoin de definir un seuil sur la mesure a exploiter,
+juste a definir la valeur k
+(on peut critiquer ou pas l'usage de ce k)
+- permet de trouver directement les meilleurs motifs
+- on a toujours des cas ou chercher les topk
+dans le probleme general reste NP-complet
+- les approches completes peuvent donc ne pas marcher
+- alternatives avec des heuristiques
+	* beam search, recherche en faisceaux
+- on a aussi un probleme de diversite,
+car generalement etant donne une mesure qu'on cherche a optimiser,
+quand on trouve la meilleure solution,
+les 2e, 3e, 4e etc solutions sont des variantes de la 1ere,
+donc a l'arrivee on identifie une zone tres dense de l'espace de recherche
+avec toutes ces variations
+- donc on aura le meilleur motif, puis des motifs tres similaires
+- on peut essayer de regler ce probleme avec des solutions ad-hoc,
+mais pas forcement toujours satisfaisant
+- de plus, topk est tres bien sur papier quand on connait la mesure qu'on cherche a expoiter,
+mais si on cherche a exploiter simultanement sur plusieurs mesures,
+comment on fait?
+	* zB topk par rapport a aire ET frequence: on sait pas faire
+- pour traiter plusieurs mesures simultanement, il faut d'autres paradigmes
+	* zB skyline patterns, fronts(???) de pareto
+	sur l'espace des motifs en fonction des preferences
+
+
+## skypatterns: pareto dominance
+
+[](/classes/dcd/preference.based.pattern.mining.030.png)
+
+- on parle de skypatterns car en bdd,
+on a un operateur skyline qu'on a voulu etendre sur des motifs:
+calculer la skyline sur l'espace de motifs
+- c'est un operateur simple qu'on a surement deja fait
+- imaginons qu'on part en vacances en mer et qu'on cherche un hotel,
+pour lequel on a des criteres de preference:
+on veut minimiser le prix, la distance a la plage,
+et eventuellement d'autres
+- a distance egale de la mer, on prend le moins cher:
+on dira qu'il domine les autres sur ce critere la
+- si on represente l'espace des donnees avec distance en abscisse et prix en ordonnee,
+on dira qu'un point en bas et a gauche
+domine ses confreres plus a droite sur l'abscisse en distance,
+mais aussi ses confreres plus en haut pour une distance donnee,
+et egalement tout ce qui est entre (plus haut, plus a droite),
+par rapport a la distance ET au prix,
+donc domine tout seul:
+on n'a pas trouve plus proche et moins cher
+- on peut avoir des points plus a gauche OU plus en bas:
+des hotels uniquement moins cher mais plus loin,
+ou proches mais plus chers
+- la skyline est ainsi le front de pareto
+de tous ces points non domine par les autres,
+donc les plus proches de l'origine
+- skyline facile a calcule
+car une fois qu'on a compris la notion de points incomparables,
+non domines par les autres,
+c'est juste une double boucle dans la bdd
+pour chercher si pour un point d'autres le dominent
+- "simple" dans le cadre des bdd,
+mais plus complique pour les motifs,
+car double boucle sur l'espace de recherche est du exponentiel
+- supposons qu'on veut calculer une skyline d'un motif
+par rapport a l'aire et la frequence,
+on veut les motifs qui maximisent les deux
+- sur l'exemple, on a mis tous les motifs possibles,
+et sur la skyline, on a 4 motifs: BCDE, BCD, B et E
+- n'importe quel autre est domine par 1 de ces 4,
+par exemple BCE a la meme frequence que BCDE (4),
+mais une aire moindre (12)
+- avec les 2 preferences emies par l'utilisateur,
+on peut directement retourner ces 4 motifs
+
+
+## skylines (bdd) vs skypatterns (mining)
+
+[](/classes/dcd/preference.based.pattern.mining.032.png)
+
+- en bdd la tache est tres simple,
+car l'espace de recherche est les tuples (transactions),
+donc chercher la skyline avec un algo naif sera en O(|D|²)
+- mais pour les motifs,
+un algo naif sera en O(|L|²),
+et ca c'est souvent exponentiel
+	|L|: taille du langage
+- donc on ne va clairement pas faire une double boucle sur l'espace de recherche
+
+
+## skylineability
+
+[](/classes/dcd/preference.based.pattern.mining.033.png)
+
+- pour resoudre le probleme sur les motifs,
+intuitivement on va etudier toutes les mesures
+sur lesquelles portent les preferences
+et identifier un sous-ensemble de mesures sur lesquelles on peut travailler,
+et directement deriver des resultats sur les autres
+- on peut calculer directement une representation condensee
+par rapport a ces mesures,
+par exemple on s'interesse aux fermes ou aux generateurs
+- on n'a pas d'exemples sur les slides,
+mais si on s'interesse a la frequence et l'aire,
+on peut dire que freq skylineable
+- cad si on travaille sur la frequence,
+on peut calculer les fermes sur la frequence
+- et on sait qu'avec ca,
+on peut trouver la skyline sans directement regarder l'aire
+- quand on est dans une classe d'equivalence,
+on a un ferme en haut,
+et tous les elements de la classe d'equivalence ont la meme frequence
+- si on prend le ferme et un autre element dans la classe,
+on sait que le nombre d'elements dans X sera ≤ nombre d'elements dans le ferme,
+puisque le ferme est l'element maximal dans la classe d'equivalence,
+c'est a dire celui qui a la plus grosse cardinalite
+	|X| ≤ |X¨|
+- donc a frequence egale, si on a une plus grosse cardinalite,
+on aura forcement une aire plus importante,
+donc on sait que le ferme dominer tous les autres elements de sa classe d'equivalence
+pour la frequence et l'aire sur ces deux preferences la
+- dans d'autres cas il faudra s'interesser aux elements minimaux des classes d'equivalence
+
+[](/classes/dcd/preference.based.pattern.mining.034.png)
+
+- sur l'exemple, on cherche a maximiser sur l'aire et la frequence
+- on sait que tout ce qu'il y a a gauche et en bas de BCDEF est inutile,
+0 espoir,
+ce qu'on va representer par une contrainte
+- pour pouvoir esperer etre dans la skyline,
+il faut ne pas etre domine par BCDEF (donc dans la partie grisee)
+- donc maintenant ce qu'on recherche c'est les motifs
+qui sont fermes sur la frequence
+ET non domines par BCDEF
+
+[](/classes/dcd/preference.based.pattern.mining.035.png)
+
+- en continuant, avec BEF on augmente la zone de domination,
+ce qu'on modelise par une nouvelle contrainte,
+et ainsi de suite
+
+[](/classes/dcd/preference.based.pattern.mining.036.png)
+
+- pour conclure, pour chercher des motifs skyline (skypatterns),
+il faut etudier des mesures sur lesquelles portent nos preferences,
+voire sur quelles sousensemble de mesures on peut calculer nos representations condensees,
+donc soit des fermes, soit des generateurs minimaux selon ce qu'on recherche
+- et a partir de la on peut faire de facon dynamique en integrant de nouvelles contraintes
+- note/nomenclature: les skypatterns composent une skyline
+
+
+## soft patterns and other approaches
+
+[](/classes/dcd/preference.based.pattern.mining.037.png)
+
+- on peut utiliser des approches plus floues sur la relation dominante
+- on ne va pas developper plus
+
+[](/classes/dcd/preference.based.pattern.mining.038.png)
+
+- on va plutot regarder d'autres approches,
+comme travailler sur des notions de trouver les bons ensembles qu'on va retourner en sortie
+- jusqu'a present, on enumere des solutions
+sans forcement s'interesser a l'ensemble des solutions
+- on s'y interesse un peu quand on fait des fermes,
+puisqu'on dit que pour tous ceux qui capturent la meme semantique, on rend l'element maximum
+- aussi avec les skypattern, on cherche ceux qui ne sont pas domines par les autres
+- mais plus generalement on peut definir ca comme un probleme de patternset mining
+- on cherche a extraire un ensemble de motifs qui verifie des bonnes conditions
+- le probleme est qu'on rajoute une complexite supplementaire au O(|L|²) de tantot,
+car l'ensemble de tous les ensemble de motifs est 2^(taille du langage),
+une puissance de quelque chose qui est deja exponentiel
+- malgre tout, on ne va pas chercher avec des approches correctes et completes,
+mais par rapport a des heuristiques
+- on a plein de taches ou il faut extraire un ensemble de motifs
+qui verifient des bonnes conditions
+- par exemple en classification
+	* on a des regles d'association ou motifs discriminants
+	* on cherche le plus petit ensemble de regles
+	qui permet de construire un bon modele sur les donnees
+	a des fins de prediction
+- tout ce qui est tiling (pavage):
+essayer resumer les donnees avec le moins de motifs possible
+	* zB en revenant sur la representation en matrice binaire,
+	c'est couvrir tous les 1 dans la matrice avec le moins de motifs possible,
+	donc identifier des motifs qui idealement se chevauchent le moins possible,
+	etc
+- autre exemple: simplification de formules logiques
+
+
+## minimum description length
+
+[](/classes/dcd/preference.based.pattern.mining.039.png)
+
+- on peut aussi identifier ces ensembles de motifs
+par des approches theorie de l'information
+- on dira qu'un bon ensemble de motifs est celui qui compresse bien les donnees
+- on va utiliser un dictionnaire
+	D: bdd
+	CT: ensemble de motifs
+- on utilise les motifs CT pour compresser la base de donnees,
+donc la resumer avec un autre code
+- notion de code table qui donne pour un motif son code
+- intuitivement, plus le motif couvre les donnees,
+plus il aura un petit code,
+donc on compressera bien les donnees en termes d'information
+- tres similaire a l'encodage de huffman
+- association d'un code en fonction de la frequence de l'element dans les donnees:
+plus il est frequent, plus son code est petit
+- l'enjeu est de trouver des motifs avec leur code associe
+pour essayer de minimiser L(D,CT)
+	L(D,CT) = L(D|CT) + L(CT|D)
+	L(D|CT): taille des donnees reecrite en fonction du codage
+	L(CT|D): taille du code table
+- on appelle ca le minimum description length:
+trouver l'ens de motifs tq on recode les donnees de la facon la plus petite possible
+- on peut le faire dans plein de cas d'usage
+- par exemple imaginons qu'on est une chaine de supermarches
+et qu'on a plein de diff supermarches a l'echelle nationale
+- on peut voir la norme est toutes les choses communes vendues entre tous les supermarches,
+donc motifs qu'on code tres bien,
+- et on a aussi les differences: tous les motifs tres bons pour certains supermarches,
+et beaucoup moins ailleurs
+- on peut ainsi voir quels sont les achats qui sont populaires a l'echelle nationale,
+et ceux qui sont propres a certaines regions
+- d'autres adaptations permettront de trouver des causalites
+	* quand interprete des regles,
+	on les interprete souvent a tort en termes de causalite,
+	alors que les regles d'association etc sont juste de la co-occurrence
+	* mais on peut faire certaines formes de causalite
+- on peut aussi faire dans les streams (flux) de donnees,
+on peut faire du "concept drift detection",
+cad trouver dans le flux des changements de distribution de comportements
+	* les encodages qui marchent super bien,
+	quand on a une fenetre glissante sur le flux,
+	ca code tres bien les donnees,
+	et tout d'un coup le codage echoue,
+	et la c'est qu'il se passe quelque chose de nouveau dans le flux
+	* utilisation sur des donnees twitter, etc
+- c'est une facon aussi de traiter les donnees manquantes,
+pour comprendre si c'est qu'il n'y a pas d'information a mettre,
+ou si c'est que l'information a ete omise,
+et si c'est le deuxieme cas, quelle information il faudrait qu'il y ait
+	* on peut l'apprehender avec des mdl,
+	on voyant que ca se compresse super bien
+	s'il y avait eu cette information
+- approche qui commence a bien se repandre,
+et des outils et packages apparaissent se basant sur des approches a minimum descriptionnel,
+sur des graphes, etc
+- le probleme c'est que ca marche qu'avec la notion de frequence,
+car a chaque fois on essaie de trouver le code optimal pour des motifs
+en fonction de leur apparition
+- d'autres mesures plus sophistiquees
+ou qui doivent prendre en compte la connaissance de l'utilisateur ou du domaine,
+c'est impossible ici, mais peut etre combine a d'autres approches
+
+
+## subjective interestingness: interet subjectif
+
+[](/classes/dcd/preference.based.pattern.mining.040.png)
+
+- autre type de probleme interessant, joli sur papier
+- on part des donnees et de l'utilisateur qui a des connaissances a priori dessus,
+a minima 2-3 requetes sql sur la base pour connaitre le nb d'objets d'un type etc
+- par exemple imaginons qu'on a une ville decoupee en quartiers,
+et pour chaque tous les commerces, leur type et leurs emplacements
+- on peut dire que l'utilisateur connait le nombre total de bars sur la ville,
+et l'importance d'un quartier donne en termes de commerce
+- on va representer ces connaissances sous forme de "equality constraints",
+cad l'incertitude de l'utilisateur sur les donnees, zB valeur moyenne
+- maintenant il faut arriver a prendre un modele qui verifie ces contraintes
+- cependant on peut en avoir une infinite
+	* par exemple il y a une infinite de modeles qui maximisent la probabilite d'une temperature
+	* on peut avoir une normale centree sur la temperature,
+	on peut aussi avoir une loi uniforme sur cette valeur
+- le modele qui verifie les contraintes sans faire d'hypotheses supplementaires
+s'appelle un modele a entropie maximale (maximal entropy model),
+qui se clacule assez bien
+- maintenant des qu'on a un motif,
+on peut evaluer son interet par rapport au modele,
+on mesure a quel point le motif est suprenant
+par rapport aux connaissances de l'utilisateur
+- on appelle ca l'information content,
+information capturee par le motif
+- imaginons qu'on montre un motif interessant a l'utilisateur,
+l'utilisateur met a jour ses connaissances,
+et de la meme facon on met a jour le modele
+en inserant de nouvelles contraintes
+- on peut trier nos motifs par rapport a l'information qu'ils capturent
+- plus un motif est long, plus la condition est longue et plus c'est difficile a assimiler
+	* motif avec 1 seul item, plus "simple" a expliquer
+	qu'avec 50 items
+- on peut definir ainsi un cout d'assimilation
+d'un motif qu'on definit comme la taille de la description necessaire pour coder le motif,
+ce qui est discutable
+- donc l'interet subjectif c'est essayer de resoudre
+le compromis entre information capturee (IC)
+et le cout d'assimilation (DL)
+	SI = IC/DL
+	DL: description length
+- donc on cherche les motifs les plus simples
+qui capturent le plus d'informations
+- ce qui est interessant est que dans le framework general,
+on cherche a chaque fois le meilleur motif,
+cad qui maximise le ratio IC/DL
+- on le retourne a l'utilisateur qui en prend connaissance,
+le valide, met a jour ses croyances
+et on met a jour nos connaissances
+- par exemple tres forte concentration de bars a un endroit,
+et l'utilisateur ne le savait pas
+- on peut ainsi chercher iterativement les meilleurs motifs par rapport a ca
+- par rapport aux topk, ou generalement on a le meilleur cas
+et des variations de celui-ci,
+la en mettant a jour le modele,
+un motif tres similaire au premier sera attendu par l'utilisateur,
+donc sera declasse a l'iteration suivante
+	* par exemple 2e motif a la 1ere iteration se retrouverait 40e,
+	car en mettant a jour le modele, il est considere comme attendu,
+	par rapport a d'autres motifs qui seront promus
+- on peut travailler a la fois sur la partie IC,
+dans le sens ou il faut arriver a representer le plus possible
+les connaissances a priori de l'utilisateur,
+	* on a la des travaux ou on considere que l'utilisateur connait les marges,
+	en gros on fait des 'select *',
+	mais on peut avoir des choses plus sophistiquees,
+	par exemple des hierarchies avec des valeurs differentes
+		. zB nombre de restorants a Londres,
+		puis specialisations suivant le type de cuisine
+		. on peut analyser differentes villes comme ca
+		. etant londonien, qu'est-ce qui est nouveau pour moi si j'analyse amsterdam?
+		. connaissance plus structuree, sur une hierarchie,
+		ou on propage de l'information par specialisation
+- on peut aussi travailler sur l'aspect descriptionnel,
+notamment quand on travaille sur des langages plus sophistiques que de simples itemsets
+	* par exemple sur des graphes: imaginons qu'on a un graphe tres connexe
+	* on le coderait en listant tous ses sommets
+	* mais on peut le representer de facon alternative, plus intuitivement
+	* finalement equivalent a tous les sommets a une distance ≤ 1 de S₀, le centre
+	* pour le coder on a besoin du centre et de la notion de rayon,
+	et eventuellement stoquer des erreurs,
+	si un sommet n'est pas dans le motif (sous-graphe)
+	* donc on peut chercher a optimiser la DL d'un motif,
+	pour voir qu'il a un cout d'assimilation moindre sous une autre representation
+- dire que le coup d'assimilation est fonction de la taille du codage
+est une vue d'informaticien,
+et des travaux ont ete fait en sciences humaines,
+ou on peut avoir des notions d'acceptabilites qui rentrent en compte,
+et on a des domaines ou plus on met des conditions,
+plus ils font confiance a la regle,
+c'est a dire une regle avec une premice tres riche,
+car en termes d'acceptabilite, ca fait "plus serieux", etc
+- donc il faut faire attention en pratique,
+car d'autres notions qu'on ne maitrise pas toujours peuvent entrer en jeu
+
+
+## conclusion: problemes d'optimisation
+
+[](/classes/dcd/preference.based.pattern.mining.041.png)
+
+- on fait quand meme une hypothese forte
+que l'utilisateur est capable d'exprimer son interet sous forme de preferences
+- des fois on a plutot des intuitions mais sans qu'on puisse les formaliser
+- donc maintenant on va essayer de trouver des motifs automatiquement
+sans connaitre ce que l'utilisateur recherche
+
+
+## interative pattern mining
+
+[](/classes/dcd/preference.based.pattern.mining.042.png)
+
+### overview
+
+[](/classes/dcd/preference.based.pattern.mining.043.png)
+
+- double tache: on veut extraire des motifs,
+mais aussi construire/apprendre un modele de preference pour l'utilisateur
+puis l'integrer pour trouver les motifs qui maximisent ces preferences
+- pour ca on a une boucle interactive,
+on extrait des motifs,
+on les presente a l'utilisateur,
+qui emet des retours dessus,
+qu'on integre pour apprendre les preferences de l'utilisateur
+- plus on a une representation fine des preferences de l'utilisateur,
+mieux on arrive a extraire des motifs pertinents
+- la partie interaction peut etre un score qualitatif like/dislike,
+ou plus sophistique comme ordonner les motifs en fonction d'une preference,
+ou donner des notes a chaque motif
+- dans l'etape d'apprentissage,
+on essaie de generaliser les retours de l'utilisateur
+pour essayer de construire un modele de preference sur lui
+
+
+### bonn click mining
+
+[](/classes/dcd/preference.based.pattern.mining.044.png)
+
+- exemple d'outil existant
+- extraction simultanee de motifs en fonction de plusieurs mesures d'interet,
+puis en fonction des retours, priviligie tel ou tel motif
+
+
+### global challenges
+
+[](/classes/dcd/preference.based.pattern.mining.045.png)
+
+- problemes associes a chaque etape
+- fouille: qui dit interactif, dit instantane
+	* motifs frequents: NP-complets
+	* meme si on a vu des algorithmes corrects et complets,
+	on n'a aucune garantie en temps
+	* on veut ne retourner qu'un seul motif de facon instantanee
+- il faut aussi extraire des motifs en prenant en compte les preferences,
+donc pas agnostic par rapport aux retours de l'utilisateur
+- il faut assurer une certaine diversite dans les motifs proposes
+	* important pour l'usage: cote utilisateur,
+	toujours mieux d'avoir des resultats divers,
+	sinon impression qu'il y a trop de redondance dans les donnees
+	* pour construire les modeles de preference,
+	il vaut mieux diversifier pour "fermer des portes",
+	cad affiner le modele de preference
+	meme en proposant des motifs qu'on sait etre pas interessants
+		. c'est comme si on parcourait un espace de recherche different
+		sur les preferences de l'utilisateur
+		. si on demande des retours toujours sur les memes parties,
+		on n'arrivera pas bien a generaliser
+- interaction
+	* retours extremement simple de l'utilisateur,
+	wrt boulot pour l'utilisateur
+	* mais plus on demande des choses a l'utilisateur,
+	plus on peut l'exploiter dans l'apprentissage
+	* il faut veiller a conserver l'engagement a l'utilisateur,
+	sinon il en aura tres vite marre
+	* donc compromis moindre effort et retours maximaux
+- apprentissage
+	* bien construire les preferences
+	* bien exploiter les preferences dans le processus de fouille
+	* parfois c'est bien d'avoir des preferences interpretables,
+	car elles seront probablement transformees
+	en contraintes synctactiques ou similaire,
+	plutot que quelque chose qui capture les preferences tres bien,
+	mais qui est une boite noire
+⇒ optimal mining problem (according to preference model)
++ active learning model
+
+
+### learning: preference model
+
+- il faut etre "patient": bien generaliser les preferences
+- le modele construit depend vraiment de ce qu'on presente a l'utilisateur pour feedback
+- il ne faut pas toujours presenter les "meilleurs" motifs,
+car on risque de toujours rester dans la meme zone de l'espace de recherche,
+et avoir du mal a generaliser
+
+
+#### weighted product model
+
+[](/classes/dcd/preference.based.pattern.mining.046.png)
+
+- on a differents modeles de preference,
+dont des tres simples qui s'appuient sur des scores
+associes a chaque item
+- l'interet d'un motif par rapport aux preferences est le produit des scores
+- dans l'exemple, on prefere AB a BC, car il a un score superieur
+
+
+#### feature space model
+
+[](/classes/dcd/preference.based.pattern.mining.047.png)
+
+- des modeles plus sophistiques pour presenter les preferences existent
+- on sait par exemple que le motif A domine le motif C ou B
+- chacun des motifs peut etre represente via un vecteur de descripteurs
+dans un autre espace
+- il faut arriver a trouver ce mapping,
+et apprendre dans le nouvel espace
+la separation entre les "bons" a ceux que l'usr ne prefere pas
+
+[](/classes/dcd/preference.based.pattern.mining.048.png)
+
+- hypothese qui est faite: on peut capturer les prefs de l'utilisateur
+dans ce nouvel espace
+- en pratique, on a comme descripteurs les attr du jeu de donnees,
+les items: les items appartiennent a l'itemset, etc
+- on a aussi des valeurs de freq attendu/observe:
+frequence reelle observee dans les donnees,
+et, connaissant la distribution sur les donnees,
+la frequence attendue
+- apres quelques retours on peut par ces approches assez rapidement
+si l'usr prefere des choses surprenantes ou attendues
+- on a d'autres mesures: cardinalite, scores χ², etc
+- dans les tous premiers travaux, l'espace des descripteurs etait tres simple
+- la tendance est maintenant plus on a de descripteurs, mieux c'est
+
+
+### interact: user feedback
+
+[](/classes/dcd/preference.based.pattern.mining.049.png)
+
+- comme dit tout a l'heure,
+il faut toujours arriver a ne pas fatiguer l'utilisateur
+- type de retours le plus simple dans la mesure du possible
+- evidemment, modele plus sophistique → on a besoin de plus de choses de l'usr
+
+
+#### weighted product model
+
+- like/dislike
+
+[](/classes/dcd/preference.based.pattern.mining.051.png)
+
+- on veut maintenant utiliser le feedback pour apprendre des preferences
+- dans le weighted product, on associe un score a chaque item
+et le score global de l'itemset est le produit
+- comme sur la diapo, on va mettre un 1 quand l'item appartient
+a un motif aime par l'usr,
+et -1 sinon
+- le score pour un item est ainsi 2^(likes - dislikes)
+- donc scores >> 1 pour items appartenant a des motifs apprecies
+- et scores < 1 pour l'inverse
+- marche tres bien pour ce modele qui reste extremement simple
+
+
+
+#### feature space model
+
+[](/classes/dcd/preference.based.pattern.mining.050.png)
+
+- on ordonne les motifs par rapport a des preferences
+- on peut aussi donner des notes
+
+[](/classes/dcd/preference.based.pattern.mining.052.png)
+
+- pour l'apprentissage on est ici dans le cadre
+de problemes de type learning to rank
+- on prend une paire d'objets quelconques,
+et on voit si le premier element est prefere au second, etc
+- donc on apprend des separations entre paires d'objets
+- l'ensemble d'apprentissage va etre des differences entre 2 motifs
+- on essaie d'apprendre une separation entre objets qui dominent et objets domines
+- l'algo le plus utilise: SVM rank, adaptation des SVM
+(support vector machines, machine a vaste marge)
+- supposons qu'on a des objets d'une classe d'un cote et d'autres objets de l'autre,
+mettons des triangles et des ronds
+- on va apprendre un modele qui separe les triangles et les ronds,
+et on pourra classifier de nouveaux objets avec
+- infinite de separations possibles, et faut trouver une bonne solution dedans
+	* dans un exemple simple avec deux paquets bien separes,
+	c'est en general juste l'hyperplan
+- dans un plan en 2d avec 2 classes a separer,
+on veut une droite qui est aussi loin de l'une que de l'autre classe,
+ce qui permet de mieux generaliser les donnees,
+et c'est l'objectif des svm
+- svm rank va faire pareil, mais au lieu d'avoir des cercles et des triangles,
+on aura des paires
+	pour un probleme o₁,o₂ on veut savoir lequel domine
+	(o₁,o₂) ⇒ o₁ > o₂
+	en utilisant les differences de features
+	par exemple, la valeur de freq observee est extremement differente de l'attendue
+	et l'autre beaucoup moins:
+	peut etre que l'usr prefere des choses tres surprenantes
+	et la frontiere se fait la dessus
+- le learning to rank problem est bien plus large que cette application
+et est retrouve partout, par exemple moteur de recherche
+	* on ordonne les reponses d'une requete en fonction des preferences
+	* peut-etre qu'on connait une preference pour telle ou telle chose,
+	on la mettra en avant
+	
+#### active learning problem
+
+[](/classes/dcd/preference.based.pattern.mining.053.png)
+
+- autre probleme: quels sont les objets qu'on montre a l'usr?
+- on peut avoir des choses qu'ont connait comme pas bonnes,
+mais on veut generaliser
+- apprendre les preferences de l'usr est un probleme de generalisation,
+donc on ne doit pas toujours rester au meme endroit
+- on parle de probleme d'active learning:
+on est dans un processus d'interaction,
+donc on veut construire un modele de pref,
+mais tout en essayant de faire le moins de boucles d'interaction possible
+et donc le plus rapidement que possible
+
+#### heuristiques
+
+- differentes heuristiques existent pour trouver les bons objets a presenter
+- pour bien generaliser, on a besoin de diversite
+- heuristiques de diversite locale:
+on a des choses relativement differentes dans ce qu'on presente a l'usr
+- heuristiques de diversite globale:
+on tient compte de cette diversite dans l'ensemble de la boucle,
+et pas qu'a une seule etape
+
+
+##### formalisations mathematiques
+
+[](/classes/dcd/preference.based.pattern.mining.054.png)
+
+- maximal marginal relevance:
+qualite intrinseque du motif par rapport au modele de pref
++ parametre de diversite
+	* on regarde ici a quel point le motif est different des autres qu'on proposerait a l'usr
+	* on propose donc des motifs interessants et bien differents entre eux,
+	qui maximisent ce critere la
+- global mmr: on peut faire la meme chose
+mais en prenant la diversite sur l'ensemble des boucles d'interaction,
+et pas que a l'instant t
+- la troisieme heuristique s'appuie aussi sur le fait
+que generalement l'usr prefere ce qui se passe dans des zones denses des donnees,
+donc favoriser un facteur de densite,
+en disant qu'un motif represente une zone relativement interessante,
+et qu'il faut qu'il soit booste
+
+
+### mine: mining strategies
+
+
+#### post-processing, optimal pattern mining
+
+[](/classes/dcd/preference.based.pattern.mining.055.png)
+[](/classes/dcd/preference.based.pattern.mining.056.png)
+
+- il faut produire des resultats divers et de facon instantanee,
+en incluant les prefs
+- dans les premiers travaux, on triche un peu,
+on extrait d'abord tous les motifs puis ne fait juste
+que retrier les motifs deja trouves,
+pas de fouille instantanee
+- diversite → approches completes, c'est mort, trop lent
+- on peut dire qu'on a un budjet temps, par exemple 2sec:
+meilleurs motifs retrouves en 2sec
+- soit en dfs, mais on n'aura pas de diversite,
+car on risque d'explorer que quelques branches
+et tous les motifs vont se ressembler
+- soit en bfs, mais que des motifs de 1er niveau,
+pas forcement interessants
+- donc il faut d'autres strategies
+
+
+#### pattern sampling
+
+[](/classes/dcd/preference.based.pattern.mining.057.png)
+[](/classes/dcd/preference.based.pattern.mining.058.png)
+
+- on oublie la completude, et on fait de l'echantillonnage
+- on connait ca pour les bdd, beaucoup de travaux dessus
+- on travaille sur un sous ensemble representatif de tuples
+- tout ce qui est a base de reservoirs etc,
+on a une garantie sur la selection
+d'avoir une approximation avec une erreur bornee
+- nous ca nous aide clairement pas
+- on a vu que les algo sont polynomiaux par rapport a la taille des donnee,
+donc si on prend un sous-ensemble, on va ameliorer
+- mais le vrai critere de difficulte est la taille de l'espace de recherche
+- en selectionnant un sous ensemble de tuples,
+on ne modifie pas l'espace de recherche,
+on a juste l'operation de calcul du support plus rapide,
+car un pass sur la bdd est plus rapide
+- donc meme nombre d'items dans l'echantillon,
+donc combinatoire de 2^(Nitems)
+- ce qu'on veut c'est echantillonner directement l'espace des motifs
+- "output space sampling", echantillonnage de la sortie
+
+
+##### output space sampling
+
+[](/classes/dcd/preference.based.pattern.mining.059.png)
+
+- avec l'echantillonnage,
+on n'est plus dans des notions d'optimalite,
+on est des choses representatives,
+mais aucune garantie d'avoir les top
+- on a plein d'approches differentes
+- les premiers travaux faits sur l'echantillonnage
+sont apparus pour les graphes,
+un domaine de motifs assez compliques,
+et pour des mesures autres que la simple frequence
+- alors qu'on a vu que dans la fouille de motifs,
+on est partis de choses tres simples
+en complexifiant progressivement les domaines de motifs
+- ici on part du principe que les algos corrects et complets
+ne sont pas suffisants pour ces domaines de motifs compliques,
+donc faut directement faire de l'echantillonnage
+
+
+##### approche naive
+
+[](/classes/dcd/preference.based.pattern.mining.060.png)
+
+- extraire tous les motifs possible et les echantillonner directement
+- aucun interet, etape exhaustive prohibitive
+- on veut directement echantillonner l'espace de recherche
+sans passer par la fouille
+- on a une etape de pretraitement
+pour identifier un tuple dans les donnees,
+pour directement arriver a la fin
+- meme si on fait le pretraitement qu'une fois,
+il doit rester faisable
+- puis l'etape d'apres doit etre hyper rapide
+
+
+##### deux familles d'approches
+
+[](/classes/dcd/preference.based.pattern.mining.061.png)
+
+- stochastique: peu de pretraitement, quasi-nul
+	* metropolis-hastings
+	* monte carlo markov chains
+- on fait des marches aleatoires dans l'espace de recherche,
+et au fur et a mesure du random walk, on sort des motifs
+- il faut evidemment avoir quelques belles proprietes theoriques
+pour avoir une garantie que chaque motif qui peut etre tire
+a une probabilite non-nulle, etc
+
+- deuxieme possibilite: echantillonnage direct
+- on a un pretraitement qui affecte une probabilite d'etre tire
+a chaque transaction de la bdd
+- et une fois qu'on tire cette transaction,
+on peut generer un itemset
+- "two-step random procedure"
+
+
+##### two-step procedure example
+
+[](/classes/dcd/preference.based.pattern.mining.062.png)
+
+- supposons qu'on fait l'approche complete,
+on aura l'ensemble en haut de tous les motifs possibles,
+7 motifs, 14 transactions (somme des freq)
+- a partir de la,
+si on a un echantillonnage qui tient la route
+et qui prend bien en compte la distribution des motifs freq,
+si on demande de tirer 14 motifs,
+on aura les itemsets avec les memes frequences
+- mais en pratique, pas possible,
+donc on veut completement shunter la premiere etape
+
+[](/classes/dcd/preference.based.pattern.mining.063.png)
+
+- on va plutot faire une etape de pretraitement
+qui va nous donner un poids pour chaque transaction
+	* t₁: 3 items, 2³ - 1 motifs si on ne prend pas ∅
+	* on peut utiliser le nombre de motifs contenus dans la transaction comme poids
+	pour faire un tirage ensuite
+	* t₁ contient 7 motifs, les autres 7 aussi au total,
+	donc 1/2 chances de tirer t₁
+	* 3/14 chances de tirer t₂, etc
+- on est capable maintenant de tirer une transaction
+en respectant les probabilites affectees
+- puis on choisit de facon uniforme un motif contenu
+	* ie. chacun des 7 motifs de t₁ aurait une probabilite de 1/7
+- evidemment on ne va pas generer tous les motifs d'une transaction,
+car c'est exponentiel
+- on va faire autrement
+	* l'alphabet des 7 motifs est {A,B,C}
+	* on va donner une probabilite de 1/2 a chacun,
+	et faire un tirage pour chaque dans un boucle
+		A B C
+		1 0 1 ⇒ AC
+- ce type d'approche permet de tirer des motifs frequents
+de facon instantanee
+	⇒ le tp1 etait sense etre l'implementation de la methode en python
+	en suivant le papier original dessus
+	⇒ dcd/tp0 dir has paper + old tp questions
+
+- marrant car si on fait un algo correct et complet,
+il faut faire quelque chose de complexe avec du memory management, etc,
+alors qu'ici c'est 4-5 lignes de code et des resultats instantanes
+- par contre tester l'implementation est plus delicat
+- pour un algo correct/complet, on peut faire un toy example et tourner dessus
+- ici on a de l'aleatoire et c'est plus compliquer a debug,
+il faut reflechir a des strategies pour verifier que la sortie est correcte
+- la on a de belles proprietes theoriques,
+car un motif va etre tire proportionnellement a sa frequence dans les donnees,
+donc il faut par exemple verifier cette propriete, etc
+
+
+#### application pour l'apprentissage
+
+[](/classes/dcd/preference.based.pattern.mining.064.png)
+
+- avantage: relativement simple pour les frequents
+- on affecte un poids a la transaction en fonction du nombre de motifs dedans
+- donc un seul parcours sur la bdd pour le pretraitement
+- pour l'echantillonnage, on tire une transaction,
+puis on choisit de facon uniforme un motif dedans,
+lineaire par rapport au nombre d'items dedans
+- pour identifier un tuple une fois qu'il est tire,
+on peut le faire par dichotomie → log time
+⇒ tirage tres performant dans ce cas la
+
+- par contre, pour des mesures plus sophistiquees,
+comme le contraste (2 dernieres lignes),
+le pre-traitement sera plus couteux,
+voire prohibitif
+- pour le contraste, cout quadratique par rapport a la taille de la base
+- donc mort a partir d'une certaine taille,
+meme si on le fait une seule fois
+- donc cette solution n'est pas la seule pour faire
+de l'echantillonnage de l'espace de motifs
+- mais si le cout est faisable, le tirage est instantane
+- pour les approches stochastiques,
+on n'a pas de cout de pretraitement,
+mais un cout de tirage des motifs
+qui depend de la random walk et un peu plus long,
+voire on peut ne pas avoir de garanties de convergence vers la solution
+- donc encore des problemes ouverts,
+mais on a des solutions parfaites pour certaines mesures

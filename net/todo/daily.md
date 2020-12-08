@@ -543,9 +543,9 @@
 - design hmst
 - s3proj
 - sport
-- food challenge day 39: 12
-- abstinence challenge day 29: 14
-- sub 360 day 9: 6
+- food challenge day 39: 12 → done
+- abstinence challenge day 29: 14 → nope
+- sub 360 day 9: 6 → nope
 - nospend day 2: nope!
 
 
@@ -554,46 +554,85 @@
 - light gardening
 - research on cwfs
 - update patches, add rio exit confirmation
-- food challenge day 40: 11
-- abstinence challenge day 30: 14
-- sub 360 day 10: 6
-- reallynospend day 1
-
-
-## ALL CAPS TITLE
-
-- the actual problem here: reward circuits wired for easy payoff and no effort
-- essentially need self cognitive behavioral therapy to change that
-- the blockage is mostly on INTELLECTUAL efforts
-	* daily drills for music: EASY, just training muscles
-	* attempt to learn new music: HEAD→WALL
-- ie. learning new things, solving new problems, either for work or for personal shit
-- so, there are daily behavior to alter
-	* abstinence, lower expenditure, lower food satisfiability
-	* easy but rewarding shit: music drills, guitar/drums/voice
-	* hard: daily programming on projects
-	* harder: study lectures
-	* harder: books: non-fiction, technical information
-	* harder: new intellectual skills
-- therefore, new daily challenges
-	* easy: technical drills
-	* med: combat discipline
-	* hard: daily programming
-	* harder: study and/or learn new shit
-
-
-## common
-
+- amend riostart and add workspace script, took fucking forever
 - sport
-- drums
-- voice
-- enounciation
-- guitar, right hand at least
-- light gardening
+- s3proj
+- revised life goals
+- new challenge: daily cbt, day 0
+	* i'm too young to die: basic setup work, research, tinkering
+	* hey not too rough: technical drills: guitar
+	* hey not too rough: technical drills: voice or drums
+	* hurt me plenty: combat discipline
+		. abstinence
+		. expenditure
+		. low food
+		. focus
+	* ultra-violence: daily programming
+	* ultra-violence: electronics, diy
+	* nightmare: study
+	* nightmare: learn new shit
+
+
+## sun 20201206
+
+- s3proj
+- dcd
+- guitar, practice on some new stuff, need a lot more technical practice though
+- sport
+- daily cbt day 1
+	* hey not too rough: guitar technical drills
+	* hurt me plenty: combat discipline: abstinence, focus
+	* nightmare: studying dcd
+	* nightmare: guitar shit
+
+
+## programming targets
+
+- see programming todo's below
+- gtab, sce
+- pplay, gfx editing
+- mod: sam, mothra
+- fix: vncv
+- debug: igfx
+
+
+## study targets
+
+- dcd
+- vdb
+- s3proj
+- gge
+- taa
+- alg
+- web
+- sba
+
+
+## learning targets
+
+- martial arts
+- guitar
+	* theory
+	* tabs
+		. necrophagist, archspire and other crazy bands
+		. vinnie moore, yngwie malmsteen, batio
+		. simpler shit: incomplete covers
+- drums: new techniques and new songs
+- dsp, audio processing
+	* pitch
+	* pitch shifting, time stretching
+	* guitar effects
+- computer graphics
+- ai programming
 
 
 ## stack top and more random shit
 
+- algo → asif, taocp + gcc
+- game programming theory from plantevit courses (dcd/cm.plantevit/doc)
+- dcd pattern mining tp in plan9 c (also other course shit, m1 and m2)
+	→ asif, etc
+- mod mothra to fix fucking selection shit and don't have it interfere with scroll bar
 - debug the goddamn motherfucking x11 clipboard vs devsnarf on vncv problem
 - vncv performance fucking BLOWS, ssh too(?), faster to vncviewer within vncv to another machine
 	* vncviewer uses compression etc
@@ -607,47 +646,11 @@
 			http://euccas.me/zlib
 			https://github.com/amitbet/vnc2video, go package
 		- tight combines zlib with (lossy) jpeg compression
-- relentless doppelganger-like neural network/w/e generating necrophagistisms or progressive metal
-	* making successful djent songs would be especially hilarious
-	* nice approach to songwriting!
-	* bandname?
-	* (9)band?
-	* metalfront/frontmetal?
-	* neintek? teknein? (haha)
-	* neudetek/tekdemet? neindetek?
-		- ni teknisk død metall progressiv/framskrittsvennlig
-		- neindøtek
-		- 9døtek
-		- nidøtek
-		- nidøjjek
-		- nidøran
-		- ndtk
-		- n'døtk
-		- n'døtoruük
-		- nydøtyränor
-		- semprini
-		- sømprini
-	* ma'ketytrøn
-	* random letters
-	* bullshit(1) approach to naming
-	* generate band logo using neural networks too, make sure it's ineligible
-	* generate artwork with neural networks
-	* generate lyrics with neural networks
-	* metal(1) seems very appropriate here
-- audiohda record now broken on t61p
 - shelve pitch, sigrid beat us to it with simple fft approach :)
 	* try it out somehow... w500? t60p?
 - sam: 1,.d → /dev/snarf doesn't get the contents, normal?
 - use unionfs to bind note resources together
 	* unionfs -m /mnt/notes p/notes2 p/notes
-- learn guitar tracks
-	* to breathe in a casket
-	* ignominious and pale
-	* mop
-	* new millenium solo
-	* race with destiny
-	* prelude
-	* lzep
 - drum: rest of rudiments
 - drum:
 	* anatomy of drumming and related books
