@@ -56,10 +56,10 @@ needs, applications, definition of data mining
 - many challenges
 	* mining methodology
 	* scaling
-		. as we've seen,
+		* as we've seen,
 		usually the major obstacle is not the size of the data
 		(linear complexity)
-		. but the size of the search space
+		* but the size of the search space
 		(exponential complexity)
 	* etc
 
@@ -2053,13 +2053,13 @@ car c'est exponentiel
 	* l'alphabet des 7 motifs est {A,B,C}
 	* on va donner une probabilite de 1/2 a chacun,
 	et faire un tirage pour chaque dans un boucle
-		A B C
-		1 0 1 ⇒ AC
+	* A B C
+	* 1 0 1 ⇒ AC
 - ce type d'approche permet de tirer des motifs frequents
 de facon instantanee
-	⇒ le tp1 etait sense etre l'implementation de la methode en python
+	* le tp1 etait sense etre l'implementation de la methode en python
 	en suivant le papier original dessus
-	⇒ dcd/tp0 dir has paper + old tp questions
+	* dcd/tp0 dir has paper + old tp questions
 
 - marrant car si on fait un algo correct et complet,
 il faut faire quelque chose de complexe avec du memory management, etc,

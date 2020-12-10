@@ -573,8 +573,9 @@
 	* nightmare: learn new shit
 
 
-## sun 20201206
+## mon 20201207
 
+- classes
 - s3proj
 - dcd
 - guitar, practice on some new stuff, need a lot more technical practice though
@@ -584,6 +585,31 @@
 	* hurt me plenty: combat discipline: abstinence, focus
 	* nightmare: studying dcd
 	* nightmare: guitar shit
+
+
+## tue 20201208
+
+- classes
+- dcd
+- guitar, picking through scales, necrophagist/daath
+- daily cbt day 2
+	* hey not too rough: guitar technical drills
+	* hurt me plenty: combat discipline: focus, food
+	* nightmare: studying dcd
+	* nightmare: guitar shit
+
+
+## wen 20201208
+
+- 8h classes
+- clear hmst design
+- 5h vdb
+- daily cbt day 3
+	* hurt me plenty: combat discipline: focus
+	* ultra-violence: daily programming: mst
+	* nightmare: study
+	* nightmare: some cogitating and reading on learning methods
+
 
 
 ## programming targets
@@ -598,7 +624,6 @@
 
 ## study targets
 
-- dcd
 - vdb
 - s3proj
 - gge
@@ -606,6 +631,7 @@
 - alg
 - web
 - sba
+- dcd
 
 
 ## learning targets
@@ -618,16 +644,21 @@
 		. vinnie moore, yngwie malmsteen, batio
 		. simpler shit: incomplete covers
 - drums: new techniques and new songs
+- voice: breathing, vocalization, range, accuracy, lung capacity, resonance, etc
 - dsp, audio processing
 	* pitch
 	* pitch shifting, time stretching
 	* guitar effects
 - computer graphics
-- ai programming
+- ai, game programming,
+- system programming
 
 
 ## stack top and more random shit
 
+- IMPORTANT: check out selected articles on learning methods + re-read notes
+- check out hummod.org
+- update dcd lectures from linux disk
 - algo → asif, taocp + gcc
 - game programming theory from plantevit courses (dcd/cm.plantevit/doc)
 - dcd pattern mining tp in plan9 c (also other course shit, m1 and m2)
@@ -668,10 +699,8 @@ and long term massive information stores
 	* mindmap/wiki -> ?
 - latest files from emails et al
 - more applications
-- dcd: lectures
 - vdb
 - gge: first lectures
-- dcd: classes/dcd/kdd.introduction.itemsets (cours1-3)
 - user install of texlive on obsd
 - cv in latex
 - reinstall kertex, see tlaronde mails, take notes
