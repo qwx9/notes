@@ -592,6 +592,7 @@
 - classes
 - dcd
 - guitar, picking through scales, necrophagist/daath
+- gardening
 - daily cbt day 2
 	* hey not too rough: guitar technical drills
 	* hurt me plenty: combat discipline: focus, food
@@ -599,17 +600,113 @@
 	* nightmare: guitar shit
 
 
-## wen 20201208
+## wen 20201209
 
 - 8h classes
 - clear hmst design
 - 5h vdb
-- daily cbt day 3
+- daily cbt day 3 → scratched, compound item too complex
 	* hurt me plenty: combat discipline: focus
 	* ultra-violence: daily programming: mst
 	* nightmare: study
 	* nightmare: some cogitating and reading on learning methods
+- daily programming day 0
+- daily reading/learning day 0
+- daily work day 0
+- daily technical drill day 0
+- combat discipline day 0
+	* abstinence, food, expenditure
+- reduce/eliminate distractions day 0
+	* movies, tv series, yt, etc; chats; /n/[uv]
 
+
+## thu 20201210
+
+- guitar, drills, daath tab
+- drums
+- s3proj
+- daily programming day 1: 1
+- daily reading/learning day 1
+- daily work day 1
+- daily technical drill day 1
+- combat discipline day 1: 1
+- reduce/eliminate distractions day 1: 1
+
+
+## fri 20201211
+
+- s3proj
+- vdb
+- guitar
+- gardening
+- sport
+- daily programming day 2: 1
+- daily reading/learning day 2: 1
+- daily work day 2
+- daily technical drill day 2
+- combat discipline day 2: 2
+- reduce/eliminate distractions day 2: 2
+
+
+## sat 20201212
+
+- s3proj
+- vdb
+- gge
+- drums
+- voice
+- sport
+- daily programming day 3: 2
+- daily reading/learning day 3: 2
+- daily work day 3
+- daily technical drill day 3
+- combat discipline day 3: 3
+- reduce/eliminate distractions day 3: 3
+
+
+## sun 20201213
+
+- vdb++
+- gge
+- guitar
+- drums
+- daily programming day 4: 3
+- daily reading/learning day 4: 2
+- daily work day 4
+- daily technical drill day 4
+- combat discipline day 4: 4
+- reduce/eliminate distractions day 4: 4
+
+
+## mon 20201214 - mon 20201221
+
+- gge, vdb, s3proj
+- guitar
+- drums
+- voice
+- all fucked, reset counters
+
+
+## tue 20201222
+
+- drums
+- voice
+
+
+## wen 20201223
+
+- hmst
+- drums
+
+
+## thu 20201224
+
+- daily programming 0
+- daily reading/learning 0
+- daily work 0
+- daily technical drill 0
+- combat discipline 0
+- reduce/eliminate distractions 0
 
 
 ## programming targets
@@ -620,18 +717,6 @@
 - mod: sam, mothra
 - fix: vncv
 - debug: igfx
-
-
-## study targets
-
-- vdb
-- s3proj
-- gge
-- taa
-- alg
-- web
-- sba
-- dcd
 
 
 ## learning targets

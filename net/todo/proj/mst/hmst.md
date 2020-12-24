@@ -4,6 +4,7 @@
 
 - implement skeleton multitracking
 - add instrument → add voices → output simple multitrack midi
+- for gtab, generalize hmst parser to set state from the same type of file
 - note.h: midi note indices (enum) and names (char), percussion
 - gm.h: instrument patch number and names
 - guitar.h: tuning names, later chords
@@ -51,6 +52,7 @@
 - alternative: 3 → 1u3, 6 → 2u3, 12 → 4u3
 	* not sure it's better,
 	* somewhat less intuitive, dunno...
+	* other u-plets → shit
 
 
 ## notes
