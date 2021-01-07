@@ -1,101 +1,60 @@
 # overall todo
 
-## master
+## practice of programming
 
-### sba
+### languages
 
-- sba s1, s2, mr1-2
-- sba td/tp
-- sba prior
-
-### dcd
-
-- latest
-
-### vdb
-
-- finish base graphics shit
-- finish shiny shit
-- finish last vdb tp
-- finish lifemap shit
-
-### gge
-
-- gge 1->5
-- poster guidelines
-
-### s3proj
-
-- start on frontend
-
-### mbioinf
-
-- vdb shit
-- sba shit
-- shiny.vdb shit and remove repo
-- xl
-- nanostring runs2
-- tk
-- other shit from courses
-
-
-
-## work
-
-### chrab
-
-- cross models
-- latest mails
-
-
-
-## music
-
-### guitar
-
-- practice picking technique and speed
-- practice songs
-- learn new shit
-- learn basic solfege, scales, moving them around, chords
-
-### drums
-
-- learn all basic rudiments
-- practice rudiments
-
-### voice
-
-- basic breathing
-- vocal exercises
-
-
-## jobs
-
-- rework cv in latex
-- build cv with kertex
-- english cv
-- cover letters
-- prospect and send shit out: private/public, lausanne/geneva
-- call back ens dudes
-
+- learn ocaml, try out on data manipulation problems à la dplyr?
 
 
 ## projects
+
+### global priorities
+- see programming todo's below
+- gtab, sce
+- pplay
+- gfx editing
+- 3d
+- mod: sam, mothra
+- fix: vncv
+- debug: igfx
 
 ### notes
 
 - [plumb rules](proj/notes/plumb)
 - add note/mv: move note from one dir to another, clean up parent dirs
 - [populate with notes](proj/notes/populate)
-- check rendering with discount
+- check rendering with discount, pdf generation ± kertex
 - get started on underlying mechanisms
+- update dcd lectures from linux disk
+- rewrite dcd in a more coherent and prosaic style,
+this isn't very convenient for this type of info
+- algo, dcd, taa + taocp → asif
+- integrate lectures + formatting
+- use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes
 
 ### pitch
 
 - [notes](proj/pitch/notes)
+- modify to draw a spectrogram (vertically)
+- additional processing
+- we want to know what notes are played in a music track
+- find simple pitch shifting/tempo shifting lib
+- split pitch todo into proj/stack entries
+	* display
+	* notes on fft
+	* analysis
+	* etc
+- pitch: check that mic recording replicates left chan to right
+- pitch: can use norm to amplify when above threshold
 
 ### sce
 
+- p/sce bin
+	* games/sce or sce/sce
+	* sce/... tools
+	* remove from /amd64 /386 /arm
+	* add in profile
 - [rgba for shawdows](proj/sce/rgba)
 - [draw lists](proj/sce/drawlists)
 - [notes](proj/sce/notes)
@@ -170,24 +129,34 @@ reused in various projects: nanosec() etc in treason et al
 - fork into another project for all the new shit,
 keep the simple visualization/player separate
 - look into simple libraries for altering pitch and tempo independently
+- fork pplay for guitarshit and editing, come up with a name
+- pplay: shorter input -> why aren't we zeroing out the rest of the fft buffer?
+- pplay: fix fft from pitch, nuke fplay
+- pplay: spectrogram scaled to musical notes c0 - b8
+- pplay: once we have another program for editing, remove shit like writing short buffers
+- pplay: better controls, esp looping/panning
+- pplay: better performance, esp redraw (riow -> force redraw)
+- pplay fork: modify controls
 
-### nopenopenope.net
-
-- [rework backend](proj/nopenopenope/backend)
-- [new posts](proj/nopenopenope/posts)
-- [new pages](proj/nopenopenope/pages)
-- automate updating site tars (+ contrib), cron or w/e
-- git server
-- local setup, we never did it
-- make it look a bit better via just css, check newest werc's
-- track on git, expose .md files?
-
-### 9dump.net
-
-- site using same setup as nopenopenope.net
-- paste service?
-- private file share
-- better radios and streaming via 9pro
+### asif
+- asif: dcd shit
+	* mine directory
+- asif: add pathfinding here
+	* path directory
+	* will contain testing algos/impl shit too?
+	* path(1) would use drop-in files from asif
+- asif: add simple pitch tracking?
+	* dsp directory
+	* fft file
+	* filtering
+	* windowing
+	* etc
+	* single file simple fft audio pitch tracker that pitch would use
+- game programming theory from plantevit courses (dcd/cm.plantevit/doc)
+- dcd pattern mining tp in plan9 c (also other course shit, m1 and m2)
+	→ asif, etc
+- numerical recipes has sections on linear and dynamic programming,
+among others
 
 ### 3d
 
@@ -204,53 +173,14 @@ keep the simple visualization/player separate
 
 - syntax improvements
 
+### other projects
+- såmtörm
+- deathfront
 
 
 ## setup
 
-### overall
-
-- sensible machine names
-- reread fqa 7.3 and auth papers, fix our shit
-- martin's vpn idea
-- check out hiro's and cinap's config, ipv6, complaints wrt nat
-- mail server
-- rework/clean /lib/ndb and share
-- check out http://github.com/cli/cli
-
-### storage
-
-- better music dirs organization
-- cron job for radio, share, backup, extra, /sys/games/lib, etc transfers
-- cron job for selective dir updates (lib/i etc)
-- cron job for updating tarballs, site pages, etc.
-- centralized fs resources, dedicated machine, backups, network access
-- access to unix resources
-- access from unix: 9pfs, drawterm, 9pro
-
-### remote use
-
-- remote access: vpn, 9dump imports
-- 9pro setup
-
-### 9front
-
-- tweak theme for visibility or use sigrid's tools, esp for t60p
-- kvik's rc scripts, x
-- look into mycroftiv's patches again
-	* modify parent namespace
-	* root namespace
-
-### unix
-
-- make viewing shared youtube and video links easier and automated
-- use youtubedr for audio downloads
-- possibly, jitsi server
-
-### u16
-
-- proper vnc riostart
-
+- see [notes](setup/global)
 
 
 ## 9front
@@ -282,9 +212,122 @@ keep the simple visualization/player separate
 can cause freezing (?)
 - default focus on start up should be command window
 - resize -> window too small -> crash
-- rsam: higher sam window
+- sam: 1,.d → /dev/snarf doesn't get the contents, normal?
+- såmtörm: samterm fork with ham tweaks and other ± såm if we change shit
+	* -a by default
+	* color tweaks (no direct display->white/black, etc)
+	* or break it down entirely and integrate with rio directly
+	* scroll past screen
+	* large file support
+	* list other grievances...
+
+### rc
+- rc: ok, fuck rc quoting: add backwards compatible quoting system
+using an ascii delimiter like sigrid suggested
+	* this will help with passing shit to rio -k, window, eval, etc
+	* note: probably won't be merged since use will break compat with others
+	but patch is available
+
+### vncv
+- fucking clipboard issues
+- vncv performance fucking BLOWS, ssh too(?), faster to vncviewer within vncv to another machine
+	* vncviewer uses compression etc
+	* because 9p? ssh→tmux sucks too
+	* if that's it, could we import obsd's network stack somehow? drawterm?
+	* hextile sucks for low speed networks!
+	* why do we not have zlib compression? if it's better, implement it
+		- zrle more interesting, but zlib should be trivial
+			http://github.com/rfbproto/rfbproto/blob/master/rfbproto.rst
+			rfc6143
+			http://euccas.me/zlib
+			https://github.com/amitbet/vnc2video, go package
+		- tight combines zlib with (lossy) jpeg compression
+
+### mothra
+- mod mothra to fix fucking selection shit and don't have it interfere with scroll bar
 
 ### git9
 
 - .gitignore or something
 - git log -p
+
+### usb
+
+- pen stroke size with pressure for paint(1)
+
+### ports
+
+- improve opusdec performance
+
+
+## master
+
+### vdb
+- finish base graphics shit
+- finish shiny shit
+- finish last vdb tp
+- finish lifemap shit
+
+### mbioinf
+- vdb shit, nuke vdb repo
+- sba shit
+- shiny.vdb shit and remove repo
+- xl
+- nanostring runs2
+- tk
+- other shit from courses
+- simple dcd shit
+
+
+## music
+
+### guitar
+- make an actual practice routine for technique and theory and tracks
+
+### drums
+- learn all basic rudiments
+- make an actual practice routine
+
+### voice
+- vocal exercises
+- make an actual practice routine
+- breathing, vocalization, range, accuracy, lung capacity, resonance, etc
+
+
+## books, topics
+- dsp
+- guitar effects and wiring
+- lutherie
+
+
+## jobs
+
+- reinstall kertex, latest tlaronde mails, take notes
+- m1 report in kertex
+- rework cv in latex
+- build cv with kertex
+- english cv
+- cover letters in kertex
+- prospect and send shit out: private/public, lausanne/geneva
+- call back ens dudes
+- countries
+
+
+## irl
+
+### software
+- martial arts, both selfdefence and discipline
+- check out selected articles on learning methods + re-read notes
+- find out about quick memorization techniques,
+and long term massive information stores
+	* vidid fun stories with strong connections for quick sequences
+		- this is practically sufficient, when well used,
+		for memory world competetions
+		- but have to learn to do it
+	* spaced repetition for massive knowledge
+	* others? more fun? easier? more adapted?
+	* mindmap/wiki -> ?
+
+
+### hardware
+- soundproof closet? real black metal recording setup!
