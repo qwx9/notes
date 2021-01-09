@@ -220,6 +220,8 @@ can cause freezing (?)
 	* scroll past screen
 	* large file support
 	* list other grievances...
+- annoying jumps for u command, searches, where selection should be centered, not off-screen,
+and shouldn't move the display if it's visible, it's super confusing
 
 ### rc
 - rc: ok, fuck rc quoting: add backwards compatible quoting system

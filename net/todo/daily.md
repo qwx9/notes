@@ -714,3 +714,27 @@
 ## sat 20201226
 
 - 9dump setup
+
+
+## 20201227 - 20210106
+
+- all fucked, reset everything
+- gge, vdb, alg
+- setup work and scripts
+- guitar, drums
+- some sport and gardening
+- new project: ⑨ST1
+
+
+## thu 20210107
+
+- 9front setup
+- alg
+- ⑨ST1: sander too noisy for indoor work
+
+
+## fri 20210108
+
+- alg
+- ⑨ST1: sanded one surface, turns out i suck at sanding
+- sport, research on soldering, sanding, drills

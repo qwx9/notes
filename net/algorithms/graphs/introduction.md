@@ -185,21 +185,16 @@ would necessarily create a cycle.
 	SOL ← ∅
 	E ← 3-dimensional array ∀e = {x,y} ∈ E with elements {x,y,w} of vertices x,y and weight w
 	ORDER E according to weights in non-decreasing order
-	for each u ∈ V do
+	for each u ∈ V
 		C[u] ← u				// each vertex its own connected component at first
-	end for
-	for each i=1 to m do
+	for each i=1 to m
 		{u,v} ← E[i].x, E[i].y			// head of list according to weight
 		if C[u] ≠ C[v] then
-			SOL ← SOL ∪ {u,v}
+			SOL ← SOL ∪ {{u,v}}
 			c ← C[v]
-			for each w ∈ V do
+			for each w ∈ V
 				if C[w] = c then
 					C[w] ← C[u]	// merge components
-				end if
-			end for
-		end if
-	end for
 	return SOL
 
 Ordering E: O(mlogm).
@@ -225,11 +220,10 @@ At each step, we find the edge of minimum cost that extends the current tree.
 	SOL ← ∅
 	choose a (any) vertex s in G
 	C ← s
-	while C ≠ V do
+	while C ≠ V
 		let {u,v} the edge of minimum weight among E with u ∈ C and v ∉ C
-		SOL ← SOL ∪ {u,v}
+		SOL ← SOL ∪ {{u,v}}
 		C ← C ∪ v
-	end while
 	return SOL
 
 The loop occurs n times since a vertex is added at each iteration,
@@ -244,3 +238,120 @@ complexity can be reduced to O((n+m)logn) = O(mlogn).
 Using a fibonnaci heap can further drive complexity down asymptotically to O(m + nlogn)
 when the graph is dense, and for very dense graphs,
 a d-ary heap can run it in linear time.
+
+
+### Greedy algorithms
+
+Uses local optima.
+This is the case with Kruskal and Prim which both choose the minimum on each step
+to provide a hopefully optimal global solution.
+The choice of locally optimal solutions is termed *greedy choice property*.
+A greedy algorithm reduces each problem into a smaller one by making one greedy choice after another.
+Therefore it never reconsiders its choices, which is the main difference with dynamic programming,
+which is exhaustive and guaranteed to find a solution.
+Dynamic programming chooses according to all previous choices
+and may reconsider the path to a solution.
+
+A template of greedy algorithms is as follows:
+
+	while SOL is not complete,
+		x ← best element in remaining input
+		SOL ← SOL ∪ x
+		remove x from remaining input
+	return SOL
+
+Greedy algorithms are simple to express and implement,
+but do not guarantee optimal results for many problems.
+In the case of MST, both Prim and Kruskal can be proven
+to arrive at a globally optimal solution by choosing locally optimal solutions.
+
+A proof by induction (recurrence) works by proving a statement at step 1,
+and showing that if it holds at step i, it will hold at step i+1 as well,
+which proves it holds at any step.
+This can be used in Prim's case.
+
+
+#### Prim correctness
+
+	let G be a connected weighted graph.
+	at every iteration, an edge (u,v) must be found
+	that connects a vertex in a subgraph to an external vertex.
+	since G is connex, there will always be a path to every vertex.
+	let T be an MST of G.
+	if T∗ = T, then T∗ is an MST.
+	otherwise, let {u,v} ∉ T be the first edge added during construction of T∗,
+	and let V´ be the set of vertices connected by the edges added before e.
+	then u ∈ V´ and v ∉ V´ (or vice versa).
+	since T is a spanning tree of G there is a path in T joining u and v.
+	traversing the path, an edge e must exist connecting a vertex in V to one not in V.
+	at the iteration when {u,v} was added to T∗, e could have been added instead but was not,
+	therefore w(e) ≥ w({u,v}).
+	let T∗∗ be the graph obtained by removing e and adding {u,v} to T.
+	then T∗∗ is connected, has the same number of edges as T, and w(T∗∗) ≤ w(T),
+	therefore it is also an MST of G and contains {u,v}
+	and all edges added to it during construction of V.
+	by recurrence, a spanning tree identical to T is obtained, therefore an MST.
+
+Proof by contradiction:
+
+	assume S is not minimum weight.
+	let V = (e₁,...,e₏) be the ordered sequence of edges chosen by Prim,
+	and U a minimum-weight spanning tree containing edges from the longest possible prefix of V.
+
+	let eᵢ = {x,y} ∉ U be the first edge added to S,
+	and let W = (e₁,...,eᵢ₋₁) be the set of vertices immediately before {x,y} is selected.
+	it follows that W ∈ U while eᵢ ∉ U.
+
+	there must be a path x→y in U, so let {a,b} be the first edge on this path,
+	with a ∈ W and b ∉ W.
+	let T = U + {{x,y}} - {{a,b}}.
+	T is a spanning tree for G.
+
+	if w({a,b}) > w({x,y}), w(T) < w(U) which is impossible since U is an MST.
+
+	if w({a,b}) = w({x,y}), T is also an MST,
+	and since Prim has not selected {a,b} yet,
+	{a,b} ∉ W, which implies W ∪ eᵢ ∈ T,
+	which is a longer prefix of V than U contains, contradicting the definition of U.
+
+	if w({a,b}) < w({x,y}), {a,b} will be selected by the algorithm,
+	which contradicts the definition of {x,y}, the first edge added to S.
+
+	since all three cases are contradictions,
+	the original assumption that S is not an MST is invalid.
+	QED.
+
+
+### Exercises
+
+#### Produce an minimum weight connected subgraph with k vertices
+
+Consider a modified version of Prim:
+
+	let G = (V,E), s ∈ V a vertex and k an integer.
+	SOL ← ∅
+	A ← {s}
+	while |A| < k
+		{a,b} ← edge of minimum weight where a ∈ A and b ∉ A
+		SOL ← SOL ∪ {{a,b}}
+		A ← A U {b}
+	return SOL
+
+If k = |V|, it is the equivalent of finding the MST of G.
+
+Does this produce a minimum-weight tree on k vertices?
+
+	As long as k ≤ |V|, then by definition, yes.
+	At each step we create a connected acyclic subgraph, ie. a tree.
+
+Is the algorithm correct?
+
+	Let T be a spanning tree of G with k vertices.
+	If k = |V|, s can be chosen at random since T is a spanning tree,
+	and Prim's algorithm guarantees that T is an MST.
+	If k < |V|, there are multiple solutions for T,
+	and the induced graph T can be of heigher weight depending on the choice of s.
+
+
+## Vertex cover
+
