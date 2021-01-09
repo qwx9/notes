@@ -351,7 +351,182 @@ Is the algorithm correct?
 	and Prim's algorithm guarantees that T is an MST.
 	If k < |V|, there are multiple solutions for T,
 	and the induced graph T can be of heigher weight depending on the choice of s.
+	It *would* work if we looked at all the edges
+	instead of selecting a random vertex,
+	and it would still be in polynomial time.
+
+
+#### Maximum spanning tree
+
+Consider the following modification to Prim's algorithm:
+choose the maximum weight edge at each step instead of the minimum weight one.
+
+Does the algorithm produce a spanning tree?
+
+	Since G is connex, intuitively the result would be a spanning tree
+	regardless of the optimization problem.
+	Prim's algorithm produces a spanning tree, which would still hold.
+
+Does the algorithm produce a maximum spanning tree?
+
+	Intuitively, the optimization problem is just flipped, and the
+	algorithm works just like before.
+	At the first step, a local maxima is chosen, and by recurrence,
+	a global maxima will be arrived at.
+	The same proof could be used either by flipping the conditions,
+	or by changing the sign of all weights:
+	since the two problems are shown to be equivalent,
+	resolving one also resolves the other.
+	In fact, the same proof holds if we have weights in ℤ,
+	since nothing stipulates there being a particular sign.
 
 
 ## Vertex cover
 
+### Definition
+
+	let G = (V,E) be a graph
+	let S ⊆ V
+	S is a vertex cover if ∀e ∈ E, e is incident to a vertex ∈ S
+	ie. S includes at least one endpoint of every edge in E
+
+|S| is termed the _cost_ of the vertex cover S.
+The vertex (or node) cover problem consists of finding the cover of minimum size,
+which is a classical NP-hard problem with an existing approximation algorithm.
+Its decision version is said to be NP-complete.
+
+
+### Greedy vertex cover algorithm
+
+	let G = (V,E) be a connected graph
+	SOL ← ∅
+	Remaining ← E
+	while Remaining ≠ ∅
+		v ← vertex incident to the maximum number of edges in Remaining
+		SOL ← SOL ∪ {v}
+		Remaining ← Remaining - {any e ∈ Remaining incident with v}
+	return SOL
+
+The algorithm does produce a _minimal_ vertex cover,
+ie. one that cannot be reduced in size,
+but not the _minimum_ vertex cover,
+ie. the optimal solution.
+
+	Example:
+		  / B - E
+		A - C - F
+		  \ D - G
+	The algorithm will choose {A}, then {E,F,G}, producing a cost of 4.
+	However, the optimal solution is {B,C,D}.
+
+
+### Minimum vs. minimal
+
+Care should be taken not to confuse the two (well gee).
+
+A _minimum_ vertex cover means that the solution is of minimum size.
+
+A _minimal_ vertex cover means that it cannot be reduced,
+ie. there is no subset of the minimal vertex cover that is also a vertex cover.
+
+A vertex cover can be neither or both of these,
+and finding a _minimum_ vertex cover is harder.
+
+
+### Question: is GreedyVC a 2-approximation algorithm?
+
+The common way for such problems is to consider that GreedyVC is a minimisation problem,
+and to attempt to show ρ > 2 in order to infirm the idea.
+
+Let S be a vertex cover.
+By definition, for each edge, at least one of the endpoints is part of S.
+Let G be a bipartite graph where all vertices of one partition have degree = 3.
+The first few vertices of the other partition will have degree = 3,
+then at some point degree = 2, and the rest will have degree = 1.
+
+Since in the case of equality, the algorithm chooses a vertex arbitrarily,
+we could assume it always chooses from the second partition when this occurs.
+We'll end up selecting all the vertices in the second partition,
+starting with those with degree = 3, then 2, then 1.
+By illustrating this visually, it is easily apparent that the optimal solution
+is all of the vertices in the first partition, of which there are much less.
+
+To generalize this problem, we'll set a degree k for all nodes in the first partition.
+There are k! vertices in the first partition.
+The second partition will have k!/k vertices of degree k,
+k!/(k-1) vertices of degree k-1, k!/(k-2) vertices of degree k-2,
+etc. ending with k!/1 vertices with degree 1.
+
+Generalizing this, ∀1 ≤ i ≤ k, the second partition will have k!/(k-i) vertices of degree i,
+and k colors.
+Every vertex in the first partition will be adjacent to 1 vertex of each color in partition 2,
+which satisfies d_G(v) = k ∀ v ∈ part1.
+
+As shown before, the algorithm could choose all vertices from the second partition,
+while the optimal solution is the vertices from the first (k!).
+In other words:
+
+	ALGO/ALGO∗ = (k! * (1/k + 1/(k+1) + ... + 1) / k!
+	for k sufficiently large, (1/k + 1/(k+1) + ... + 1) ≅ k!logk
+	ALGO/ALGO∗ ≅ k!logk/k! = logk
+
+Therefore, not only is the algorithm not a 2-approximation,
+but its error factor is not constant:
+the larger the graph (k), the bigger the error,
+and we will never have a constant approximation.
+
+If the size of the error depends on the size of the graph,
+and we have no constant upper bound ρ since it depends on k,
+and the approximation is arbitrarily bad.
+This is very unsatisfactory.
+
+
+### Two for the price of one algorithm
+
+
+
+
+## NP-hardness
+
+Many common problems can be solved by exact algorithms,
+but in at least exponential time.
+
+In practice, often a non-optimal solution found in polynomial time is sufficient.
+Typically, heuristics or approximation algorithms are used then.
+The main difference between the two is that
+heuristics alone do not provide a measure of error,
+or distance to the optimal solution.
+Approximation algorithms provide an upper worst-case bound for this distance.
+
+
+### Heuristics
+
+Heuristics are fast and simple, easy to understand and often empirical.
+However, they do not provide any guarantee
+on how far the solution is from the optimal one.
+
+
+### Approximation algorithms
+
+The goal is to arrive at the most near-optimal solution in polynomial time.
+An approximation algorithm is said to provide an n-approximation
+when the solution is n times bigger than the optimal solution.
+
+Let I be an instance of an optimization problem with a large number of possible solutions.
+Let c(I) be the cost returned by the approximation algorithm,
+and c∗(I) the cost of the optimal solution.
+
+In a minimisation problem, c∗ is the smallest possible value and c∗(I) ≤ c(I),
+and we need c(I) / c∗(I) as small, ie. as close to 1 as possible.
+
+In a maximisation problem, we need c∗(I) / c(I) as small, ie. as close to 1 as possible.
+
+	an approximation algorithm for any given problem instance I
+	has a ratio bound to ρ(n) where n is input size,
+	if ∀n c(I) is within a factor of ρ(n) of c∗(I)
+
+	minimisation: c(I)/c∗(I) ≤ ρ(n)
+	maximisation: c∗(I)/c(I) ≤ ρ(n)
+
+We can consider the worst-case performance of the algorithm versus an optimal one.
+The notations ALGO, ALGO∗ for the worst values which form ρ are common.
