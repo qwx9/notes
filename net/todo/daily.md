@@ -723,18 +723,43 @@
 - setup work and scripts
 - guitar, drums
 - some sport and gardening
-- new project: ⑨ST1
+- new project: ⑨ST
 
 
 ## thu 20210107
 
 - 9front setup
 - alg
-- ⑨ST1: sander too noisy for indoor work
+- ⑨ST: sander too noisy for indoor work
 
 
 ## fri 20210108
 
 - alg
-- ⑨ST1: sanded one surface, turns out i suck at sanding
+- ⑨ST: sanded one surface, turns out i suck at sanding
 - sport, research on soldering, sanding, drills
+
+
+## sat 20210109
+
+- alg
+- updated opus patches
+- s3proj
+- guitar
+
+
+## sun 20210110
+
+- alg
+- s3proj
+- dcd
+- guitar
+- gardening
+- sport
+
+
+## mon 20210111
+
+- taa
+- adm stuff
+- sport
