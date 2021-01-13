@@ -11,6 +11,7 @@
 - replace lr with walk in scripts and fn, remove lr from misc
 - p/rc: readme with description of scripts
 - p/rc/fn -> rc scripts
+- mku is fucking STUPID
 
 ## namespace
 - use unionfs for p/lib + $home/lib; note namespace

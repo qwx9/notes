@@ -763,3 +763,20 @@
 - taa
 - adm stuff
 - sport
+
+
+## tue 20210112
+
+- classes+report taa, algo
+- exam web
+- adm stuff
+- sport
+- gardening
+- guitar
+- updated patches
+
+
+## wen 20211013
+
+- classes taa, algo
+- replaced bv91 battery

@@ -149,3 +149,8 @@
 ## 20201211
 
 - 19 drowning sadness
+
+
+## 20201212
+
+- 25 stuffing sadness
