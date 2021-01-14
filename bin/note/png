@@ -28,4 +28,4 @@ f=`{awk \
 if(! ~ $status '')
 	exit 'too many pics'
 topng <$win >$f
-echo '[]('^`{basename $f}^')'
+echo '![]('^`{basename $f}^')'
