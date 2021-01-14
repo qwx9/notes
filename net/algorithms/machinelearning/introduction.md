@@ -235,7 +235,10 @@ to each vector is associated expected output D.
 	X = x¹, … , xⁿ
 	D = d¹, … , dⁿ
 
-It is an linear, adaptive, 2-class model,
+xᵢ are termed _variables_.
+Each sample is n-dimensional with one value for each variable.
+
+ADALINE is a linear, adaptive, 2-class model,
 which computes an output y based on connection weights W,
 such that:
 
@@ -250,6 +253,19 @@ It is added to extend the search to the entire search space.
 	"élargir le spectre de recherche de solutions de séparation
 	entre les données d'une classe et les données d'une autre."
 
+Mathematically, the equation of the curve representing the ADALINE
+is of the form:
+
+	w₀ + w₁x₁ + … + w₏x₏ = 0
+
+ie.:
+
+	w₀*1 + w₁x₁ + … + w₏x₏ = 0
+
+If we omit w₀, the curve will always pass through the origin, which
+does not allow us to explore the full problem space.
+w₀ allows the curve to be offset anywhere in addition to changing its slope.
+
 
 #### Algorithm
 
@@ -259,7 +275,7 @@ We want a stable and interpretable method with minimum error.
 	puis rendre le modèle intelligent/intélligible/interprétable
 	pour le client non-expert"
 
-1. at t=0, W is initialized randomly
+1. at t=0, W is initialized arbitrarily/randomly
 2. present a data x^k and output d^k
 3. compute distance e between output and expected output
 
@@ -277,4 +293,105 @@ We want a stable and interpretable method with minimum error.
 	w(t₊₁) = w(t) - ε
 	ε: learning step
 
-6. repeat 2.-5. until stability (convergence)
+6. repeat 2.-5. until stability (convergence):
+for each xᵢ, and over multiple passes over the db
+
+
+#### Example: learn logical OR using ADALINE
+
+Let D a 2D data matrix with rows for `samples' and columns for `variables'.
+Logical OR is a binary operator, hence 2 variables and 2² = 4 possible values,
+therefore: 4x2 matrix.
+Let's assume true=1 and false=-1.
+Let d be the vector of desired output.
+
+	#	V₁	V₂	d
+	1	1	1	1
+	2	1	-1	1
+	3	-1	1	1
+	4	-1	-1	-1
+
+We have thus modelized the problem as a learning dataset.
+We could visualize this as a simplistic scatterplot:
+
+        ⊗   1┼    ⊗
+	     │
+	┼────┼────┼
+	-1   │    1
+	⊙  -1┼    ⊗
+
+	⊗ class 1
+	⊙ class -1
+
+By initializing the weights arbitrarily,
+we essentially draw an arbitrary line:
+
+![After initialization](introduction.001.png)
+
+Then, at each iteration,
+the algorithm will compute approximation distance and adapt weights,
+and the curve will move in 2D space until convergence.
+
+![At convergence: green curve](introduction.001.png)
+
+It is these final weights that are finally accepted
+to test the model, ie. if new data is well separated.
+
+
+#### Exercises
+
+##### ADALINE
+
+We wish to learn logical AND.
+Modelize the problem for learning it using ADALINE
+with a step ε = 0.1,
+and initial weights (w₀, w₁, w₂) = (0.3, 0.8, 0.4).
+Unroll one iteration.
+
+	Assume true=1, false=-1.
+	W is of length 3, so we have 3 corresponding variables.
+	V₁ and V₂ are the possible values on each side of the AND operator.
+	V₀ then must be always 1 so as to not influence the desired result d.
+	w₀ is the bias term.
+
+	Therefore, let D be the following matrix:
+
+	#	V₀	V₁	V₂	d
+	1	1	1	1	1
+	2	1	1	-1	-1
+	3	1	-1	1	-1
+	4	1	-1	-1	-1
+
+	We now proceed to learning starting with the first sample:
+	X = (1 1 1), d = 1.
+	e	= d - <X,W>
+		= 1 - (0.3 0.8 0.4) [1\ 1\ 1]
+		= -0.5
+	Δ	= -2 * (-0.5) (1 1 1)
+		= (1 1 1)
+	w(1)	= w(0) - ε * Δ
+		= (0.3 0.8 0.4) - 0.1 * (1 1 1)
+		= (0.2 0.7 0.3)
+
+	Iteration 2:
+	X = (1 1 -1), d = -1
+	We calculate e, Δ, then use w(1) to compute w(2).
+	And so on.
+
+	We repeat with the remaining samples.
+	When we reach w(4), we wrap around and start over with the first sample.
+	This repeats until w(t) stabilizes.
+	We will obtain in the end:
+	w∗ = (-0.5 0.4286 0.3571)
+
+	Visually, we can see that the final curve separates the samples well.
+	We need a computational method to verify this.
+	We'll take each of the samples and test them one by one,
+	by multiplying them by the final w.
+	If the result is ≥ 0, it's in class 1, and -1 otherwise.
+
+	1: (1 1 1) [-0.5\ 0.4286\ 0.3571] > 0	⇒ s = 1.
+	s = d ⇒ ok.
+	2: (1 1 -1) [-0.5\ 0.4286\ 0.3571] < 0	⇒ s = -1.
+	s = d ⇒ ok.
+	etc.
