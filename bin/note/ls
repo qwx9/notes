@@ -5,4 +5,4 @@ if(! ~ $#* 0 && ! test -d $1){
 	echo usage: $0 '[dir]'
 	exit 'path not found'
 }
-walk -fep $1 | sort | sed 's,\.md$,,;s,^,note/add ,'
+walk -fep $1 | sort | sed -n '/\.md$/{s,\.md$,,;s,^,note/add ,p;}'
