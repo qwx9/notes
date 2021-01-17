@@ -176,6 +176,8 @@ among others
 ### other projects
 - såmtörm
 - deathfront
+- sawk: language based on awk + add hex shit + statistical functions library etc,
+vector calculus (other tool probably)
 
 
 ## setup

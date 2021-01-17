@@ -49,6 +49,7 @@
 
 
 ## log
+- sanding manually all the wood paste; other methods aren't soft enough, and this doesn't really waste too much sandpaper as long as it's cleaned up, only one sheet thrown so far
 - sanded wood paste all the way to leave only grain; result doesn't look great; will apply just red paint and sand again, test looks good
 - noticed tremolo position is wrong yet again, we have 22fret; measured 7mm difference, will subtract from both bridge and neck since bridge support will be too thin
 - applied wood paste mixed with some red paint on all surface

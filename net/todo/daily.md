@@ -717,7 +717,6 @@
 
 
 ## 20201227 - 20210106
-
 - all fucked, reset everything
 - gge, vdb, alg
 - setup work and scripts
@@ -727,21 +726,18 @@
 
 
 ## thu 20210107
-
 - 9front setup
 - alg
 - ⑨ST: sander too noisy for indoor work
 
 
 ## fri 20210108
-
 - alg
 - ⑨ST: sanded one surface, turns out i suck at sanding
 - sport, research on soldering, sanding, drills
 
 
 ## sat 20210109
-
 - alg
 - updated opus patches
 - s3proj
@@ -749,7 +745,6 @@
 
 
 ## sun 20210110
-
 - alg
 - s3proj
 - dcd
@@ -759,14 +754,12 @@
 
 
 ## mon 20210111
-
 - taa
 - adm stuff
 - sport
 
 
 ## tue 20210112
-
 - classes+report taa, algo
 - exam web
 - adm stuff
@@ -776,7 +769,26 @@
 - updated patches
 
 
-## wen 20211013
-
+## wen 20210113
 - classes taa, algo
 - replaced bv91 battery
+
+
+## thu 20210114
+- taa
+- adm, interviews
+- drums
+- ⑨ST sanding
+
+
+## fri 20210115
+- s3proj
+- ⑨ST sanding
+
+
+## sat 20210116
+- dcd++
+- adm
+- sport
+- drums
+- gardening

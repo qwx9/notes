@@ -201,7 +201,7 @@ f can be a threshold function, or sigmoid, identity, hyperbolic function, etc.
 There are two types of formal neurons.
 The scalar/dot product neuron produces F from the dot product of X and W.
 
-	F(X,W) = <X,W> = ∑ᵢ₌₁ⁿ wᵢxᵢ
+	F(X,W) = <X,W> = ∑ᵢ₌₁ⁿ wᵢ·xᵢ
 
 The distance neuron is still defined by F(X,W)
 but is obtained by a norm between the two vectors X and W.
@@ -266,6 +266,9 @@ If we omit w₀, the curve will always pass through the origin, which
 does not allow us to explore the full problem space.
 w₀ allows the curve to be offset anywhere in addition to changing its slope.
 
+In summary, ADALINE is a linear model for two-class problems,
+with an adaptive element.
+
 
 #### Algorithm
 
@@ -276,7 +279,7 @@ We want a stable and interpretable method with minimum error.
 	pour le client non-expert"
 
 1. at t=0, W is initialized arbitrarily/randomly
-2. present a data x^k and output d^k
+2. get a data x^k and output d^k
 3. compute distance e between output and expected output
 
 	e = d^k - <W,x^k>
@@ -285,16 +288,42 @@ We want a stable and interpretable method with minimum error.
 
 4. compute approximation Δ
 
-	Δ = -2ex^k
+	Δ = -2·e·x^k
 	x^k is a vector, therefore Δ is a vector
 
 5. recompute weights
 
-	w(t₊₁) = w(t) - ε
+	w(t₊₁) = w(t) - εΔ
 	ε: learning step
 
 6. repeat 2.-5. until stability (convergence):
 for each xᵢ, and over multiple passes over the db
+
+
+The formula for e seems intuitive,
+but the one for Δ much less so.
+In general, we want to calculate and minimize an error term.
+The error here is committed by the model,
+which is represented by w.
+
+There is some error function Err() committed by the model,
+hence with w as its parameter,
+and is the difference between desired output and model output.
+
+	Err(w) = (d^k - w·x^k)²
+
+We want to minimize it.
+Mathematically, we have to calculate its derivative.
+
+	∂Err(w)/∂w	= -2·x^k·(d^k - w·x^k)
+			= -2·e·x^k
+			= Δ
+	we want ∂Err(w)/∂w → 0
+
+At step 5, we want Δ to tend towards 0 in successive iterations,
+with a "descent regulator" term, or "gradient descent", ε.
+as Δ is minimized, so is the difference between w(t₊₁) and w(t),
+until they are equal and stability is achieved.
 
 
 #### Example: learn logical OR using ADALINE
@@ -338,9 +367,223 @@ It is these final weights that are finally accepted
 to test the model, ie. if new data is well separated.
 
 
-#### Exercises
+### MADALINE: Multiple adaptive linear element
 
-##### ADALINE
+#### Example: XOR ⊕
+
+	#	V₁	V₂	d
+	1	1	1	-1
+	2	1	-1	1
+	3	-1	1	1
+	4	-1	-1	-1
+
+        ⊗   1┼    ￮	⊗ class 1
+	     │     	￮ class -1
+	┼────┼────┼
+	-1   │    1
+	￮  -1┼    ⊗
+
+It is obvious that in the graphical representation,
+there are two overlapping classes
+(just draw ellipses containing both points of each class).
+
+ADALINE cannot resolve this since it is a linear classifier,
+ie. no matter how the straight curve is moved in the problem space,
+it will not separate the two classes.
+No given initialization or number of iterations would help.
+
+It's a simple problem representing a non-linear distribution,
+hence the need for a different classifier.
+
+As an aside, it is important to visualize the data's distribution,
+for which there exist many methods.
+In this case, we're in a 2D problem space.
+In a multidimensional space, we can't tell.
+We use methods such as PCA for dimension reduction,
+if nothing else to allow visualization.
+
+In other words, MADALINE is a falsely non-linear model
+for two-class problems.
+
+
+#### Definition
+
+It is an extension of ADALINE,
+a connectionnist model composed of a multiple layers:
+a multiple ADALINE layer,
+and a logical layer for decision making.
+
+There are at least 2 ADALINEs,
+each of which is linked by connection weights
+to the variables or characteristics of the data.
+Each input is linked to both ADALINEs,
+which have two distinct weight vectors.
+The two yield partial results feeding into a logical AND,
+which yields the final decision.
+
+		   /--------------------\
+	x₁   ­→    ⎫w₁
+	x₂   ­→    ⎬…   ­→ <A₁>  ­→  ⎫
+	x₃   ­→    ⎭w₏               ⎬  ∧  ­→  s
+	x₄   ­→    ⎫w₁               ⎪ 
+	…    ­→    ⎬…   ­→ <A₂>  ­→  ⎭
+	x₏   ­→    ⎭w₏
+		   \--------------------/
+
+MADALINE decomposes a nonlinear problem into a combination of linear ones.
+It is used especially when there is a priori knowledge of the problem.
+
+
+#### Example, contd.
+
+XOR can be expressed using other logical operators,
+which forms the a priori knowledge on it.
+
+	XOR ⇔ ∨ and ¬∧		; OR and NOT AND
+
+We compose the target d into two problems/targets d₁ and d₂:
+
+	#	V₁	V₂	d₁=∨	d₂=¬∧	(d=d₁∧d₂)
+	1	1	1	1	-1	-1
+	2	1	-1	1	1	1
+	3	-1	1	1	1	1
+	4	-1	-1	-1	1	-1
+
+If we put an ∧ between d₁ and d₂, we arrive at the d we had previously.
+We use the same db with V₁,V₂,d₁ to learn the first model, A₁,
+and V₁,V₂,d₂ to learn A₂.
+
+![Learning A₁: green curve](introduction.003.png)
+
+![Learning A₂: blue curve](introduction.004.png)
+
+Decision: anything in the space between the two curves is part of the first class,
+and anything outside of that is part of the second:
+model1 AND model2.
+
+
+### Perceptron
+
+#### Definition
+
+Multi-layer connectionist model.
+The first layer modelizes the variables,
+the second encodes the variables
+(in cases where the variables are not the same,
+or have different weights),
+and the last one is a decision layer.
+
+		   φ
+	x₁   ­→    φ₁   ­w₁→
+	x₂   ­→    φ₂   ­w₂→    /-----\
+	x₃   ­→    φ₃   ­w₃→    F ­→  f  ­→  s
+	…    ­→    …     …      \-----/
+	x₏   ­→    φ₏   ­w₏→
+
+Each variable passes through a vector of filters φ
+which attributes weights to each.
+Filter outputs have weighted connections to a single formal neuron,
+as usual.
+Input passes through a linear activation function F,
+and a nonlinear decision function,
+yielding a final decision s.
+
+The perceptron minimizes a classification error
+using the connection weights w.
+
+	if w^k·φ^k > 0
+		x^k ∈ c₁	(d=1).
+	else
+		x^k ∈ c₂			(d=-1).
+
+In other words, the perceptron is a linear model
+for two-class problems.
+
+
+#### Algorithm
+
+1. t=0: arbitrary initialization of w
+2. get a data x^k and desired output d^k
+3. calculate output
+
+	y^k = f(<w^k·φ^k>)
+
+4. update w based on classification error: test, if equivalence, no change
+
+	if y^k = d^k,
+		w(t₊₁) = w(t)
+	else
+		w(t₊₁) = w(t) + ε·φ^k·d^k
+
+5. repeat 2→4 until stability/convergence.
+
+
+#### Example: logical OR
+
+Same as previous result with ADALINE.
+In general, it is much faster, but less robust.
+ADALINE looks for the best separation,
+while the perceptron stops once a separating hyperplane separates all data.
+It is based solely on the learning data,
+and points from test data which do not fall within the established borders
+will be misclassified.
+
+In the example, the separation curve is found fast,
+but one can easily imagine that a suboptimal one
+could be reached just as well.
+
+
+### Multiclass perceptron
+
+#### Definition
+
+Suppose p classes {c₁,…,c_p} to separate.
+Like MADALINE, this uses the perceptron to work around the multiclass problem,
+by using as many perceptrons as there are classes.
+Therefore, this model learns multiple weight vectors {w₁,…,w_p}.
+
+	∀i∈{1,…,p} ∀j≠i∈{1,…,p},
+		if wᵢ·x^k > wⱼ·x^k,
+			x^k ∈ cᵢ
+
+		   φ         ⎫w₁   /-----\
+	x₁   ­→    φ₁   ­→   ⎬…       P₁     ­→
+	x₂   ­→    φ₂   ­→   ⎭w_p  \-----/        ↘
+	x₃   ­→    φ₃   ­→            …       …   →   MAX   ­→   s
+	…    ­→    …     …   ⎫w₁   /-----\        ↗
+	x₏   ­→    φ₏   ­→   ⎬…      P_p     ­→  
+	                     ⎭w_p  \-----/
+
+Each perceptron model has its own connection weights to each variable,
+and provides its own output.
+They "compete", and one maximizing the output s is selected.
+
+
+#### Algorithm
+
+1. t=0: arbitrary initialization of all the vectors w
+2. get a data x^k and desired output cᵢ
+3. calculate output cⱼ
+4. update w based on classification error: test, if equivalence, no change
+
+	if cᵢ = cⱼ,
+		w(t₊₁) = w(t)
+	else
+		wᵢ(t₊₁) = wᵢ(t) + ε·φ^k		wᵢ: raise weight for desired class cᵢ
+		wⱼ(t₊₁)	= wⱼ(t) - ε·φ^k		wⱼ: reduce weight for output class cⱼ
+
+	cᵢ and cⱼ are the only ones involved in the conflict,
+	so others are untouched:
+
+		∀l≠ᵢ∧l≠ⱼ
+			w_l(t₊₁) = w_l(t)
+
+5. repeat 2→4 until stability/convergence.
+
+
+### Exercises
+
+#### ADALINE
 
 We wish to learn logical AND.
 Modelize the problem for learning it using ADALINE
@@ -395,3 +638,6 @@ Unroll one iteration.
 	2: (1 1 -1) [-0.5\ 0.4286\ 0.3571] < 0	⇒ s = -1.
 	s = d ⇒ ok.
 	etc.
+
+
+#### MADALINE
