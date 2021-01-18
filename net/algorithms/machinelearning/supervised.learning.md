@@ -1,5 +1,102 @@
 # Neural network supervised learning
 
+## Context
+
+Generally, a supervised learning approach
+is used to construct a classifier from a database of labeled examples,
+to predict labels of new individuals.
+
+Often getting the labels is very expensive in time and other resources,
+for instance with anatomopathology samples.
+Therefore, a majority of individuals in the learning db can be unlabeled.
+We could do supervised learning on the labeled part,
+but we would have few individuals,
+ie. the classifier's "generalization capacity" would be very weak.
+We can instead focus solely on the unsupervised part,
+on the unlabeled data.
+
+However, we would again lose information,
+since we ignore expert information.
+Therefore, we'd perform semi-supervised learning instead
+using both data to construct a more precise classifier
+than when only using the labeled data.
+This works by first building a weak classifier on the labeled data,
+then augmenting it with high-confidence predictions from the unlabeled data.
+The algorithm learns itself by injecting new individuals into its supervised db.
+
+	self-training, co-training, tri-training, ensemble training etc.
+	given the number and types of algorithms used
+
+Other techniques start from everything using clustering,
+but the clustering results will be guided
+in that labeled data of the same class must be clustered together.
+This is constraint-based clustering:
+constrainsts are built from expert decisions.
+One advantage of this type of method
+is being able to subdivide a known class into subclasses
+that see the same thing differently
+based on different characteristics/subtypes/behaviors.
+
+A learning db could have multiple labels to predict.
+Intuitively this translates into a matrix with n variables' columns
+and m additional columns for labels.
+This calls for multilabel learning techniques,
+often adaptations of simpler ones.
+In this case, the correlation between labels must be taken into account.
+
+In case there are more than 2 classes for a label that we have to predict,
+we do multi-class learning.
+We could have _imbalanced_ labels,
+where one class is very rare,
+for instance fraud prediction,
+where classical techniques would not work
+since that class would be difficult to learn.
+This is imbalanced learning.
+
+If we don't used ordinal classes, but real classes,
+for instance prices,
+we enter into regression learning.
+We use some techniques defined in either case,
+what changes is the functions used for learning
+and the performance metrics.
+
+### Variable selection
+
+The problem may be not to predict a class,
+but to understand what makes it distinct,
+ie. which are the characteristic/pertinent variables inherent to it,
+for example which variables enter into play for sick or healthy patients.
+
+Here we want to select a subset of variables
+that would _best_ allow predicting whether an individual belongs to this class or not.
+This allows us to reduce the size of the database.
+
+Using many variables can give rise to multiple problems.
+One is presence of a lot of noise which would falsify/bias results.
+
+Variables may be redundant (very correlated)
+which again would degrade quality and/or performance
+(for instance some algorithms would alternate between choosing one or the other,
+as if this variable's importance is divided by two).
+Removing a redundant variable could give more importance to the first.
+
+A further problem is the _curse of dimensionality_
+(fr.: fléau de redondance).
+In medical data, we usually have few individuals but many variables.
+The bigger the variable space,
+and thus also the bigger the redundancy between variables,
+the more will classification and performance problems be severe.
+In this case, the algorithm will have too many choices.
+
+The goal here therefore is to select the most informative variables,
+to have the best comprehension on the underlying process generating the data,
+and the algorithm's performance.
+This obviously also has an important impact in terms of costs,
+esp. for medical data,
+for instance having to only a few variables for each patient,
+rather than hundreds.
+
+
 ## The formal neuron
 
 A treatment unit which receives an input vector X
@@ -648,3 +745,298 @@ Unroll one iteration.
 
 
 ### MADALINE
+
+
+## Decision trees
+
+### Definition
+
+This is an auto-informative model,
+ie. it not only predicts
+but also explains how it predicts,
+which has its advantages.
+It takes descriptor variables,
+partitions representation space of the variables using them,
+to separate individuals between classes.
+This is called a _discriminating algorithm_.
+A decision tree for delivering credit to an individual or not
+will detect "bad" individuals not to lend to,
+and thus distinguishes between reliable and unreliable individuals,
+based on description variables
+such as "stable employment", "house ownership", etc.
+
+Thus classifying with DTs is a recursive division of data space
+into subregions that are purer and purer in terms of classes.
+Initially the data has a mixture of classes,
+and the DT aims to separate individuals,
+taking into account differences between strata in each given class.
+In other words, variables allowing separation between individuals
+may be used differently to achieve it.
+"pure" regions contain only individuals of one class.
+
+The classification problem is decomposed into a series of (nested) tests
+on one variable (parallele to axis)
+or a combination of variables (oblique).
+Tuples are placed in the class associated with the subregions they verify.
+There are various methods based on how the tree is built.
+
+
+### Example
+
+Let's take a simple (unrealistic) example
+of 8 individuals described by 4 characteristic variables.
+We wish to predict a variable
+defined as whether a client would check his account balance online or not,
+based on the variables M "balance mean", A "age", R "residence type" and E "college education".
+If we propose internet access to everyone,
+we might have bottlenecks, high servers costs, etc.,
+so we instead want to find out which clients would be interested in it.
+
+![Example problem](supervised.learning.007.png)
+
+The DT will separate individuals based on their label and variables.
+Initially, there are 3 individuals who check online, 5 who don't.
+M has three possible values: low/mid/high.
+For each of these values, we determine how many check online and how many don't.
+We do the same across all variables.
+
+It is apparent that if the DT tests on M,
+there will always be a doubt.
+weak/mid are impure,
+but high is _eupure_:
+no mixture between classes,
+it's what we want.
+We can say that a test on M=high is ok,
+but not M=low or M=mid.
+Same for the rest.
+An equidistributed space yields no information for a decision.
+
+Using this approach, we see that tests on R are not great.
+We have M=high, A=young, A=old, E=no.
+E is ok on one branch but not on the other.
+So which is better?
+
+
+### Test metrics
+
+We want functions which can represent intuitions we may have on variables.
+They must be minimal when the node is pure,
+and maximal when node is equidistributed.
+The result will be different depending on the function used.
+
+A DT may select the variables that separate the data best in its algorithm,
+but other methods may select different ones,
+and the ones chosen by the DT are not necessarily "good".
+It's a greedy algorithm choosing local optima,
+and these problems are often NP-complete.
+Because they choose local optima,
+they are said to learn "by heart".
+
+
+#### Entropy algorithms
+
+Entropy measures chaos in thermodynamics,
+and has later been adapted to information theory.
+It's the sum of the product between class probabilities
+and their logarithm.
+
+	Entropy(p) = -∑_k=1^c P(k/p)·log(P(k/p))
+
+An algorithm using entropy is called _C4.5_,
+the name of a known algorithm.
+
+Entropy varies between 0 (pure) and 1 (equidistributed).
+Starting with the first node,
+we have 3 who check and 5 who don't,
+hence class probabilities 3/8 and 5/8.
+
+	general entropy:
+	Entropy(∈)	= -3/8·log(3/8) - 5/8·log(5/8)
+			≅ 0.954
+
+Then, for variable M, we'll calculate entropy for each of its values
+(low/mid/high), where we have (1,2) (2,1) (0,2).
+
+	Entropy(1)	= -1/3·log(1/3) - 2/3·log(2/3)
+			≅ 0.918
+	Entropy(2)	≅ 0.918
+	Entropy(3)	≅ 0
+
+To get the M node's capacity to separate (quality of the test on M),
+We'll consider that global entropy has been calculated on 8 individuals,
+and weak/mid/high on 3/3/2 individuals.
+We'll therefore calculate an entropy reduction:
+a good node will reduce entropy.
+This corresponds to the gain function.
+
+	Gain(∈,M)	= Entropy(∈) - (3/8·Entropy(1) + 3/8·Entropy(2) + 2/8·Entropy(3))
+			= 0.954 - 0.688
+
+In the end:
+
+	Gain(∈,M)	= 0.266
+	Gain(∈,A)	= 0.454		← best
+	Gain(∈,R)	= 0.016
+	Gain(∈,E)	= 0.348
+
+This corresponds to our earlier intuition.
+
+
+#### Gini
+
+Here the function is the sum of the squared class probabilities.
+
+	Gini(p) = 1 - ∑_k=1^c P(k/p)²
+
+An algorithm using Gini is called _CART_
+(classification and regression tree).
+
+For example:
+
+	Gain(∈) = 1 - (3/8)² - (5/8)²
+
+The results will be different than those with entropy.
+
+
+#### Gain
+
+The gain function calculates the difference
+between the entropy or Gini of a parent node,
+and the sum of the product of child probabilities and their entropy or Gini.
+We select the test of highest gain.
+
+	Gain(p, test)	= i(p) - ∑ⱼ₌₁ⁿ Pⱼ·i(pⱼ)
+	where:
+		p position
+		Pⱼ proportion of elements ∈ S at the position p that go to position pⱼ
+		i(p): entropy(p) or Gini(p)
+
+This isn't the gain of a node, but of the test.
+
+
+### Example contd.
+
+Using entropy calculated previously on the example,
+we can be confident that A=young predicts checking
+and A=old no checking.
+However for A=mid, we don't know and we still have a mixture.
+The algorithm will continue doing the same in a recursive manner.
+
+
+### Algorithm
+
+S ← input sample
+T ← ∅		// empty tree
+node ← root
+while T ≠ DT		// DT if no nodes without class
+	if node is terminal
+		assign a class
+	else
+		select a test and create a subtree
+	node ← next unexplored node
+
+There are two choices here.
+Either we compute until the end,
+ie. using all variables
+until everyone is separated,
+or we perform tree prepruning (fr. élagage),
+ie. stop construction of the DT at a given level.
+
+
+### Example contd.
+
+![After selection of first test](supervised.learning.008.png)
+
+We will now use the remaining variables to separate
+the individuals we couldn't with the first two pure classes.
+With qualitative variables,
+when we use one variable on one branch,
+it cannot be reused,
+since even if we do, it wouldn't bring any benefit.
+However, with quantitative, real, variables,
+we could have a first test with thresholds,
+for example age<17, age≥17,
+but we could reuse age later:
+for all age≥17, we could test if age≥35.
+
+We do the same with unused variables for all impure regions.
+For calculations, we use the individuals from those impure regions,
+rather than all individuals like in the first step,
+ie. if 4 individuals remain,
+each of the remaining variables will have branches for their possible values,
+with the corresponding number of individuals _within_ the remainder.
+
+![Step 2](supervised.learning.009.png)
+
+![Final tree](supervised.learning.010.png)
+
+
+### Classification performance metrics
+
+A learning algorithm must never be tested on the learning db.
+Often, we keep a distinct db for testing.
+
+In the same example, we may get 4 additional samples
+that were not used in learning,
+and which are projected onto the DT.
+
+![Testing](supervised.learning.011.png)
+
+The first one is misclassified by the DT,
+with A=old but Re=1.
+We build a contingency table from this,
+and derive metrics:
+
+	         Pr
+	       +   -     
+	Re +   2   1    ⇔    TP   FN
+	   -   0   1         FP   TN
+
+	accuracy	= 3/4
+			= 75%
+		ratio of correct predictions
+	error		= 1 - accuracy
+			= 1/4
+			= 25%
+		ratio of incorrect predictions
+
+Two more metrics are recall and precision,
+by class.
+We'll wish to optimize recall or precision,
+depending on application.
+Recall for a class is the ratio of
+the number of individuals in that class attributed by the algorithm,
+and the number of individuals really in that class (reality).
+
+	recall(+)	= TP / (TP + FN)
+			= 2/3
+			= 66%
+		we take the row corresponding to all Re+
+		33% of clients that would be interested in the internet offer
+		are ignored
+
+Precision is the confidence of a prediction.
+
+	precision(+)	= TP / (TP + FP)
+			= 2/2
+			= 100%
+		we take the column corresponding to all Pr+
+		ie. we have 100% confidence in a + prediction
+		if we predict that an individual would use the offer,
+		we are 100% confident.
+
+Often recall is more pertinent in medical sciences,
+search engines, etc.
+in order to get the most pertinent results.
+In marketing, precision is more pertinent.
+
+For example, an advertising company would like to send prospectuses,
+which will have a certain cost between printing and sending.
+What we want is that a client we have sent a prospectus to will buy.
+Let's say that cost is 10 and sale is 50.
+We have a capital of 1000, and can send to 100 clients.
+If the algorithm has 50% precision,
+50 would buy, 50 wouldn't,
+and the benefit would be 2500.
+If we had 80% precision, we would have 80% sales,
+and 4000 benefit.
