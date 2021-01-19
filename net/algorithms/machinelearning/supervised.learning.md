@@ -60,6 +60,14 @@ We use some techniques defined in either case,
 what changes is the functions used for learning
 and the performance metrics.
 
+Supervised learning methods include
+neural nets,
+decision trees,
+bayesian networks,
+k-nearest neighbours,
+etc.
+
+
 ### Variable selection
 
 The problem may be not to predict a class,
@@ -98,6 +106,9 @@ rather than hundreds.
 
 
 ## The formal neuron
+
+Here we'll focus on connectionist approches,
+starting with simple networks with a single neuron.
 
 A treatment unit which receives an input vector X
 and returning a real output S based on a vector of connection weights W
@@ -780,7 +791,6 @@ or a combination of variables (oblique).
 Tuples are placed in the class associated with the subregions they verify.
 There are various methods based on how the tree is built.
 
-
 ### Example
 
 Let's take a simple (unrealistic) example
@@ -823,14 +833,6 @@ We want functions which can represent intuitions we may have on variables.
 They must be minimal when the node is pure,
 and maximal when node is equidistributed.
 The result will be different depending on the function used.
-
-A DT may select the variables that separate the data best in its algorithm,
-but other methods may select different ones,
-and the ones chosen by the DT are not necessarily "good".
-It's a greedy algorithm choosing local optima,
-and these problems are often NP-complete.
-Because they choose local optima,
-they are said to learn "by heart".
 
 
 #### Entropy algorithms
@@ -976,11 +978,14 @@ with the corresponding number of individuals _within_ the remainder.
 A learning algorithm must never be tested on the learning db.
 Often, we keep a distinct db for testing.
 
+#### Accuracy and error
+
 In the same example, we may get 4 additional samples
 that were not used in learning,
 and which are projected onto the DT.
 
 ![Testing](supervised.learning.011.png)
+
 
 The first one is misclassified by the DT,
 with A=old but Re=1.
@@ -1000,6 +1005,9 @@ and derive metrics:
 			= 25%
 		ratio of incorrect predictions
 
+
+#### Recall and precision
+
 Two more metrics are recall and precision,
 by class.
 We'll wish to optimize recall or precision,
@@ -1014,6 +1022,10 @@ and the number of individuals really in that class (reality).
 		we take the row corresponding to all Re+
 		33% of clients that would be interested in the internet offer
 		are ignored
+		eg. we want minimal FN
+
+Sometimes, we talk of sensitivity and specificity,
+which correspond respectively to recall(+) and recall(-).
 
 Precision is the confidence of a prediction.
 
@@ -1024,6 +1036,35 @@ Precision is the confidence of a prediction.
 		ie. we have 100% confidence in a + prediction
 		if we predict that an individual would use the offer,
 		we are 100% confident.
+		eg.: we want minimal FP
+
+
+AUC and ROC curves are similar metrics.
+
+
+#### F-measure
+
+This is the harmonic mean of recall and precision for a given class.
+
+	f-measure(+) = 2·recall(+)·precision(+) / recall(+)·precision(+)
+
+
+#### Choosing between measures
+
+Accuracy is not the most primordial criteria.
+Getting an algorithm with 100% accuracy is extremely complicated,
+unless the problem is very simple.
+
+However, we know that there's a lower threshold for accuracy,
+which is the minimum between the two classes.
+If classes are equidistributed in the data,
+the algorithm must have at least 50% accuracy,
+ie. an algorithm that always chooses one out of the two classes
+will be right 50% of the time,
+we must not go below that.
+Similarly, if we have 75/25, a 70% algorithm will be insufficient.
+If data is unbalanced, like in fraud detection,
+we must have very high accuracy.
 
 Often recall is more pertinent in medical sciences,
 search engines, etc.
@@ -1040,3 +1081,94 @@ If the algorithm has 50% precision,
 and the benefit would be 2500.
 If we had 80% precision, we would have 80% sales,
 and 4000 benefit.
+
+It's also used with churns.
+An algorithm in a telecommunications office runs all the time,
+takes clients at some point
+and predicts whether they would transfer to a rival company or not.
+We want to avoid that,
+by rendering clients loyal,
+which we can't do for everyone since it's too expensive,
+but only those who we'll be able to predict.
+The algorithm takes into account many usage descriptors and statistics,
+and sends offers to clients that are predicted as "volatile".
+There again we want more precision.
+
+
+### Validation and overfitting
+
+A DT may select the variables that separate the data best in its algorithm,
+but other methods may select different ones,
+and the ones chosen by the DT are not necessarily "good".
+It's a greedy algorithm choosing local optima,
+and these problems are often NP-complete.
+Because DTs choose local optima,
+they are said to learn "by heart".
+
+The obvious implication is that DTs overfit/"overlearn" the learning db.
+If the test data contains objects different from what the model has been
+trained on, it will give spurious results.
+
+If DTs are to be used as a final classification algorithm,
+it must be pruned,
+ie. remove branches.
+Either pre-pruning or post-pruning can be performed.
+
+
+#### Pre-pruning
+
+A DT may become very deep.
+Pre-pruning sets a threshold below which the algorithm stops.
+Each time, we will provide a class probability.
+
+
+#### Post-pruning
+
+Once the DT is built,
+the test db is projected onto it.
+Here besides the test db,
+we have an additional validation db.
+It is also projected onto the tree,
+detects branches where all individuals are misclassified,
+and calls them "dead".
+Dead branches are pruned and individuals on them are distributed elsewhere.
+
+
+#### Splitting db into train and test sets
+
+The methodology used throughout so far has been
+to split the db into a training and test set.
+This is the usual method when the db is large.
+Sometimes the db is provided pre-splitted.
+
+
+#### Cross-validation
+
+Another validation method is to perform cross-validation,
+the pros of which are multiple values for the performance metrics,
+which facilitates comparison.
+
+If we perform 3-fold cross-validation
+(fr. cross-validation de taille 3),
+we rearrange the db randomly
+and split the db into 3 balanced partitions.
+We train on 1st and 2nd, and test on the 3rd,
+then we train on 1st and 3rd and test on 2nd,
+then on 2nd and 3rd and test on 1st.
+At the end we get 3 accuracy measurements,
+and mean and standard deviation.
+Then, we can perform statistical tests
+to compare the accuracies for each algorithm.
+
+This is usually done when there aren't many individuals.
+
+
+#### Leave-one-out cross-validation
+
+If there are very few individuals,
+this is something that can help.
+
+At each iteration,
+we leave one individual out and train on the rest,
+then test with that individual,
+etc.

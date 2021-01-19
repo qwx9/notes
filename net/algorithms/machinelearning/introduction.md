@@ -168,5 +168,3 @@ and the little supervision driven in the supervised part.
 	→ KNN: k-nearest	→ NN		(noyaux)	→ DT, RF	→ BN		→ min cost
 	  neighbours		→ deep NN	→ SVN		(one or more	(reseaux       of function,
 	  							trees)		bayesiens)    linear or not
-Here we'll focus on connectionist approches,
-starting with simple networks with a single neuron.
