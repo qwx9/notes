@@ -1063,7 +1063,7 @@ ie. an algorithm that always chooses one out of the two classes
 will be right 50% of the time,
 we must not go below that.
 Similarly, if we have 75/25, a 70% algorithm will be insufficient.
-If data is unbalanced, like in fraud detection,
+If data is imbalanced, like in fraud detection,
 we must have very high accuracy.
 
 Often recall is more pertinent in medical sciences,
