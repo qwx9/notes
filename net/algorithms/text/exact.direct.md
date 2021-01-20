@@ -381,7 +381,6 @@ At most, we will get 2N - 1 comparisons.
 Each character in S can be compared to W more than once,
 but the number is bounded by M.
 
-
 Complexity of preprocessing: O(2M - 1) = O(M)
 Same explanation as above.
 
