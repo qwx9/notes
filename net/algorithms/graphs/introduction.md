@@ -197,20 +197,39 @@ would necessarily create a cycle.
 					C[w] ← C[u]	// merge components
 	return SOL
 
+
+#### Complexity
+
 Ordering E: O(mlogm).
+
 Assigning C for each v ∈ V: O(n).
+
 Since an MST is a tree, we can have at most n-1 merges,
 so the if will be true n-1 times,
 and the cost of the inner loop is n: O(n(n-1)).
 The outer loop will at most cost this merge n times,
 and nothing m-1 cases,
 so both loops: O(n(n-1) + m-1).
+
 Sum: O(mlogm + n + n(n-1) + m-1) = O(mlogm + n²) since n and m-1 are linear.
 
 Using a disjoint-set data structure like disjoint-set forests with union ranks,
 we have O(mlogm) sorting + O(mlogm) total for loop = O(mlogm) total.
 Because m is at most O(n²) (n(n-1)/2 edges for a complete graph),
 we can also say it runs in O(mlogn), which is nice since in most cases n < m.
+
+Therefore, in total: O(m·logn + n²).
+
+If m is in the order of n,
+the graph is called _sparse_ because it contains "few" edges,
+and the term that dominates is n².
+However, if m is in the order of n² (example: m = n²/4),
+the graph is named "dense",
+and the complexity will be O(n²·logn + n²) = O(n²·logn).
+If m is an order of magnitude bigger than n²/logn,
+the dominant term is m·logn.
+This is why m·logn cannot be removed
+and the total complexity cannot be simplified to O(n²).
 
 
 ### Prim algorithm (1957)
@@ -232,12 +251,24 @@ Finding a vertex to form an edge with takes n steps to check all external vertic
 Therefore, Prim runs in O(n²) overall.
 
 For graphs with few edges, Kruskal is better.
+
 Prim is easy to express, but difficult to implement efficiently.
 Using a binary heap and adjacency list over an adjacency matrix and searching,
 complexity can be reduced to O((n+m)logn) = O(mlogn).
 Using a fibonnaci heap can further drive complexity down asymptotically to O(m + nlogn)
 when the graph is dense, and for very dense graphs,
 a d-ary heap can run it in linear time.
+
+Another analysis from _bsinaimeri_: using a min-heap structure,
+we have O((n+m)·logm).
+If the graph is _dense_,
+m is in the order of n,
+in which case the time complexity of min-heap is smaller than simple array
+(O(n·logn) < O(n²)).
+If the graph is _sparse_,
+m is in the order of n²,
+in which case a simple array is more efficient
+(O(n²·logn) > O(n²)).
 
 
 ### Greedy algorithms
