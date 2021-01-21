@@ -521,6 +521,64 @@ In our case, preprocessing the text is much more effective than preprocessing th
 hence the natural transition to sorted dictionary approaches.
 
 
+## Boyer-Moore
+
+Implemented frequently, as in tools such as grep(1).
+In theory, it has worse worst-case scenario performance than KMP,
+but in practice, it works well.
+The idea once more is to construct a jump table for P to maximally avoid comparisons.
+
+Here the sliding window of P is moved left to right,
+but comparisons are made right-to-left.
+
+
+### The badchar rule
+
+We compare W and S left to right.
+On mismatch, we look backwards in W for the first occurrence of S[j],
+and jump the sliding window to align them.
+
+	Example 1:
+		               ↓
+	S	a  a  b  a  c  a  b  a  c  d  a
+	W	   b  a  c  b  c  b  a
+		      ←  ←  ←  ←  ←  ←
+		      ↑
+
+		               ↓
+	S	a  a  b  a  c  a  b  a  c  d  a
+	W	            b  a  c  b  c  b  a
+		               ↑
+
+	Example 2:
+		                     ↓
+	S	a  a  b  a  b  a  a  c  a  b  c  a  b  c  b  b  c
+	W	      b  b  a  a  b  b  a  b  c
+		   x  ←  ←  ←  ←  ←  ←
+
+		                     ↓
+	S	a  a  b  a  b  a  a  c  a  b  c  a  b  c  b  b  c
+	W	                        b  b  a  a  b  b  a  b  c
+
+This strategy is particularly efficient when |Σ| is large,
+since the maximum probability of having a character c ∈ Σ gets lower and lower.
+This is the case for natural languages.
+
+In the best case, W is not in S, we would get O(n / m) time,
+eg. we can get sublinear complexity,
+ie. we don't even read all the data (S) since many positions are unread.
+
+Sometimes, since the second rule is more difficult to implement,
+only this one is used because of sufficient performance in practice.
+
+
+### The good prefix rule
+
+There are at least 3 ways to implement this rule,
+even though the algorithm is referred to as Boyer-Moore in all cases.
+
+
+
 ## References
 - http://monge.univ-mlv.fr/~lecroq/string: dozens of text searching algorithms with C code
 - Cormen et al, Algorithms 3rd ed, chapter 32; see exercises

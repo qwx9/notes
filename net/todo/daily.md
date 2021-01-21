@@ -792,3 +792,13 @@
 - sport
 - drums
 - gardening
+
+
+## sun 20210116 - thu 20210121
+- dcd
+- alg
+- sport
+- gardening
+- drums
+- guitar
+- bv91 repair: several attempts to diagnose usb issue, ending in antenna damage
