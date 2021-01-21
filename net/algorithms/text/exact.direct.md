@@ -6,9 +6,9 @@
 	Σ,A	alphabet
 	Σ∗	language: set of possible words ∈ Σ (∗: repetition, like regex *)
 	S	text sequence ∈ A
-	N=|S|	length of S
+	n=|S|	length of S
 	P,W	word
-	M=|W|	length of word
+	m=|W|	length of word
 	S[i]	ith character
 	S[i:j]	substring between i and j
 	S[1..i]	prefix
@@ -53,11 +53,11 @@ is the sum of the complexity of preprocessing and that of the search.
 ## Naive algorithm
 
 	i = 1
-	while i ≤ N - M + 1
+	while i ≤ n - m + 1
 		j = 1
-		while j ≤ M and W[j] = S[i+j-1]
+		while j ≤ m and W[j] = S[i+j-1]
 			j++
-		if j = M + 1
+		if j = m + 1
 			output i
 		i++
 
@@ -85,7 +85,7 @@ which corresponds to the way most of the following algorithms are written.
 
 ### Complexity
 
-Complexity: O((N - M + 1) * M) = Θ(N * M)
+Complexity: O((n - m + 1) * m) = Θ(n * m)
 
 A simple worst-case scenario is S = aaaaaa...aa and P = aaab.
 
@@ -114,34 +114,34 @@ S can then be viewed as a sequence of numbers in base d.
 	⇒ with A = {0..9},
 		S = 3 1 4 1 5 corresponds to 31415 in base 10.
 
-Let w the base d equivalent of W[1..M]
-and s the base d equivalent of S[t+1..t+M].
+Let w the base d equivalent of W[1..m]
+and s the base d equivalent of S[t+1..t+m].
 A match at t implies that s = w.
 
-If we can compute w in Θ(M) time,
-and all values s in Θ(N - M + 1),
+If we can compute w in Θ(m) time,
+and all values s in Θ(n - m + 1),
 we can then determine all the values of t by comparing w to each s
-in Θ(M) + Θ(N - M + 1) = Θ(N).
+in Θ(m) + Θ(n - m + 1) = Θ(n).
 We'll assume for now that the numbers are not exceedingly large.
 
-	we note Θ(N - M + 1) since there are n - m + 1 different values for t,
-	and asymptotically, if M = N, computing a single s value takes Θ(1) time, not Θ(0).
+	we note Θ(n - m + 1) since there are n - m + 1 different values for t,
+	and asymptotically, if m = n, computing a single s value takes Θ(1) time, not Θ(0).
 
-w can be computed in Θ(M) time using Horner's rule:
+w can be computed in Θ(m) time using Horner's rule:
 
-	w = W[M] + d * (W[M-1] + d * (W[M-2] + ... + d * (W[2] + d * W[1]) ... ))
+	w = W[m] + d * (W[m-1] + d * (W[m-2] + ... + d * (W[2] + d * W[1]) ... ))
 
-s0 can be calculated in the same way from S[1..M] in Θ(M) time.
-To calculate remaining values s1, s2, ..., sN-M in Θ(N - M) time,
+s0 can be calculated in the same way from S[1..m] in Θ(m) time.
+To calculate remaining values s1, s2, ..., sn-m in Θ(n - m) time,
 we shall observe that st+1 can be calculated from st in constant time:
 
-	st+1 = d * (st - d^(M-1) * S[t+1]) + S[t+M+1]
+	st+1 = d * (st - d^(m-1) * S[t+1]) + S[t+m+1]
 	
-	subtracting 10^(M-1) * S[t+1] removes the highest order digit in s;
+	subtracting 10^(m-1) * S[t+1] removes the highest order digit in s;
 	multiplying by d shifts the number one position to the right;
-	adding S[t+M+1] adds a new lower order digit.
+	adding S[t+m+1] adds a new lower order digit.
 
-	⇒ M = 5, st = 31415, d = 10, S[t+M+1] = 2:
+	⇒ m = 5, st = 31415, d = 10, S[t+m+1] = 2:
 	st+1 = 31415 - 10e5 * 3
 		1415
 	st+1 *= 10
@@ -149,38 +149,38 @@ we shall observe that st+1 can be calculated from st in constant time:
 	st+1 += 2
 		14152
 
-The constant d^(M-1) can be precalculated in O(log M) time,
-but often a direct approach in O(M) suffices.
+The constant d^(m-1) can be precalculated in O(log m) time,
+but often a direct approach in O(m) suffices.
 
 	⇒ See: Cormen et al, 31.6 powers of an element, pp 878
 
 If the value is precalculated,
 then the equation above takes constant time.
-Thus, we can compute w in Θ(M) time and s0,s1,...,sN-M in Θ(N - M + 1) time.
+Thus, we can compute w in Θ(m) time and s0,s1,...,s_n-m in Θ(n - m + 1) time.
 
 An additional problem persists:
 w and s can be too large for simple computation.
-If W contains M characters,
-we cannot assume that each arithmetic operation on w (M digits)
+If W contains m characters,
+we cannot assume that each arithmetic operation on w (m digits)
 takes constant time.
 Calling again upon techniques in number theory,
 a simple solution is to calculate w and s modulo an appropriate integer q.
 
 Observing that each of the w, si, and the si+1 equations
 can all be computed modulo q,
-w can be calculated modulo q in Θ(M) time,
-and all s can be calculated modulo q in Θ(N-M+1) time.
+w can be calculated modulo q in Θ(m) time,
+and all s can be calculated modulo q in Θ(n-m+1) time.
 
 Let q be a prime number such that d*q fits into a machine word.
 All calculations can then be done in single precision arithmetic.
 
 The recurrence formula is adjusted to be valid modulo q:
 
-	st+1 = (d * (st - (d^(M-1) % q) * S[t+1]) + S[t+M+1]) % q
+	st+1 = (d * (st - (d^(m-1) % q) * S[t+1]) + S[t+m+1]) % q
 
-Let h = d^(M-1) mod q:
+Let h = d^(m-1) mod q:
 
-	st+1 = (d * (st - h * S[t+1]) + S[t+M+1]) % q
+	st+1 = (d * (st - h * S[t+1]) + S[t+m+1]) % q
 
 This solves the problem of dealing with large numbers,
 but introduces the possibility of collisions:
@@ -189,7 +189,7 @@ st ≡ w % q does not imply st = w.
 We can therefore use st ≡ w % q as a fast heuristic test
 to eliminate mismatches quickly.
 For any t where st ≡ w % q,
-we have to explicitely compare W and S[t+1..t+M+1].
+we have to explicitely compare W and S[t+1..t+m+1].
 With a big enough q, we can hope that this rarely occurs,
 and that the cost of the full comparisons is low.
 
@@ -197,7 +197,7 @@ and that the cost of the full comparisons is low.
 ### Hashing and prime numbers
 
 The step of computing w and s0 is essentially
-computing a hash of W and S[t+1..t+M] using Horner's rule and modulo q.
+computing a hash of W and S[t+1..t+m] using Horner's rule and modulo q.
 The computation of st+1 in constant time from st is called a rolling hash.
 The efficiency of the rolling hash function above is allegedly similar
 to the Rabin fingerprint rolling hash function,
@@ -266,40 +266,40 @@ Remains the question of uniform output.
 
 ### Complexity
 
-Preprocessing: Θ(M)
+Preprocessing: Θ(m)
 
-Search: Θ((N - M + 1) * M) in the worst case,
+Search: Θ((n - m + 1) * m) in the worst case,
 but mean execution time, averaging some hypothesis, is better.
 
-	if W = x^M and S = x^N, i.e. both have the same values everywhere,
+	if W = x^m and S = x^n, i.e. both have the same values everywhere,
 	each position is a match and must be checked explicitely,
 	which is the worst case.
 
 Most of the time, we could expect that
 only a constant number c of matches will be produced.
-In that case, the expected time is O((N - M + 1) + c*M) = O(N + M).
+In that case, the expected time is O((n - m + 1) + c*m) = O(n + m).
 
 We can do a heuristic analysis on the basis that
 the reduction of values modulo q
 works as a stochastic transformation
 between the character set Σ* and Zq.
 This is a difficult to formalize and prove problem (see Cormen 11.3.1).
-We can then expect that the number of mismatches is O(N/q),
+We can then expect that the number of mismatches is O(n/q),
 since the probability that some s is equivalent to p, modulo q,
 is estimated at 1/q.
 
 Let ν the number of matches.
-Since there are O(N) mismatches and O(M) processing time for matches,
+Since there are O(n) mismatches and O(m) processing time for matches,
 the total expected time for the Rabin-Karp algorithm is now:
 
-	O(N) + O(M * (ν + N/q))
+	O(n) + O(m * (ν + n/q))
 
-If ν = O(1) and if q ≥ M,
-this time is O(N).
+If ν = O(1) and if q ≥ m,
+this time is O(n).
 In other words, if the number of occurrences is low,
 and that the chosen q is such that it is bigger than the pattern size,
-we can hope that the algorithm takes only O(N + M) time,
-and since M ≤ N, the expected time would be O(N).
+we can hope that the algorithm takes only O(n + m) time,
+and since m ≤ n, the expected time would be O(n).
 
 
 ### References
@@ -315,9 +315,9 @@ are used to single pattern matching.
 However, Rabin-Karp can easily be extended to multiple pattern searching,
 where combined with the use of a set data structure like a bloom filter,
 it is allegedly an algorithm of choice.
-A search of k patterns would optimally result in O(N+k*M) expected time,
+A search of k patterns would optimally result in O(n+k*m) expected time,
 assuming the hash comparison is in constant time.
-The Aho-Corasick algorithm has deterministically O(N+k*M) time.
+The Aho-Corasick algorithm has deterministically O(n+k*m) time.
 
 
 ### Knuth-Morris-Pratt
@@ -327,60 +327,82 @@ but relies on the same idea.
 
 Where the brute-force method must compare W and S[j] at every position j,
 depending on where the mismatch occurs in W, we may restarting comparing
-at an index in W higher than 0.
+at an index in W higher than 1.
 
-	If a mismatch occurs between W[i] and S[j+i] (with 0<i<m),
-	then W[0..i-1] = S[j..j+i-1].
-	Let U = W[0..i-1] = S[j..j+i-1],
+	If a mismatch occurs between W[i] and S[j+i] (with 1<i≤m),
+	then W[1..i-1] = S[j..j+i-1].
+
+	Let U = W[1..i-1] = S[j..j+i-1],
 	a = W[i], b = S[j+i], with a ≠ b.
 
+		      v    i
+	W´	    [V]c[V]a…        V is a border of U
+	W	    [   U ]a…
+		    ↑======≠
+	S	   …[   U ]b…
 		    j      j+i
-	W	    [   U ][a] ...
-	S	... [   U ][b] ...
-	W´	      [ V ][c] ...
+
+		           i
+	W	        [U]c…        we must restart at W[v+1] =? S[j+i]
+		           ↑         but there's no border V of U
+	S	       …[U]b…
+		    j      j+i
+
+		           i
+	W	            …        we can restart at W[1] and S[j+i+1]
+		            ↑
+	S	          …b…
+		    j      j+i
 
 Let V be a suffix of U of length v.
-It is possible that U is also a prefix of W.
-In that case, instead of directly restarting comparison at W[0] and S[j+1],
-we may instead restart at W[v] and S[j+v],
+It is possible that V is also a prefix of W.
+In that case, instead of directly restarting comparison at W[1] and S[j+1],
+we may instead restart at W[v] and S[j+i],
 skipping this prefix we already know matches in both W and S.
 
+	• j is never decreased, ie. we never go backwards in S
+	• if mismatch, we just don't want to start again with W[1] at S[j+1]
+	• best case: there is no border ⇒ U can be skipped over entirely
+		∗ we know there can be no correspondence in W[1..i]
+		∗ skip U over S, start again at W[1] and S[j+i+1]
+	• otherwise we must jump backwards in W
+		∗ W may still match at S[j+i]
+		∗ skip V over W and start again at W[v+1] and S[j+i]
+	• if i=1, there can be no border (no proper prefix)
+		∗ we note this as -1 in the jump table
+		∗ so if i = T[i] = -1, increment i and j to restart at W[1] and S[j+i+1]
+
 We may thus precalculate a jump table T which for each position i in W
-yields the length of the largest proper suffix of W[0..i-1] that is also a prefix of W,
+yields the length of the largest proper suffix of W[1..i-1] that is also a prefix of W,
 corresponding to the index we may jump to, or -1 if there is no such suffix,
-in which case we must resume at W[0] and S[j+1].
+in which case we must resume at W[1] and S[i+j+1].
 This proper suffix is also called a border (occurs at both ends of U).
 A proper suffix of a string is not equal to the string and is non-empty.
 
-	T[i] is the length of the longest border of W[0..i-1] for 0<i≤M.
+	T[i] is the length of the longest border of W[1..i] for 1<i≤m.
 
-Algorithm description from lecture:
+Simple description:
 
-	i = 0
-	j = 0
-	while j ≤ N - M
+	i = 1
+	j = 1
+	while j ≤ n
 		if W[i] = S[j]
-			i++
-			j++
-			if i = M
-				output j - i
-		else if i = 0
+			i++, j++
+			if i = m + 1
+				output j - i + 1
+		else if i = 1
 			j++
 		else
-			i = T[i]
+			i = T[i-1] + 1
 
-This is wrong; if an occurrence is found, j must be reset using the jump table,
-otherwise j is out of bounds on the next iteration.
-Second, the loop must go up to N, otherwise a match at the end won't be
-found (since i needs to go to N to compare the last characters).
+Another one with 0-indexing:
 
 	i = 0
 	j = 0
-	while j < N
+	while j < n
 		if W[i] = S[j]
-			i++
-			j++
-			if i = M
+			i++, j++
+			if i = m
 				output j - i
 				i = T[i]
 		else
@@ -392,61 +414,106 @@ found (since i needs to go to N to compare the last characters).
 
 ### Preprocessing: constructing the jump table T:
 
-We initially set W[0] = -1.
+The jump table is sometimes noted π, or lps (longest prefix/suffix).
+
+	Example:
+
+		a  a  b  a  a  c
+		0  1  0  1  2  0
+
+		a  b  a  b  a  c  a
+		0  0  1  2  3  0  1
+
 Since a mismatch at the very start of W is a special case,
 where no backtracking is possible,
-we denote this case with the value -1.
-For i>0, if there is no border in W[0..i-1], we set T[i] = 0.
+we just leave T[1] at 0.
+For i>1, if there is no border in W[1..i], we set T[i] = 0,
+else the length of the longest border.
 
-A naive algorithm can be O(M³).
+With 0-indexing, we can use T[0] = -1 for some shorter code.
 
-We may use the same search algorithm to construct T in O(M) space and time,
+A naive algorithm can be O(m³).
+
+We may use the same search algorithm to construct T in O(m) space and time,
 comparing W with itself.
 
 The insight is that at each position i,
 one needs to consider checking suffixes of size x+1
 only if a valid suffix of size x was found at T[i-1],
 and should not bother to check x+2, x+3, etc.
-(what?)
+
+Example:
+
+	--------------------------v            is u part of a border?
+	========u         ========             the previous position was, so if v = u, T[i] = T[i-1]+1
+	===w ===          ==== ===             the one before also was, so if v = w, T[i] = T[i-2]+1
+	x                                      we went all the way down to i=1, if v ≠ x, no border
+
+Simple recursive algorithm:
+
+	T[1] = 0
+	i = 2
+	j = 1
+	while i ≤ m
+		if P[i] = P[j]
+			T[i] = j
+			i++, j++
+		else if j > 1
+			j = T[j-1] + 1
+		else
+			T[i] = 0
+			i++
 
 Note that the pseudocode on wikipedia doesn't produce expected results.
+With 0-indexing:
 
 	T[0] = -1
 	i = -1
 	j = 0
-	while j < M
+	while j < m
 		while i > -1 and W[i] ≠ W[j]
 			i = T[i]
-		i++
-		j++
-		if W[i] == W[j]
+		i++, j++
+		if W[i] = W[j]
 			T[j] = T[i]
 		else
 			T[j] = i
 
 ### Complexity
 
-Complexity of search: O(2N - 1) = O(N)
+Complexity of search: O(2n - 1) = O(n)
 
-We advance in S N times.
+We advance in S n times.
 Any time there's a match with W[i], its position in S is remembered,
 and rollback can occur at most i times.
 Imagine the word is the same as S until the very end,
-and that we have to roll back N times after N comparisons.
-At most, we will get 2N - 1 comparisons.
+and that we have to roll back n times after n comparisons.
+At most, we will get 2n - 1 comparisons.
 Each character in S can be compared to W more than once,
-but the number is bounded by M.
+but the number is bounded by m.
 
-Complexity of preprocessing: O(2M - 1) = O(M)
+In other words, in the worst case, we jump backwards,
+but we still skip at least 1 character,
+therefore we cannot move P more than n-m times.
+The complexity of the search itself does not depend on m,
+the size of the word.
+
+Complexity of preprocessing: O(2m - 1) = O(m)
 Same explanation as above.
+For the first implementation,
+it is easy to see that in each case,
+either one or both indices are incremented,
+therefore at worst, we'd have 2m - 1 iterations.
+
+Overall complexity: O(n + m).
 
 
 ### Global performance
 
-Complexity of the algorithm is O(N + M) time with O(M) space.
+Complexity of the algorithm is O(n + m) time with O(m) space.
 It is invariant regardless of how many repetitive elements there are in W or S.
 There are dozens of variants of KMP.
-Some have O(M*N) complexity at worse but work better than KMP in practice.
+Some have O(m*n) complexity at worse but work better than KMP in practice.
 Each variant is designed for a particular application.
 
 KMP has historic value but is not used much in practice.
