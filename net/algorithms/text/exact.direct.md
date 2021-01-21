@@ -1,21 +1,50 @@
 # Exact string search
 
-
 ## Definitions
 
 	1-indexing
-	A	alphabet
-	a	element of A
-	S	text sequence
+	Σ,A	alphabet
+	Σ∗	language: set of possible words ∈ Σ (∗: repetition, like regex *)
+	S	text sequence ∈ A
 	N=|S|	length of S
-	W	word
+	P,W	word
 	M=|W|	length of word
 	S[i]	ith character
 	S[i:j]	substring between i and j
 	S[1..i]	prefix
-	S[j..n]	suffix
+	S[j..N]	suffix
+	lower case symbol: character ∈ Σ
+	upper case symbol: word ∈ Σ∗
+	UV	concatenation of U,V ∈ Σ∗
+	Ua	concatenation of U ∈ Σ∗ and a ∈ Σ
 
-Objective: find all occurances of W in S.
+Subword or substring is allegedly ambiguous in literature,
+and factor is preferred here.
+A subword may refer to any sequence of characters ∈ S in no particular order,
+whereas a factor is a set of consecutive characters.
+
+	P is a factor of S if ∃i,j ≤ |S| such that P = S[i..j].
+	notation:
+	P ∈ S if P factor of S
+
+One can find the set of possible factors corresponding to any word.
+ε, the empty word is always part of it.
+
+	let P,S ∈ Σ∗, |P| ≤ |S|
+	P ∈ S ?
+
+
+## Objective
+
+Main problem: test if P ∈ S.
+
+P is usually very small and S very big.
+It is then assumed that processing P would be fast,
+and the methods here will mainly focus on optimizing their dependence on |S|.
+Having found an occurrence, the algorithms will usually yield its position.
+
+A second objective is to find all occurrences of P within S.
+An easier third objective is the number of occurrences.
 
 Complexity of algorithms involving preprocessing
 is the sum of the complexity of preprocessing and that of the search.
@@ -23,16 +52,42 @@ is the sum of the complexity of preprocessing and that of the search.
 
 ## Naive algorithm
 
-	i = 0
-	while i < N - M
-		j = 0
-		while j < M and S[i+j] = W[j]
+	i = 1
+	while i ≤ N - M + 1
+		j = 1
+		while j ≤ M and W[j] = S[i+j-1]
 			j++
-		if j = M
+		if j = M + 1
 			output i
 		i++
 
+The use of a sliding window is apparent here and
+is the basis for the simplest algorithms.
+i is the position of the sliding window.
+
+Another way to write it:
+
+	i = 1
+	j = 1
+	while i ≤ |S|
+		if P[j] = S[i]
+			i++
+			j++
+			if(j == |P| + 1)
+				output i - j + 1
+		else
+			i = i - j + 2
+			j = 1
+
+This second version uses i as the current character of S being compared,
+which corresponds to the way most of the following algorithms are written.
+
+
+### Complexity
+
 Complexity: O((N - M + 1) * M) = Θ(N * M)
+
+A simple worst-case scenario is S = aaaaaa...aa and P = aaab.
 
 How much time to search for similarity between two complete 3Gbp genomes?
 
@@ -333,6 +388,7 @@ found (since i needs to go to N to compare the last characters).
 			if i < 0
 				i++
 				j++
+
 
 ### Preprocessing: constructing the jump table T:
 
