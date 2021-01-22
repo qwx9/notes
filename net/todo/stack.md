@@ -234,6 +234,9 @@ using an ascii delimiter like sigrid suggested
 
 ### vncv
 - fucking clipboard issues
+	* utf8 from remote → garbled
+	* add utf8 shit to /dev/snarf → blabla not in bla
+	* fucking clipboard with openbsd firefox
 - vncv performance fucking BLOWS, ssh too(?), faster to vncviewer within vncv to another machine
 	* vncviewer uses compression etc
 	* because 9p? ssh→tmux sucks too
