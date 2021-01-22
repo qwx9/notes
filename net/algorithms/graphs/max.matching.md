@@ -40,6 +40,10 @@ In general, when asking if there can be a matching of bigger size than M,
 one can consider whether or not |V| is sufficient:
 a matching of size 5 can by definition only exist if |V| ≥ 10.
 
+As will become apparent in the following sections,
+finding a maximal matching is relatively easy,
+while finding a maximum matching is very difficult.
+
 
 ## A greedy maximal matching algorithm
 
@@ -85,7 +89,7 @@ with an example
 
 ![SOL](introduction.001.png)
 
-![SOL∗](introduction.001.png)
+![SOL∗](introduction.002.png)
 
 The maximum matching problem is not NP-complete,
 so there is an optimal solution in polynomial time.
@@ -125,8 +129,68 @@ how to extend the matching?
 We can select two adjacent edges and invert the selection
 to only include those two.
 To attempt to find the maximum,
-we just extend by adding  more edges
+we just extend by adding more edges
 while verifying the definition of matching.
 In other words, if we haven't found the maximum matching,
 the path is surely alternating.
 
+
+### Using augmenting paths for maximum matching
+
+To find a maximum matching,
+we can get augmenting paths and invert their edges
+until there are no more of them.
+
+In order to find agumenting paths,
+we can do the following:
+
+	Given a maximal matching,
+	find a free vertex and use it as a root,
+	then perform a DFS.
+	Keep track of the distances from root of each encountered vertex.
+
+	To alternate between edges ∈ M and edges ∈ E - M,
+	when reaching a new vertex,
+	if it is at an odd distance, then we choose an edge ∈ M to continue,
+	else we choose an edge ∈ E - M.
+
+	If we reach a free vertex at odd distance from the root,
+	we have found an augmenting path.
+
+Example:
+
+![Finding an augmenting path](introduction.003.png)
+
+#### Problems
+
+The example shows two possible paths.
+The problem is odd cycles:
+it is difficult to know in which direction to continue the path.
+Without odd cycles, this algorithm works:
+we can just perform a DFS starting from any vertex,
+and either we find an augmenting path,
+or we have arrived at maximum matching.
+This can be proven, but we won't bother here.
+
+With odd cycles,
+whatever edges are in the matching,
+there is a free vertex
+incident to two edges not part of the matching.
+Only one of them will belong to the _maximum_ matching,
+hence if the graph is traversed the wrong way,
+we would miss an augmenting path.
+
+This algorithm is thus applicable to *bipartite* graphs,
+since they cannot have odd cycles,
+but not other ones.
+
+
+### Edmond's algorithm (1963, Jack Edmond)
+
+This algorithm provides a concrete way
+to find augmenting paths efficiently
+in the general case,
+running in polynomial time:
+O(mn²).
+
+However, its implementation is very complex.

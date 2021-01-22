@@ -61,3 +61,12 @@ Does the algorithm produce a maximum spanning tree?
 
 Show that the first algorithm correctly produces a maximum matching
 if the graph is acyclic (tree).
+
+
+## Connection between vertex cover and maximum matching
+
+Recall that the 2-approximation algorithm for vertex cover
+used disjointed edges.
+Is there a connection between vertex cover and maximum matching:
+- in the general case?
+- for bipartite graphs?
