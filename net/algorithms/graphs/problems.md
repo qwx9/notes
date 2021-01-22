@@ -60,13 +60,39 @@ Does the algorithm produce a maximum spanning tree?
 ## Greedy maximum matching
 
 Show that the first algorithm correctly produces a maximum matching
-if the graph is acyclic (tree).
+if the graph is acyclic (forest of trees).
 
+	Generalizing to a forest is trivial
+	if we can prove this for a single tree.
 
-## Connection between vertex cover and maximum matching
+	By definition, a tree's leaves have degree = 1.
+	To prove this,
+	let v be any vertex ∈ V,
+	and p a path = {v,u₁,…,u_k}.
+	No vertex can appear more than once in p,
+	otherwise there would be a cycle.
+	Therefore subgraphs cannot be extended indefinitely.
+	If the path cannot be extended beyond u_k,
+	then d(u_k) = 1.
+	In addition, any graph must have at least two leaves
+	for it to be a graph.
+	Therefore any tree would have at least 2 vertices of degree = 1.
+	Further, a tree is a connected graph,
+	and there can be no vertices of degree = 0.
 
-Recall that the 2-approximation algorithm for vertex cover
-used disjointed edges.
-Is there a connection between vertex cover and maximum matching:
-- in the general case?
-- for bipartite graphs?
+	The algorithm will therefore start with leaves.
+	Suppose a leaf {u,v} ∉ M, the maximum matching.
+	If we add {u,v} to M, only one vertex now has two incident edges.
+	One of the edges of M can be deleted to attain
+	a maximal matching containing {u,v}.
+
+	For M to be a maximum matching, M must contain an edge incident to u or v,
+	otherwise {u,v} could be added to M and it would not be maximum.
+	Say we add {u,v}.
+	v has now two edges in M ∪ {u,v}: {u,v} and {v,w}.
+	(M - {v,w}) ∪ {u,v} is a new maximum matching containing {u,v}.
+
+	Therefore, it is certain that ∃ a maximum matching containing {u,v},
+	and the algorithm works for trees.
+	Finally, a forest being a set of trees,
+	the algorithm also works for forests.

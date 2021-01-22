@@ -87,9 +87,7 @@ It is easy to show that this algorithm
 does not guarantee an optimal solution
 with an example
 
-![SOL](introduction.001.png)
-
-![SOL∗](introduction.002.png)
+![SOL: SOL∗ is bigger here](max.matching.001.png)
 
 The maximum matching problem is not NP-complete,
 so there is an optimal solution in polynomial time.
@@ -159,7 +157,7 @@ we can do the following:
 
 Example:
 
-![Finding an augmenting path](introduction.003.png)
+![Finding an augmenting path](max.matching.002.png)
 
 #### Problems
 
@@ -194,3 +192,29 @@ running in polynomial time:
 O(mn²).
 
 However, its implementation is very complex.
+
+
+## Relationship with vertex cover
+
+### General case
+
+	Theorem: for graphs in the general case,
+	the size of a minimum vertex cover
+	is at least the size of a maximum matching.
+
+Since all edges of a maximum matching are disjoint,
+at least one vertex is need in the cover for each.
+
+
+### König's theorem
+
+	For bipartite graphs,
+	the size of minimum vertex cover is equal
+	to the size of a maximum matching.
+	(proven)
+
+This is an interesting result.
+König's theorem essentially tells us that
+a vertex cover problem, which is NP-complete,
+can be solved as a maximum matching problem,
+in polynomial time.
