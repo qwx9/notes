@@ -3,7 +3,6 @@
 ## practice of programming
 
 ### languages
-
 - learn ocaml, try out on data manipulation problems à la dplyr?
 
 
@@ -20,7 +19,6 @@
 - debug: igfx
 
 ### notes
-
 - [plumb rules](proj/notes/plumb)
 - add note/mv: move note from one dir to another, clean up parent dirs
 - [populate with notes](proj/notes/populate)
@@ -34,7 +32,6 @@ this isn't very convenient for this type of info
 - use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes
 
 ### pitch
-
 - [notes](proj/pitch/notes)
 - modify to draw a spectrogram (vertically)
 - additional processing
@@ -49,7 +46,6 @@ this isn't very convenient for this type of info
 - pitch: can use norm to amplify when above threshold
 
 ### sce
-
 - p/sce bin
 	* games/sce or sce/sce
 	* sce/... tools
@@ -119,7 +115,6 @@ reused in various projects: nanosec() etc in treason et al
 - build trees
 
 ### pplay
-
 - zooming is unbearable: at least let one use arrow keys to scroll
 - check the controls
 - loading the waveform stops when pausing, sucks, and not fast enough
@@ -159,7 +154,6 @@ keep the simple visualization/player separate
 among others
 
 ### 3d
-
 - starred github repos with minimal software 3d libs, etc
 - aap vectors
 - rodri programs
@@ -170,32 +164,38 @@ among others
 - tinyref tutorial
 
 ### pico
-
 - syntax improvements
+- add a -q flag to inhibit automatic plumb to page?
+- add a -e flag to exit on error?
+- add a way to add or preserve image offsets
 
-### other projects
-- såmtörm
-- deathfront
-- sawk: language based on awk + add hex shit + statistical functions library etc,
-vector calculus (other tool probably)
-
-
-## setup
-
+### setup
 - see [notes](setup/global)
 
+### deathfront
+- see [notes](proj/deathfront/stack)
 
-## 9front
+### sawk
+- language based on awk + add hex shit + statistical functions library etc,
+vector calculus (other tool probably)
 
-### bugs
+### omidi
+- get fixes from dmid0
+- extract bank -> fmdrv.op2 for dkey
 
-- igfx regression: t61p hwgc igfx no longer functions (w500 works fine)
-- page doesn't display a8r8g8b8 correctly (?)
-- report arm rc breakage
-- debug file(1) flac failures
+### opl3
+- find a way to encode extended opl3 registers into 1 byte
+and merge with opl2
+
+### mus
+- where the fuck did we get the fucking tempo value from and why
+isn't it 60*Te6/35 ??? (also where does the 0x101 value for quarter
+note duration come from) ⇒ recalculate right vars
+
+### dmid
+fix for noscroll etc?
 
 ### rio
-
 - [subrio labels on startup](9front/rio/subrio.labels)
 - [riostart adjustments for riow](9front/rio/riostart)
 - [riostart sessions](9front/rio/riostart.sessions)
@@ -207,7 +207,6 @@ vector calculus (other tool probably)
 - tmux-like functionality: don't lose long jobs when killing rio, etc.
 
 ### sam
-
 - [default windows](9front/sam/windows)
 - [rsam plumbing](9front/sam/rsam.plumb)
 - bug: messing with window placement and plumbing files
@@ -233,10 +232,14 @@ using an ascii delimiter like sigrid suggested
 	but patch is available
 
 ### vncv
+- vncv: match key against some fingerprint or something? i'd like to not have
+  the same fucking key for the same host on different addresses
 - fucking clipboard issues
 	* utf8 from remote → garbled
 	* add utf8 shit to /dev/snarf → blabla not in bla
 	* fucking clipboard with openbsd firefox
+	* input of utf8 runes eats too, try placing ê, copy paste puts an invalid rune
+	* input of utf8 runes sometimes works after two tries, sometimes doesn't ever
 - vncv performance fucking BLOWS, ssh too(?), faster to vncviewer within vncv to another machine
 	* vncviewer uses compression etc
 	* because 9p? ssh→tmux sucks too
@@ -250,40 +253,64 @@ using an ascii delimiter like sigrid suggested
 			https://github.com/amitbet/vnc2video, go package
 		- tight combines zlib with (lossy) jpeg compression
 
+### png
+- support for mTRS chunks (proper implementation)
+
+### 2600
+- fix timing issues
+
+### nes
+- record and play demo files (?)
+
 ### mothra
 - mod mothra to fix fucking selection shit and don't have it interfere with scroll bar
 
-### git9
+### gb
+- add linking
+- debug pokemon crystal ppu bugs
 
-- .gitignore or something
-- git log -p
+### gba
+- gba: working gba toolchain (haha)
+- gba: add linking
+- doom2 apu bugs: many sounds/music fx aren't heard
+- apu bugs: mario kart
+	* left channel stuff's volume is too low, barely heard
+- vrally bugs
+- rogue spear not drawing anything and getting stuck
+- ssx3, pokemon not drawing anything
 
-### usb
-
-- pen stroke size with pressure for paint(1)
-
-### ports
-
+### opus
 - improve opusdec performance
 
+### usb, paint
+- pen stroke size with pressure for paint(1)
+
+### igfx
+- regression: t61p hwgc igfx no longer functions (w500 works fine)
+- add support for haswell vga
+- figure out haswell edp link training time out ← out of haswell
+laptops
+- fix haswell code for x240/x250?
+- gm965 gtt fix: try a kernel side implementation, with a function
+called in kernel on modeset?
+
+### sys
+- reboot: hangs on u19, u20, u25 when on 2x2gb ram
+- report arm rc breakage
+- debug file(1) flac failures
+- page doesn't display a8r8g8b8 correctly (?)
+- image memory or w/e leak vncv/vt? dpms? slowdown of draw performance after a while
 
 ## master
-
-### vdb
-- finish base graphics shit
-- finish shiny shit
-- finish last vdb tp
-- finish lifemap shit
 
 ### mbioinf
 - vdb shit, nuke vdb repo
 - sba shit
 - shiny.vdb shit and remove repo
-- xl
-- nanostring runs2
-- tk
+- xl, nanostring, cnv, tk
 - other shit from courses
 - simple dcd shit
+- etc
 
 
 ## music
@@ -313,10 +340,8 @@ using an ascii delimiter like sigrid suggested
 - m1 report in kertex
 - rework cv in latex
 - build cv with kertex
-- english cv
 - cover letters in kertex
 - prospect and send shit out: private/public, lausanne/geneva
-- call back ens dudes
 - countries
 
 

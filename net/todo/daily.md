@@ -802,3 +802,8 @@
 - drums
 - guitar
 - bv91 repair: several attempts to diagnose usb issue, ending in antenna damage
+
+
+## fri 20210122
+- alg
+- guitar, practice and learning finally

@@ -534,7 +534,7 @@ but comparisons are made right-to-left.
 
 ### The badchar rule
 
-We compare W and S left to right.
+We compare W and S right to left.
 On mismatch, we look backwards in W for the first occurrence of S[j],
 and jump the sliding window to align them.
 
@@ -571,12 +571,124 @@ ie. we don't even read all the data (S) since many positions are unread.
 Sometimes, since the second rule is more difficult to implement,
 only this one is used because of sufficient performance in practice.
 
+Implementation-wise,
+the naive method is to parse W from start to end
+and for every character c ∈ Σ,
+to find occurrences of c.
+Here the size of the table is in the order of m·|Σ|,
+since we need all positions of c in W.
+In other words, for each position in W,
+we have the position of the first occurrence of each c
+backwards in W.
+
+A better alternative in both runtime and memory
+is to save the position of the last occurrence of c in W,
+for each c ∈ Σ.
+In this case, on mismatch, we would look for the last of occurrence of c in W,
+rather than the next one going backwards.
+Should c occur to the right of the mismatch, we cannot jump,
+and we even might have to move the window _backwards to the left_.
+Here the size of the table is in the order of |Σ|,
+since we only store the position of the last occurrence.
+Despite its relatively lower performance,
+this is usually the preferred method.
+
 
 ### The good prefix rule
 
 There are at least 3 ways to implement this rule,
 even though the algorithm is referred to as Boyer-Moore in all cases.
+Some variants ignore it.
 
+While comparing right to left, 
+having matched a factor U until a mismatch c,
+with U prefixed with a given character x,
+we want to find another occurrence of U further back
+with a different character prefix y.
+
+We then slide the window forward to align the prefix
+with the mismatch.
+
+	S	----------------------c-----------
+	W	          ---y====----x====
+		               U        U
+
+These occurrences are precalculated.
+However, it doesn't make sense to build a table
+for any character c, esp. with large alphabets,
+where BM is typically applied.
+
+A variation of this rule harkens back to the same idea as in KMP.
+If U does not occur again in W,
+then we can check what is the longest suffix of U
+that is also a prefix of W,
+and jump W further forward this way.
+
+
+### General strategy
+
+If both rules are implemented,
+two jump tables must be calculated during preprocessing.
+Then the sliding window is moved left to right, while comparisons are made right to left.
+If a mismatch is found, the biggest jump between the two tables is made,
+else W is found.
+
+
+### Complexity
+
+Preprocessing: O(m + |Σ|).
+
+Search: O(n·m).
+In other words, the worst case runs in the same order as the naive algorithm,
+besides the cost of preprocessing.
+A worst case example is S with repeats of a single character
+and W matching all the way except its first character,
+making jumps one character at a time,
+and in fact with worse performance than the naive algorithm,
+which scans left to right and will mismatch immediately.
+
+Over all complexity: O(m + Σ + n·m) = O(Σ + n·m).
+Σ is usually considered constant.
+The search phase is the dominant term in the complexity analysis,
+which makes sense, we don't want worst performance for preprocessing
+than for the search itself.
+
+In practice, this is rare.
+Many improvements have been made over time.
+If W is not complex, ie. non-periodic, we could arrive at 3·n (recent).
+
+The lower bound is actually Ω(n/m),
+which is the best complexity we could expect if we only preprocess W.
+A simple example is W having different characters than S,
+where we just make n/m jumps.
+
+Compared to this algorithm's worst case of O(n·m),
+Going back to KMP, the reason its complexity is so low
+isn't so much the possibility of jumping forward,
+as the fact that border positions aren't retested
+since they are known to match.
+Using the same idea for the second rule,
+we may also achieve O(n + m).
+
+
+### Raita's algorithm (1991)
+
+This adds a simple heuristic to speed up eliminating non matches.
+At a given window,
+we check the first, last and middle characters of W in S,
+and only proceed as usual if they match.
+
+It can be useful for natural language processing,
+where there are frequent common suffixes,
+which would match all the time.
+
+
+### Applications
+
+BM is frequently used in language processing (natural, programming, etc).
+It is hoped that a potential mismatch would appear early,
+and if W is non-periodic, that is without many repeats,
+we can make large jumps (see second rule).
 
 
 ## References
