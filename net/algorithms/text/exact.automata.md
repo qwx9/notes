@@ -277,6 +277,39 @@ it may be possible to find a minimal NFA of smaller size.
 However, we shall focus on DFA minimization.
 
 
+### Minimization
+
+There are only two possible reasons
+because of which an automata may not be minimal.
+
+![Example of a non-minimal automaton](exact.automata.001.png)
+
+	In this example, the first branch is useless
+	since its last node is not final.
+	Arriving at this node would result in an infinite loop.
+
+A non-final terminal node in an automaton
+is termed *inacessible*
+and is useless.
+
+	An additional problem is the last two nodes in the second branch.
+	Anything that could be read with the first state
+	can also be read with the second.
+
+States are said to be *equivalent*,
+when any word read with one
+can be read just as well with the others.
+In other words, their right-wise language
+(fr. langage à droite, any words starting with this node)
+is equivalent.
+
+![Corresponding minimal automaton](exact.automata.002.png)
+
+Minimization consists therefore
+of eliminating inaccessible nodes
+and merging equivalent ones together.
+
+
 ## Strategy (contd.)
 
 Following the preceding discussions,
