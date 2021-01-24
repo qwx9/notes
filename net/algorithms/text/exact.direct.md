@@ -645,7 +645,8 @@ A worst case example is S with repeats of a single character
 and W matching all the way except its first character,
 making jumps one character at a time,
 and in fact with worse performance than the naive algorithm,
-which scans left to right and will mismatch immediately.
+which scans left to right and will mismatch immediately,
+thus n·m - 1 operations.
 
 Over all complexity: O(m + Σ + n·m) = O(Σ + n·m).
 Σ is usually considered constant.
@@ -660,6 +661,7 @@ If W is not complex, ie. non-periodic, we could arrive at 3·n (recent).
 The lower bound is actually Ω(n/m),
 which is the best complexity we could expect if we only preprocess W.
 A simple example is W having different characters than S,
+esp. when the last character of W ∉ Σ,
 where we just make n/m jumps.
 
 Compared to this algorithm's worst case of O(n·m),

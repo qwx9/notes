@@ -243,6 +243,12 @@ there is no better method than suffix trees
 for finding a word in a text.
 
 
+#### Space
+
+There are clever optimizations possible for suffix trees,
+but generally we cannot go below 20n bits.
+
+
 #### Building the suffix tree
 
 Each time a word is added,
@@ -586,7 +592,7 @@ Here the problem is formalized as follows:
 
 	Let {S₁,…,S₏} be a set of texts,
 	and W a word that will be searched for in each.
-	∃? i≤n such that P ∈ Sᵢ?
+	∃? i≤n such that W ∈ Sᵢ?
 
 All of the algorithms seen previously are generalizable to this problem.
 
@@ -693,7 +699,6 @@ Knowing S and SA, no information is lost.
 
 ### Interval bounds algorithms
 
-
 #### Left bound
 
 The left bound is the smallest suffix for which W is a prefix,
@@ -703,7 +708,7 @@ wrt alphabetical order, not word size.
 	r ← n
 	while l < r			// l and r are iteratively moved until they are equal
 		mid ← ⌊(l+1)/2⌋		// floor
-		if P > S[SA[mid]..n]
+		if W > S[SA[mid]..n]
 			l ← mid + 1
 		else
 			r ← mid
@@ -718,14 +723,23 @@ Biggest suffix for which W is a prefix.
 	r ← n
 	while l < r
 		mid ← ⌊(l+1)/2⌋		// floor
-		if P > S[SA[mid]..n]
+		if W > S[SA[mid]..n]
 			l ← mid
 		else
 			r ← mid - 1
 	return r
 
 
+#### Search
+
+The returned interval's positions aren't ordered,
+if the first occurrence is required,
+the interval must be parse.
+
+
 ### Complexity
+
+#### Running time
 
 Either of the interval bounds: O(m·logn).
 m comparisons of W at each position,
@@ -733,3 +747,407 @@ for each logn steps.
 Obviously, this is higher than the O(n) of the suffix tree,
 but it is expected.
 This can even be improved.
+
+See also: [divide and conquer master theorem](/algorithms/complexity/asymptotic.analysis).
+
+
+#### Space
+
+We have to store S and SA.
+
+Let's assume that numbers are stored as 32 bit integers.
+Therefore the most efficient representation is: 32n bits = 4n bytes.
+This is only possible however if S isn't too big.
+Past 2³²-1 ≅ 4.29e9 characters,
+we'd then need 64bits instead
+simply to have a bigger address space,
+thereby doubling space.
+
+This is common with many bioinformatics algorithms,
+such as k-mer based methods.
+
+Compare this with ≥ 20n bits for suffix trees.
+In practice, this factor of 5 can be huge.
+Obviously though, the time we gain in space we lose in speed.
+
+If we didn't have the index,
+we'd have to work on the original input,
+which means storing n characters.
+
+	Note: storing characters in python,
+	it would be much bigger than the suffix table,
+	ie. the index would be bigger that S!
+
+The bigger Σ, the more characters to represent.
+For an alphabet Σ, the number of bits required
+to store a character c ∈ Σ is log|Σ|.
+
+We don't lose much by storing sequence and suffix table,
+we essentially multiply by 2.
+
+A genomic alphabet of only 4 characters,
+could be stored in 2 bits, meaning 2n space.
+In practice, DNA sequences are rarely encoded in 2 bits.
+We have $, the EOL character, so we need at least 3 bits.
+We also have N's in alignments etc.,
+so now ¦Σ| = 6,
+so 3n bits, etc.
+
+
+### Optimizations
+
+This data structure greatly improves space complexity,
+but we would like to improve time complexity.
+We can do better than the binary search comparing
+the entire pattern for all logn iterations.
+
+
+## Enhanced suffix table (fr. tables des suffixes enrichi)
+
+### Definition
+
+Improves the pattern search in the suffix table,
+by adding more information for the search,
+but mostly it simulates all the operations
+that can be done on a *suffix tree*.
+
+Recall that using suffix tree can be used for all kinds of problems,
+whereas suffix tables can't be used for much other than pattern searching.
+
+An additional table is constructed the *lcp table*
+(longest common prefix).
+Let's suppose we have this table.
+Usually, it is calculated for free at the same time as the suffix table.
+
+lcp is a table of length n
+such that lcp[i] = |longest common prefix|
+between suffix in position i and suffix in position i-1,
+ie. between S[SA[i-1],…,n] and S[SA[i],…,n].
+
+	S = a  a  b  a  c  a  a  b  a  c  $
+	    ₁  ₂  ₃  ₄  ₅  ₆  ₇  ₈  ₉ ₁₀ ₁₁
+
+	i	SA	S[SA[i]..n]	lcp
+	-----------------------------------
+	1	11	$		-1
+	2	6	aabac$		0
+	3	1	aabacaabac$	5
+	4	7	abac$		1
+	5	2	abacaabac$	4
+	6	9	ac$		1
+	7	4	acaabac$	2
+	8	8	bac$		0
+	9	3	bacaabac$	3	
+	10	10	c$		0
+	11	5	caabac$		1
+
+
+Let M and M´ be two suffixes,
+suppose we can compute "efficiently" the value of lcp(M,M´),
+the longest common prefix between M and M´.
+
+lcp only gives us the value for two consecutive suffixes.
+We cannot know a priori the longest common prefix between
+non-consecutive suffixes,
+but we'll leave that for later.
+
+A naive approach can build lcp by comparing
+every pair of consecutive prefixes,
+however let's suppose that we can do it in constant time.
+
+Again, what we improve isn't the number of iterations,
+but the binary search,
+ie. avoid comparing W at each step.
+
+
+### Strategy
+
+At some step of the binary search,
+we have an interval [l,r],
+and we compare W with M
+where M is the middle of [l,r].
+
+	l ... M ... r
+
+Comparing left to right,
+say we observe a difference in the comparison
+beginning with the k+1th character,
+ie. W and M have a common prefix of size k.
+
+Suppose also that W > M,
+ie. the k+1th character of W > k+1th character of M
+(we could do it the other way, it doesn't matter).
+The new interval we consider is [r,M] and its middle M´.
+
+	l ... M ... M´ ... r
+
+What are the implications for the next iteration?
+We won't need to compare all of M again.
+Let's consider the question k >? lcp(M,M´),
+that is, is k bigger than the longest common prefix between the two.
+
+Example:
+
+		        k = 4
+	                ↓
+	W	a c a b b a d
+
+	l
+		…
+		            lcp(M,M´) = 6
+		            ↓
+	M	a c a b a a b
+		…
+	M´	a c a b a a c
+		…
+	r
+
+	W and M differ at k+1 with k = 4.
+	Now we'll have to search in [M,r].
+	Here lcp(M,M´) = 6.
+
+	Because lcp(M,M´) > k,
+	we know that M and M´ are the same
+	up until 6th index,
+	while W differed at 4th position.
+	Since W > M, we can directly infer that W > M´
+	without comparing them.
+
+Thus, having W > M,
+if lcp(M,M´) > k,
+M[k+1] = M´[k+1]
+and W > M´.
+
+Now if k > lcp(M,M´):
+
+		      k = 3
+		      ↓
+	W	a a a c d
+
+	l
+	…
+		  lcp(M,M´) = 1
+		  ↓
+	M	a a a b c
+	…
+	M´	a b a a d
+	…
+	r
+
+	We know that W differ at k+1,
+	but M and M´ differ at index 1,
+	therefore W and M´ will differ at index 1.
+
+	Since M > M´ in alphabetical order,
+	we know that the mismatched character is also bigger in M´.
+	
+	Therefore, W < M´, again without comparing
+	anything besides k and lcp(M,M´).
+
+Thus, having W > M,
+if lcp(M,M´) < k,
+M < M´
+and W < M´.
+
+The last case is k = lcp(M,M´).
+
+		        k = 4
+		        ↓
+	W	a a b c b
+
+	l
+	…
+		        lcp(M,M´) = 4
+		        ↓
+	M	a a b c a
+	…
+	M´	a a b c c
+	…
+	r
+
+	Here we know that W = M = W´ until k+1.
+	We cannot decide directly if W < M´.
+	Here we are obligated to test k+1th caracter
+	between W and M´.
+
+Thus, having W > M,
+if lcp(M,M´) = k,
+we have to compare W and M´
+starting at position k+1,
+during the same iteration.
+
+k can never decrease throughout the iterations.
+Therefore every character in W will be compared at most once.
+
+
+### The lcp table
+
+As previously discussed,
+the lcp only specifies the longest common prefix
+between consecutive suffixes,
+not any arbitrary pair.
+
+There are two approaches around this.
+
+
+	S = a  a  b  a  c  a  a  b  a  c  $
+	    ₁  ₂  ₃  ₄  ₅  ₆  ₇  ₈  ₉ ₁₀ ₁₁
+
+	i	SA	S[SA[i]..n]	lcp
+	-----------------------------------
+	1	11	$		-1
+	2	6	aabac$		0	←
+	3	1	aabacaabac$	5
+	4	7	abac$		1
+	5	2	abacaabac$	4	←
+	6	9	ac$		1	⇐
+	7	4	acaabac$	2
+	8	8	bac$		0
+	9	3	bacaabac$	3	⇐	
+	10	10	c$		0
+	11	5	caabac$		1
+
+
+#### Minimum lcp
+
+The first approach is calculating min(lcp(i,j))
+(i and j included),
+with i and j indices in SA of two suffixes M and M´.
+
+The intuition here is that any time
+a character changes at one position,
+it will be different at all subsequent
+suffixes compared to the very first.
+
+	The longest common prefix between SA[2] and SA[5] here
+	is the minimum of the lcp's between them,
+	ie. min(SA[2..5]).
+
+	What about SA[6] and SA[9]?
+	min(SA[6..9]) = 0.
+	That simply means that the first letter
+	has changed in between them.
+
+This works, but we do have to traverse the table
+between i and j each time.
+
+
+##### Range minimum queries (RMQ): cartesian trees
+
+Given an integer array,
+we would like to know which is the minimum between indices i and j.
+This constitutes an RMQ.
+
+Luckily there are data structures adapted to this situation.
+There are many approaches here,
+but one of the most common ones are cartesian trees.
+
+These are binary trees.
+The values in i and j are first found in the tree,
+then we go through their parents until a common one is found.
+That will be the minimum between i and j.
+
+	A = [3,1,5,20,2,25]
+
+           1
+	 ↗   ↘
+	3     2
+	    ↙  ↘
+	   5    25
+             ↘
+	       20
+
+	We want min(A[3..6]).
+	Parent: 2
+	⇒ min(A[3..6]) = 2.
+
+To construct this,
+the minimum of the array is taken,
+then the table is divided in two,
+the minimum of each subarray is found,
+which constitutes a root for a new subtree,
+and so on.
+
+Answering a query here corresponds to a common ancestor problem.
+Given two nodes of a rooted tree,
+finding the smallest common ancestor is done in constant time,
+using slightly more than just the tree.
+
+The point is that there is an entire class of data structures
+to answer this problem efficiently
+with the usual gamut of compromises
+between time and space complexity.
+
+
+#### Precalculate all possible lcp(M,M´)
+
+This brute-force approach is fairly effective.
+We could construct a large n·n matrix for each pair,
+but that has an obvious prohibitive O(n²) cost in space.
+
+In practice, we don't need every single pair.
+In a binary tree, there aren't that many possible ones.
+
+For a binary search, there aren't that many possible pairs.
+We compare the middle of the intervals of interest.
+Recall that that's what M and M´ are to begin with.
+There are potentially as many possible intervals
+as there are possible M,M´ pairs.
+
+
+	A = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	    l                         r
+	    l            l|r          r
+	    l      l     l|r   r      r
+	etc.
+
+Any time we tighten an interval,
+any other smaller intervals
+will always be completely contained in the "parent".
+
+Another way to look at this is that
+any position in A can only be the middle
+of a single interval in the binary search.
+This is true regardless of the parity of the table.
+
+
+	A = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+	           [  ↑  ]
+	    [   ↑  ]
+	    [            ↑            ]
+
+Therefore regardless of what is being searched for,
+the number of possible intervals in a binary search
+is at most n.
+
+Using this property is the simplest way
+to precalculate all possible lcp(M,M´).
+
+
+### Complexity
+
+Thanks to the new search algorithm,
+given that we make at most m comparisons for W,
+the search complexity is reduced to O(logn + m).
+
+Preprocessing is now in O(n) thanks to the shortcuts we've found.
+
+Space complexity: O(n + n·logn + n·logn).
+In theory, the size of a suffix table is O(n·logn) in the general case,
+otherwise n·constant.
+In the worst case, the lcp table is also n·logn.
+
+Overall: O(n·logn).
+
+As we've seen before, we need n integers for positions,
+and thus for 32 bit (64 bit) integers, 4n bytes (8n).
+Generally, we'd need logn bits to store all integers [1,n],
+while if all integers are of constant size,
+it's |integer|·n.
+
+
+### Applications
+
+Suffix table + lcp is more or less equivalent to the suffix tree,
+which is why the trees aren't used much anymore,
+since these also have a much smaller memory cost.

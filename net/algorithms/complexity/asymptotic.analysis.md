@@ -138,12 +138,65 @@ Example: quicksort.
 Divide and conquer algorithms divide the problem into subproblems,
 then perform some additional work to compute the final answer.
 
+### Example: binary search
+
+Let T(n) the number of iterations for a table S of size |S| = n.
+
+On each loop iteration, the table is divided by 2.
+After the first loop: T(n) = 1 + T(n/2),
+eg. the number of iterations for half the table size.
+
+	T(n)	= 1 + T(n/2)
+		= 1 + (1 + T(n/2/2))
+		= 2 + T(n/4)
+		= 3 + T(n/8)
+		= 4 + T(n/16)
+		etc.
+	ie.: ∀k,
+		T(n) = k + T(n/2^k)
+	with T(1) = 1
+
+	Once we reach T(1), we terminate.
+	So when does T(1) occur?
+
+	n/2^k ≤ 1	⇒	n ≤ 2^k
+			⇒	logn ≤ k
+
+	After logn operations, with logn ≤ k, n/2^k = 1.
+
+	For k = logn,
+	T(n)	= logn + T(n/2^logn)
+		= logn + T(1)
+
+	After logn operations, we arrive at a size 1 table.
+
+	Since T(1) = 1,
+	T(n)	= logn + 1
+
+When unrolling such an algorithm,
+it may become apparent that there are more than logn + 1 steps.
+This is because in the worst case, we don't exactly just divide by 2.
+If the table size is even, there's a + 1 term:
+
+	T(n)	≤ 1 + T(n/2 + 1)
+
+This term then propagates all the way to the end:
+
+	T(n)	= logn + 2
+
+
+### Merge sort
+
 Merge sort operates on 2 subproblems, each half the size of the original,
 then performs O(n) additional work for merging.
+
 Thus its running time equation is:
 
 	T(n) = 2·T(n/2) + O(n), 
 	where 2·T(n/2) is the 2 subproblems of half size
+
+
+### General form
 
 Running time of divide and conquer algorithms
 can be determined without fully solving them,
