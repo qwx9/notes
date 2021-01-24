@@ -24,7 +24,6 @@
 
 
 ## todo: neck
-- test truss rod
 - shorten neck back to bring it forward towards the bridge 2-3mm
 - head: cut fretboard for locking nut placement
 - head: drill for locking nut holes

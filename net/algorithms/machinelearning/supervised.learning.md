@@ -1094,6 +1094,27 @@ The algorithm takes into account many usage descriptors and statistics,
 and sends offers to clients that are predicted as "volatile".
 There again we want more precision.
 
+Essentially, there is a trade-off between recall(+) and precision(+),
+wrt the *cost* of, respecively, false negatives or false positives.
+If false negatives are more expensive, then good recall is required.
+For instance, when predicting bad loans that would default,
+we don't want to lose money so we want high recall.
+
+Some examples where precision is more important,
+ie. false positives are much worse than false negatives:
+
+- indian jurisprudence: 100 culprits may be let go free,
+but no innocent may be punished: recall is low,
+but we want absolute certainty that only criminals are punished,
+hence precision must be high.
+- plenty of fish in the ocean: missing fish isn't costly since there are many,
+but picking the wrong fish is expensive.
+- good restaurant for a date: we don't want to risk bad restaurants,
+so we want to avoid those at all costs,
+while the list of predicted good restaurants
+could contain as many good restaurants as possible,
+but it's alright to not pick the top.
+
 
 ### Validation and overfitting
 

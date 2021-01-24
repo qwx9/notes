@@ -169,6 +169,17 @@ among others
 - add a -e flag to exit on error?
 - add a way to add or preserve image offsets
 
+### dmap
+- make a standalone nodebuilder
+	* fs.c from dmap
+	* deu nodebuilder
+	* or (then?) try to fix idbsp for large maps
+- different colors for values in stats, make them stand out
+- selection
+
+### sch.wad
+- merge latest
+
 ### setup
 - see [notes](setup/global)
 

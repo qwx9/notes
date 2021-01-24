@@ -807,3 +807,10 @@
 ## fri 20210122
 - alg
 - guitar, practice and learning finally
+
+
+## sat 20210123
+- alg
+- taa
+- guitar
+- ⑨ST sanding
