@@ -282,7 +282,7 @@ However, we shall focus on DFA minimization.
 There are only two possible reasons
 because of which an automata may not be minimal.
 
-![Example of a non-minimal automaton](exact.automata.001.png)
+![Example of a non-minimal DFA](exact.automata.001.png)
 
 	In this example, the first branch is useless
 	since its last node is not final.
@@ -303,7 +303,7 @@ In other words, their right-wise language
 (fr. langage à droite, any words starting with this node)
 is equivalent.
 
-![Corresponding minimal automaton](exact.automata.002.png)
+![Corresponding minimal DFA](exact.automata.002.png)
 
 Minimization consists therefore
 of eliminating inaccessible nodes
