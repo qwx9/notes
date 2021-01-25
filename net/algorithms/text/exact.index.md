@@ -780,7 +780,7 @@ which means storing n characters.
 
 The bigger Σ, the more characters to represent.
 For an alphabet Σ, the number of bits required
-to store a character c ∈ Σ is log|Σ|.
+to store a character c ∈ Σ is log₂|Σ|.
 
 We don't lose much by storing sequence and suffix table,
 we essentially multiply by 2.
@@ -1141,7 +1141,7 @@ Overall: O(n·logn).
 
 As we've seen before, we need n integers for positions,
 and thus for 32 bit (64 bit) integers, 4n bytes (8n).
-Generally, we'd need logn bits to store all integers [1,n],
+Generally, we'd need log₂n bits to store all integers [1,n],
 while if all integers are of constant size,
 it's |integer|·n.
 
@@ -1151,3 +1151,488 @@ it's |integer|·n.
 Suffix table + lcp is more or less equivalent to the suffix tree,
 which is why the trees aren't used much anymore,
 since these also have a much smaller memory cost.
+
+
+## Burrows-Wheeler Transform (BWT)
+
+Given a word S, with a terminating character $,
+a table is built with the ordered set
+of all possible rotations of S.
+
+Each column contains a single occurrence
+of each character ∈ S.
+
+The first and last columns of the table
+are called respectively F and L.
+This last column L is what constitutes the BWT.
+
+	S = aabacaabac$
+
+	 F                     L
+	-------------------------
+	*$* a a b a c a a b a *c*
+	*a* a b a c $ a a b a *c*
+	*a* a b a c a a b a c *$*
+	*a* b a c $ a a b a c *a*
+	*a* b a c a a b a c $ *a*
+	*a* c $ a a b a c a a *b*
+	*a* c a a b a c $ a a *b*
+	*b* a c $ a a b a c a *a*
+	*b* a c a a b a c $ a *a*
+	*c* $ a a b a c a a b *a*
+	*c* a a b a c $ a a b *a*
+
+Formally, the BWT of a text S is the last column
+obtained by ordering all rotations of S
+in lexicographical order,
+terminating character first.
+
+Any character in F has in L
+its preceding character in S,
+because of the rotation.
+
+
+### Link between BWT and suffix tables
+
+Generally, the most efficient implementations of the BWT
+use a suffix table.
+
+	i	prec	suff(SA[i])
+	-----------------------------------
+	1	c	$
+	2	c	aabac$
+	3	$	aabacaabac$
+	4	a	abac$
+	5	a	abacaabac$
+	6	b	ac$
+	7	b	acaabac$
+	8	a	bac$
+	9	a	bacaabac$
+	10	a	c$
+	11	a	caabac$
+
+With suffixes ordered alphabetically,
+the column formed by the character preceding each suffix
+corresponds exactly to the BWT of S.
+
+Thus an alternative definition of BWT
+is BWT[i] = S[SA[i]-1].
+
+
+### Compression
+
+Assume that a given text S has many repeats.
+The corresponding BWT would then have
+many identical consecutive characters.
+
+	The word 'acgt' occurs k times in a text S.
+	All the k rotations prefixed by copies of 'cgt'
+	will be ordered consecutively in L.
+	Same with 'gt', 't'.
+
+	F	L
+	---------
+	…	…
+	cgt	a
+	cgt	a
+	cgt	a
+	…	…
+	gt	c
+	gt	c
+	gt	c
+	…	…
+	t	g
+	t	g
+	t	g
+	…	…
+
+This is ideal for compression.
+The simplest idea here would be to replace repeats
+with the character and the number of repetitions.
+
+	aaaaaabbbbbbaaaaab ⇒ 6a6b5a1b
+
+Of course many other compression algorithms may be used.
+Common techniques here are _num-length encoding_,
+_move to front_,
+_Huffman (aka Haufmann) coding_,
+etc.
+
+In practice BWT is typically compressed,
+and many compression algorithms allow
+the same operations on sequences transparently,
+with the same complexity.
+In fact papers on BWT usually imply compressed BWTs for this reason.
+
+
+### Recovering S
+
+A BWT, compressed or not,
+does not lose information by not storing S,
+since it can be used directly to recover it.
+
+The idea here is to start from $, the last character,
+and find iteratively the preceding characters.
+Each character L[i] is looked up in F,
+where the corresponding row j in L
+directly yields L[j],
+F[j]'s preceding character.
+
+Since we only store L, the BWT,
+we have to calculate a function LF(i)
+(last-first),
+where for LF(i) = j,
+L[i] = F[j].
+
+In other words,
+the character preceding L[i] is L[LF(i)].
+
+#### Algorithm
+
+	i ← indexof $ in S
+	S ← ""
+	for k in [1,n]
+		S ← L[i] · S	// strcat(L[i], S)
+		i ← LF(i)
+
+
+#### Computing LF
+
+##### Element counts
+
+Let C be an integer table of size Σ,
+associating each character x ∈ Σ
+with the number of characters of S
+which are strictly smaller than x.
+
+	∀x ∈ Σ, C[x] = count(∀y ∈ S where y < x)
+	
+	S = bbabcbbabc$
+
+	x	$	a	b	c
+	C[x]	0	1	3	9
+
+An important benefit here is that 
+this provides information on F,
+that is the intervals in F for each letter.
+
+	Here We have 4 ranges:
+	[C[$]+1,C[a]], [C[a]+1,C[b]], [C[b]+1,C[c]], [C[c]+1,n]
+
+This alone is insufficient since we need to know the precise rank
+that the character is at.
+Generally, the solution would be at C[c]+1+k,
+where k is the rank.
+
+
+##### Rank in suffixes prefixed by x
+
+Among the k suffixes [C[x]+1,C[x]+k],
+at which position is this x located?
+
+We can represent the k suffixes as
+the series of sequences X₁,…,X₏ prefixed by x,
+the order of which does not depend on x (constant).
+
+	x = b:
+	bX₁	babc$
+	bX₂	babcbbabc$
+	…
+
+These sequences can be retrieved directly from L.
+The first characters of every X
+must necessarily also occur in F.
+Further, any time L[i] contains a x,
+F[i]'s prefix will necessarily be an X,
+since they are preceded by x.
+
+It follows that the rank of a given x in L
+is the same as its rank in F:
+the ith x in L will be in the ith position
+in the x-interval in F.
+
+In other words:
+
+	LF[i] = C[L[i]] + occ(L[i], i)
+	where
+		i: ith position in L
+		x: character L[i]
+		C[L[i]]: number of characters smaller than x in S
+		occ(x,i): number of occurrences of x in L[1..i])
+	and F[LF[i]] the correspondence with L[i].
+
+
+### Pattern searching in a BWT
+
+#### Strategy
+
+The general strategy is a recursive process
+whereby a pattern P will be looked for
+in reverse order, character by character.
+
+	P = acb
+	1. find "b"
+	2. find "cb" from 1.
+	3. find "acb" from 2.
+
+We've seen how to find the interval for a pattern of size 1,
+ie. the interval for a character x:
+
+	intv(x) = [C[x]+1, C[x₊₁]]
+		with x ∈ Σ
+		and x₊₁ the next character in lexicographical order
+
+Unrolling the process:
+
+	let p: a suffix of P
+	let l(p): lower bound of intv(p)
+	let r(p): upper bound of intv(p)
+
+	S = acbbcaacbd$
+	P = acb
+
+	x	$  a  b  c  d
+	C[x]	0  1  4  7 10
+
+	1. find "b"
+
+	1  $acbbcaacbd
+	2  aacbd$acbbc
+	3  acbbcaacbd$
+	4  acbd$acbbca
+	5  bbcaacbd$ac bX l(b)
+	6  bcaacbd$acb bX
+	7  bd$acbbcaac bX r(b)
+	8  caacbd$acbb
+	9  cbbcaacbd$a
+	10 cbd$acbbcaa
+	11 d$acbbcaacb
+
+		l(b) = C[b] + 1 = 4+1
+		r(b) = C[c] = 7
+		intv(b) = [5,7]
+
+	2. find "cb" from 1.
+
+	1  $acbbcaacbd |⏸
+	2  aacbd$acbbc |⏸ ←
+	3  acbbcaacbd$ |⏸
+	4  acbd$acbbca |⏸
+	5  bbcaacbd$ac  ⏸ ← bX
+	6  bcaacbd$acb  ⏸   bX
+	7  bd$acbbcaac       bX
+	8  caacbd$acbb       cX
+	9  cbbcaacbd$a       cX cbX
+	10 cbd$acbbcaa       cX cbX
+	11 d$acbbcaacb
+
+		l(c) = C[c] + 1 = 8
+		r(c) = C[d] = 10
+		occ(c, l(b)-1) = 1
+		occ(c, r(b)-1) = 2
+		l(cb) = l(c) + occ(c, l(b)-1) = 8 + 1
+			why? ⇒ i = l(b), L[i] = c
+			LF[5] = C[c] + occ(c, 5) = 9
+		r(cb) = l(c) + occ(c, r(b)-1) = 8 + 2
+			why? ⇒ i = r(b), L[i] = c
+			LF[7] = C[c] + occ(c, 7) = 10
+		intv(cb) = [9,10]
+
+		From step1, b-prefixed suffixes are in [5,7].
+		We want all b-prefixed suffixes preceded by c.
+		We know c-prefixed suffixes are within [8,10].
+		To know how many we should skip,
+		we find how many c's there are in L before [5,7].
+		There's one (occ(c, l(b)-1) = 1),
+		hence cb-prefixes begin at 8+1 = 9.
+		To know where to end, we need the occurrences of c
+		before b-prefixes upper bound: occ(c, l(b)-1) = 2.
+		Therefore cb-prefixes end at 8+2 = 10.
+
+	3. find "acb" from 2.
+
+	1  $acbbcaacbd |⏸
+	2  aacbd$acbbc |⏸   aX
+	3  acbbcaacbd$ |⏸   aX  acbX
+	4  acbd$acbbca |⏸ ← aX  acbX
+	5  bbcaacbd$ac |⏸
+	6  bcaacbd$acb |⏸
+	7  bd$acbbcaac |⏸
+	8  caacbd$acbb |⏸
+	9  cbbcaacbd$a  ⏸ ← cbX
+	10 cbd$acbbcaa       cbX
+	11 d$acbbcaacb
+
+		l(a) = C[a] + 1 = 2
+		r(a) = C[b] = 4
+	        occ(a, l(bc)-1) = 1
+		l(acb) = l(a) + occ(a, l(bc)-1) = 2 + 1
+			i = l(cb), L[i] = a
+			LF[9] = C[a] + occ(a, 9) = 3
+		r(acb) = l(a) + occ(a, r(bc)-1) = 2 + 2
+			i = r(cb), L[i] = a
+			LF[10] = C[a] + occ(a, 10) = 4
+		intv(acb) = [3,4]
+
+#### Algorithm
+
+	x ← P[m]
+	l ← C[x] + 1
+	r ← C[x+1]
+	for i=m-1 to 1
+		x ← P[i]
+		l ← C[x] + 1 + occ(x, l-1)      // l(x) + occ(x, l(P[i+1])-1)
+		r ← C[x] + occ(x, r)            // l(x) + occ(x, r(P[i+1])), with r: upper bound+1
+		if l > r
+			return "absent"
+	return l, r
+
+
+### Complexity
+
+#### Time
+
+We need to know the number of occurrences of a character
+at a position in the BWT.
+In the loop, this is needed 2m times.
+
+Therefore search operations: 2m * [time for occ(x,i)]
+
+The questions we're able to answer with just this
+are whether P ∈ S and its number of occurrences in P,
+
+It is possible to have occ() run in constant time,
+thus these requests are in O(m) time.
+
+
+##### rank/select and wavelet trees
+
+In practice, occ is implemented using _succinct data structures_,
+specifically _rank/select_.
+
+Suppose Σ is just {0,1}.
+Ranking is answering rank_x(i),
+ie. the number of occurrences of x until position i.
+Select is answering select_x(n),
+ie. where is located the nth occurrence of x.
+
+rank/select structures are very light in memory.
+We need them to be basically the same size as the bit table,
+and capable of answering both rank and select operations
+in constant time.
+
+In our case, occ isn't a bit vector,
+ie. Σ is bigger than just {0,1}.
+There are generalizations for any Σ,
+such as _wavelet trees_.
+
+The point of all of these approaches
+is to build a data structure that takes
+more or less the same space as the sequence S
+and where rank and select operations are in constant time,
+or at the very least amortized constant time.
+
+
+##### Positions of all occurrences
+
+We can't directly find
+the positions of all occurrences.
+
+We saw how to move backwards starting from $,
+but we can use the LF function on any character
+to find its position from L to F,
+ie. its preceding character.
+Once we find the $, we have located the character in S.
+The problem there is that we're essentially doing this
+for each character in *S*.
+Say the character is at position 3e9 of a genome,
+we'll need to do this 3e9 times,
+which defeats the purpose.
+
+If we really need to find the position,
+we have to store the positions of the elements of the BWT,
+but that's an array the size of S,
+in which case we might as well use a suffix tree.
+In fact, we'd be storing the actual suffix table.
+
+In practice, we make a compromise:
+storing only some of the positions,
+which is the idea behind FM indices.
+It's a trade-off which can be tweaked
+any time an FM-index-based tool is used.
+
+
+#### Space
+
+We have to store C, which is O(|Σ|).
+
+We also have to store the BWT,
+which is nothing but a permutation of S,
+and thus takes the same amount of memory:
+n·log₂|Σ|,
+eg. 2n for |Σ| = 4.
+
+S itself does not need to be stored,
+since the BWT can losslessly recover it.
+
+However, a compressed BWT
+can take much less space than S itself.
+
+Hence overall O(|Σ| + n·log|Σ|)
+
+
+## FM index
+
+### Definition
+
+FM-indices are based on the BWT,
+with additional information for some positions.
+
+	S = acbbcaacbd$
+	                pos
+	1  $acbbcaacbd   ?
+	2  aacbd$acbbc   ?
+	3  acbbcaacbd$   1
+	4  acbd$acbbca   ?
+	5  bbcaacbd$ac   ?
+	6  bcaacbd$acb   ?
+	7  bd$acbbcaac   9
+	8  caacbd$acbb   3
+	9  cbbcaacbd$a   ?
+	10 cbd$acbbcaa   ?
+	11 d$acbbcaacb   ?
+
+For a given character,
+if its position wasn't stored,
+we "simulate" the backtracking reconstruction of S
+where we look for the preceding characters,
+until we find a position that is stored,
+from which we infer the initial character's position.
+
+This just prevents us from having to reconstruct all of S
+each time.
+
+There are several strategies for selecting
+which positions to store.
+We could store every nth position,
+or select them randomly for n total positions.
+The more the positions, the more efficient the search,
+but the more memory is required,
+but at least there's a knob we can turn
+to adjust to our needs.
+
+
+### Complexity
+
+In terms of space, like BWT we store the transform
+and the C table,
+but we add a pos table.
+
+Search time for k occurrences is in the order of: O(m) + k·O(n/|pos|).
+O(m) for finding intervals in the table,
+and for each occurrence,
+the cost of backtracking to a known position.
+
+If we chose positions at random,
+we have the same expression, but with an expected value
+(fr. espérance).
