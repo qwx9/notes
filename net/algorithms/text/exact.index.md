@@ -1636,3 +1636,54 @@ the cost of backtracking to a known position.
 If we chose positions at random,
 we have the same expression, but with an expected value
 (fr. espérance).
+
+
+## Summary and choice of algorithms
+
+### Diverse queries or occurrence positions
+
+If space is not really an issue,
+suffix tables are the preferred choice.
+They take relatively little memory,
+and enhanced ones can answer almost all requests
+and in quasi-optimal time.
+
+FM indices are best for saving memory
+if that is the biggest issue
+(say when indexing something really huge),
+but search time suffers esp. for occurrence positions.
+
+In bioinformatics,
+positions of all occurrences
+is frequently but not always necessary,
+as in detecting which genome a sequence belongs to.
+
+
+### Presence or not of P in S only
+
+If the only query is P ∈? S,
+we can either use compressed BWT which is near-optimal,
+and also theoretically equivalent to cDAWG in size.
+
+In practice, BWT is easier, since its construction is much easier,
+and is easier to have a smaller actual memory footprint,
+since it's essentially just a bit sequence to store,
+where cDAWGs is a graph with a more complicated in-memory structure.
+
+
+### Multiple texts
+
+There are multiple possibilities,
+one of which is concatenating all texts together
+with a terminating characters,
+either the same, or unique ones per text.
+
+It would be important here
+to watch out for methods that depend on |Σ|,
+since we artificially inflate it with additional characters.
+Methods exist that do this sort of thing somewhat implicitely.
+
+BWT or FM-indices can be used with this approach,
+with markers between each text,
+and is used frequently in short-read sequencing,
+where finding the position is more or less in O(read size).
