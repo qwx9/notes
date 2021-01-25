@@ -7,9 +7,9 @@ Frequent applications include searches (requests) on genomic sequences,
 where indexes are built for much faster processing.
 
 There are 3 types of requests, with corresponding methods:
-- find W in S once
-- find all occurrences of W in S
-- find number of occurrences of W in S
+- find P in S once
+- find all occurrences of P in S
+- find number of occurrences of P in S
 
 
 ## Tries
@@ -37,11 +37,11 @@ A simple trie like this only serves to represent a set of words.
 
 ### Searching
 
-To find a pattern W in T,
+To find a pattern P in T,
 one simple needs to attempt to follow the path
-corresponding to successive characters in W
+corresponding to successive characters in P
 until a leaf with its last character is reached.
-Failing that, W ∉ T.
+Failing that, P ∉ T.
 
 
 ### Complexity
@@ -150,9 +150,9 @@ The upper bound is much lower and depends solely on the number of words.
 The _suffix trie_ T of suffixes of S
 is simply the trie associated to the set of suffixes of S.
 
-The problem here is searching for any occurrence of W in S.
-W is a factor of S if and only if W is a prefix of a suffix of S,
-ie. W ∈ S if and only if W is "readable" in the suffix trie of S,
+The problem here is searching for any occurrence of P in S.
+P is a factor of S if and only if P is a prefix of a suffix of S,
+ie. P ∈ S if and only if P is "readable" in the suffix trie of S,
 starting from the root.
 
 The problem with ordinary suffix tries
@@ -193,17 +193,17 @@ only if no suffix is the prefix of another suffix.
 	…a→a→b→a→b→a→a→b→$
 	      ↘ $
 
-Again, W ∈ S if W is readable in the suffix tree,
+Again, P ∈ S if P is readable in the suffix tree,
 starting from the root.
 
 	In the example, if we ask aba ∈? S,
 	it is in tree, therefore it's true.
 
 In addition to finding prefixes,
-the W node's children are all the suffixes in S
-for which W is their prefix.
+the P node's children are all the suffixes in S
+for which P is their prefix.
 This gives us directly all the positions
-of W in S.
+of P in S.
 
 	abaababaab$
 	===
@@ -211,10 +211,10 @@ of W in S.
 	   ===----
 	3 occurrences of aba.
 
-In other words, if W is readable in the suffix tree,
+In other words, if P is readable in the suffix tree,
 and path leads to a node v,
 the leaves of the subtree T_|v rooted at v
-are the occurrences of W in S.
+are the occurrences of P in S.
 
 By definition, a tree has at most n-1 edges.
 However, being that these (sub)trees
@@ -226,7 +226,7 @@ is ≤ 2·|leaves|.
 
 ### Complexity
 
-For m occurrences of W, at node v,
+For m occurrences of P, at node v,
 the number of edges in its subtree is at most 2·|leaves of T_|v|,
 giving a total complexity for the search O(n + 2·ocurrences).
 2·occurrences is needed to find all occurrences,
@@ -278,7 +278,7 @@ while preserving similar search complexity.
 
 ### Applications
 
-Being that this search's complexity only depends on the size of W,
+Being that this search's complexity only depends on the size of P,
 it is a method applicable in eg. genomics,
 and has provided a huge leap in performance in these domains.
 
@@ -307,7 +307,7 @@ The ideal index is the tree of suffixes.
 Other algorithms will attempt to approach its time complexity
 while reducing the size of the index.
 Ie. we won't get anything better than O(n)
-for answering W ∈? S, and similar complexity for finding all occurrences.
+for answering P ∈? S, and similar complexity for finding all occurrences.
 
 
 ## Pat-tree
@@ -322,8 +322,8 @@ Such a definition would mean that everything else is lost,
 and only an gross approximate search would be possible.
 
 S is assumed to be stored as well as the tree.
-W can be disregarded quickly if W ∉ S.
-If W ∈ S, it must be verified a posteriori,
+P can be disregarded quickly if P ∉ S.
+If P ∈ S, it must be verified a posteriori,
 which can be done by simply comparing
 the remaining characters not in the tree,
 by using the sizes in the nodes.
@@ -482,7 +482,7 @@ with single inward and outward transitions.
 
 cDAWGs greatly reduce the number of states/edges,
 which is very advantageous in terms of space.
-Answering W ∈ S is done the exact same way
+Answering P ∈ S is done the exact same way
 and has the same O(m) complexity.
 Getting suffixes and prefixes
 works in an analogous manner to DAWGs,
@@ -550,12 +550,12 @@ Suffix trees are used extremely frequently
 and are preferred over cDAWG despite their advantages.
 
 Some operations are more difficult,
-such as finding the number of occurrences of W.
+such as finding the number of occurrences of P.
 This can still be achieved by keeping track
 of the numbers of equivalent subtrees in the suffix tree
 and adding them recursively.
 
-The most problematic is finding all occurrences of W in S.
+The most problematic is finding all occurrences of P in S.
 This data structure loses position information
 when subtrees are merged.
 Subtrees may be equivalent
@@ -591,8 +591,8 @@ cDAWG:
 Here the problem is formalized as follows:
 
 	Let {S₁,…,S₏} be a set of texts,
-	and W a word that will be searched for in each.
-	∃? i≤n such that W ∈ Sᵢ?
+	and P a word that will be searched for in each.
+	∃? i≤n such that P ∈ Sᵢ?
 
 All of the algorithms seen previously are generalizable to this problem.
 
@@ -659,13 +659,13 @@ where SA[i] is the position of the ith suffix
 in alphabetical order.
 The only thing kept in memory will be SA.
 
-We reuse the property that a pattern W
+We reuse the property that a pattern P
 is a factor of S if it's the prefix of a suffix.
 
 The first remarkable property here
 is that any pattern in S always appears in an interval in SA.
-Therefore when searching for W,
-we look for which suffixes W is a prefix to.
+Therefore when searching for P,
+we look for which suffixes P is a prefix to.
 
 	a ∈ SA[2,7] (1-indexed)
 	ac ∈ SA[6,7]
@@ -673,13 +673,13 @@ we look for which suffixes W is a prefix to.
 Since suffixes were ordered alphabetically,
 the set of suffixes of a prefix must necessarily be consecutive.
 
-To determine if a word W is contained in S,
+To determine if a word P is contained in S,
 we find its interval in SA,
 which will be 0 if it isn't.
 Since SA is ordered, we can simply use binary search,
 this time one for the lower bound, and one for the upper bound.
 
-	W = bac
+	P = bac
 	We need the interval in SA with b as a prefix.
 	First b is looked for in SA, starting from the middle.
 	The next character in alphabetical order is c.
@@ -701,14 +701,14 @@ Knowing S and SA, no information is lost.
 
 #### Left bound
 
-The left bound is the smallest suffix for which W is a prefix,
+The left bound is the smallest suffix for which P is a prefix,
 wrt alphabetical order, not word size.
 
 	l ← 1
 	r ← n
 	while l < r			// l and r are iteratively moved until they are equal
 		mid ← ⌊(l+1)/2⌋		// floor
-		if W > S[SA[mid]..n]
+		if P > S[SA[mid]..n]
 			l ← mid + 1
 		else
 			r ← mid
@@ -717,13 +717,13 @@ wrt alphabetical order, not word size.
 
 #### Right bound
 
-Biggest suffix for which W is a prefix.
+Biggest suffix for which P is a prefix.
 
 	l ← 1
 	r ← n
 	while l < r
 		mid ← ⌊(l+1)/2⌋		// floor
-		if W > S[SA[mid]..n]
+		if P > S[SA[mid]..n]
 			l ← mid
 		else
 			r ← mid - 1
@@ -742,7 +742,7 @@ the interval must be parse.
 #### Running time
 
 Either of the interval bounds: O(m·logn).
-m comparisons of W at each position,
+m comparisons of P at each position,
 for each logn steps.
 Obviously, this is higher than the O(n) of the suffix tree,
 but it is expected.
@@ -857,14 +857,14 @@ however let's suppose that we can do it in constant time.
 
 Again, what we improve isn't the number of iterations,
 but the binary search,
-ie. avoid comparing W at each step.
+ie. avoid comparing P at each step.
 
 
 ### Strategy
 
 At some step of the binary search,
 we have an interval [l,r],
-and we compare W with M
+and we compare P with M
 where M is the middle of [l,r].
 
 	l ... M ... r
@@ -872,10 +872,10 @@ where M is the middle of [l,r].
 Comparing left to right,
 say we observe a difference in the comparison
 beginning with the k+1th character,
-ie. W and M have a common prefix of size k.
+ie. P and M have a common prefix of size k.
 
-Suppose also that W > M,
-ie. the k+1th character of W > k+1th character of M
+Suppose also that P > M,
+ie. the k+1th character of P > k+1th character of M
 (we could do it the other way, it doesn't matter).
 The new interval we consider is [r,M] and its middle M´.
 
@@ -890,7 +890,7 @@ Example:
 
 		        k = 4
 	                ↓
-	W	a c a b b a d
+	P	a c a b b a d
 
 	l
 		…
@@ -902,27 +902,27 @@ Example:
 		…
 	r
 
-	W and M differ at k+1 with k = 4.
+	P and M differ at k+1 with k = 4.
 	Now we'll have to search in [M,r].
 	Here lcp(M,M´) = 6.
 
 	Because lcp(M,M´) > k,
 	we know that M and M´ are the same
 	up until 6th index,
-	while W differed at 4th position.
-	Since W > M, we can directly infer that W > M´
+	while P differed at 4th position.
+	Since P > M, we can directly infer that P > M´
 	without comparing them.
 
-Thus, having W > M,
+Thus, having P > M,
 if lcp(M,M´) > k,
 M[k+1] = M´[k+1]
-and W > M´.
+and P > M´.
 
 Now if k > lcp(M,M´):
 
 		      k = 3
 		      ↓
-	W	a a a c d
+	P	a a a c d
 
 	l
 	…
@@ -934,26 +934,26 @@ Now if k > lcp(M,M´):
 	…
 	r
 
-	We know that W differ at k+1,
+	We know that P differ at k+1,
 	but M and M´ differ at index 1,
-	therefore W and M´ will differ at index 1.
+	therefore P and M´ will differ at index 1.
 
 	Since M > M´ in alphabetical order,
 	we know that the mismatched character is also bigger in M´.
 	
-	Therefore, W < M´, again without comparing
+	Therefore, P < M´, again without comparing
 	anything besides k and lcp(M,M´).
 
-Thus, having W > M,
+Thus, having P > M,
 if lcp(M,M´) < k,
 M < M´
-and W < M´.
+and P < M´.
 
 The last case is k = lcp(M,M´).
 
 		        k = 4
 		        ↓
-	W	a a b c b
+	P	a a b c b
 
 	l
 	…
@@ -965,19 +965,19 @@ The last case is k = lcp(M,M´).
 	…
 	r
 
-	Here we know that W = M = W´ until k+1.
-	We cannot decide directly if W < M´.
+	Here we know that P = M = P´ until k+1.
+	We cannot decide directly if P < M´.
 	Here we are obligated to test k+1th caracter
-	between W and M´.
+	between P and M´.
 
-Thus, having W > M,
+Thus, having P > M,
 if lcp(M,M´) = k,
-we have to compare W and M´
+we have to compare P and M´
 starting at position k+1,
 during the same iteration.
 
 k can never decrease throughout the iterations.
-Therefore every character in W will be compared at most once.
+Therefore every character in P will be compared at most once.
 
 
 ### The lcp table
@@ -1127,7 +1127,7 @@ to precalculate all possible lcp(M,M´).
 ### Complexity
 
 Thanks to the new search algorithm,
-given that we make at most m comparisons for W,
+given that we make at most m comparisons for P,
 the search complexity is reduced to O(logn + m).
 
 Preprocessing is now in O(n) thanks to the shortcuts we've found.
@@ -1316,7 +1316,7 @@ An important benefit here is that
 this provides information on F,
 that is the intervals in F for each letter.
 
-	Here We have 4 ranges:
+	Here we have 4 ranges:
 	[C[$]+1,C[a]], [C[a]+1,C[b]], [C[b]+1,C[c]], [C[c]+1,n]
 
 This alone is insufficient since we need to know the precise rank
