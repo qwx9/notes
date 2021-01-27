@@ -12,6 +12,25 @@ heuristics alone do not provide a measure of error,
 or distance to the optimal solution.
 Approximation algorithms provide an upper worst-case bound for this distance.
 
+A polynomial problem is termed _decision problem_,
+and an NP-complete problem an _optimization problem_.
+
+Given an NP-complete problem,
+it is very improbable that a polynomial time solution exists.
+
+Dynamic programming can solve both NP-complete
+and polynomial-time problems,
+but respectively necessarily in exponential time,
+and polynomial-time.
+
+Greedy algorithms are generally in polynomial time.
+It is likely that a greedy algorithm exists for any problem,
+but it won't always work.
+
+Given an exercise with a known NP-complete problem,
+and a proposed greedy algorithm,
+we will probably be able to find a counter-example.
+
 
 ## Greedy algorithms
 

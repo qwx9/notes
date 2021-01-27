@@ -191,3 +191,56 @@ Proof by contradiction:
 	since all three cases are contradictions,
 	the original assumption that S is not an MST is invalid.
 	QED.
+
+
+## Colored spanning tree
+
+Given a graph G with colored edges,
+find a spanning tree for which
+the number of distinct colors on its edges is minimal.
+
+
+### Greedy proposition
+
+	SOL ← ∅
+	A ← E
+	while A ≠ ∅
+		c ← most frequent color in A
+		while ∃ edges ∈ A with color c
+			{u,v} ← edge ∈ A with color c
+			if {u,v} does not form a cycle with edges ∈ SOL
+				SOL ← SOL ∪ {{u,v}}
+	return SOL
+
+
+#### Correctness
+
+Kruskal-inspired algorithm that will produce
+a spanning tree (acyclic).
+
+Either the algorithm is correct and we have to prove it (difficult),
+or it isn't and we have to provide a counter-example
+(and draw the graph).
+
+Let G be a clique with 15 edges (6*5/2) with blue edges.
+Add one vertex with red edges connect to all others.
+The algorithm will look for the red vertex eventually
+and will have to add a red edge,
+so it returns 2 colors,
+when we could've only chosen only all red edges.
+
+
+#### Approximation ratio
+
+We saw that we had ALG/ALG∗ = 2 for the previous graph,
+but can we do worse?
+
+Let's do the same thing but add a second clique of a different color
+connected to the red vertex.
+Here again we'll end up with 3 when ALG∗ = 1.
+We'll never get a constant factor.
+
+Taking k monochromatic cliques of n vertices,
+we'll have 2 among n (n over 2) edges of a color in each clique.
+If k is constant, nk = n·(n-1)/2,
+but if it isn't constant we'll have to define it...
