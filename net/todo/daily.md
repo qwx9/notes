@@ -835,3 +835,45 @@
 - alg
 - taa
 - dporg
+
+
+## wen 20210127
+- alg
+- dporg
+
+
+## thu 20210128
+- dporg
+- guitar
+- fixed gtasa, gtavc installs,
+converted savegames,
+installed silentpatches
+
+
+## fri 20210129
+- dporg
+- gardening, lots of gardening
+- debugs
+
+
+## sat 20210130
+- dcd
+- sport
+- fixed, updated cv/cover letter template
+- ⑨ST measurements and sanding
+
+
+## sun 20210131
+- fixed, updated cv/cover letter template
+
+
+## mon 20210201
+- dporg
+- gardening
+- drums
+
+
+## tue 20210202
+- dporg
+- taa
+- gardening

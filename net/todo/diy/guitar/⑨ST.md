@@ -2,21 +2,21 @@
 
 ## todo: body
 - sand rest of body
-- verify tremolo placement with neck in position
-- enlarge tremolo cavity for corrected measurements
+- moisture then sand at 240 one last time
+- enlarge tremolo cavity for corrected measurements (deepen),
+clean up edges
 - reapply acrylic paint everywhere
 - sand again 80→240 grit
-- moisture then sand at 240 one last time
 - apply wax
 - drill tremolo support holes
 - drill tremolo spring plate holes and place the plate
-- end: fine sand + mirror polish
-- drill strap peg holes
+- drill strap peg holes (test the strapshits first)
 - drill pick guard holes
 - drill holes for jack plate
 - enlarge cavity if needed
 - 2pass-sand/wax/finish guitar cavity
 - drill/enlarge whatever holes are needed for the wiring
+- end: fine sand + mirror polish
 - cover cavities with copper tape
 - place wired pickguard and output jack plate
 - place tremolo bridge
@@ -31,16 +31,21 @@
 - extend fingerboard to 24 frets somehow? or just somehow place 2 more frets?
 - perhaps thin neck a bit? check if this would help
 - scallop frets? probably don't need to go super deep
-- etch some logo or something on the head?
+- etch some logo or something on the head? (carving also an option)
 - sand, wax, polish neck and head
 - fingerboard finish
 - level, polish frets
+- possibly replace frets with jumbo xl, these are pretty low
 
 
 ## todo: electronics
 - decide on wiring for HSH passive pickups setup
+	* phase switch, split coils switch
+	* would be nice to get some additional useful combinations,
+	or maybe just have all of them and test all?
 - preamp? sustainer?
 - move switch position further forward for easier access
+- perhaps move tone controls back, we mostly want volume; check what makes sense
 - cut, sand, drill pick guard to fit  humbuckers and altered body and neck
 - plan for new pick guard template for blank, to be done later
 - cover pick guard inner side with copper tape
@@ -48,6 +53,11 @@
 
 
 ## log
+- spraying with water before final sanding particularly effective
+- lots of scratches and shit will remain...
+- enlarged tremolo cavity; it's no longer a snug fit on the sides;
+place using post notches and neck position
+- checked neck position; moving tremolo back 2-3mm to use previous tremolo post notches
 - sanding manually all the wood paste; other methods aren't soft enough, and this doesn't really waste too much sandpaper as long as it's cleaned up, only one sheet thrown so far
 - sanded wood paste all the way to leave only grain; result doesn't look great; will apply just red paint and sand again, test looks good
 - noticed tremolo position is wrong yet again, we have 22fret; measured 7mm difference, will subtract from both bridge and neck since bridge support will be too thin
