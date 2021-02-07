@@ -30,6 +30,10 @@ but rendering doesn't work at all
 - Requires 1.8 for decomp
 
 
+## dj/djjad
+- Seem identical even if djjad is a more recent build
+
+
 ## Notes
 - Just renaming the class files in the file
 doesn't have an impact on compilation (class names),

@@ -877,3 +877,32 @@ installed silentpatches
 - dporg
 - taa
 - gardening
+
+
+## wen 20210203
+- dporg
+- taa
+
+
+## thu 20210204
+- dporg
+- drums
+- gardening++
+- sport
+- ⑨ST final sanding
+
+
+## fri 20210205
+- dporg
+- ⑨ST final sanding
+
+
+## sat 20210206
+- gardening; attempt to save dying citrus plants
+- can't charge bv91 at all anymore; feeble attempts at fixing
+
+
+## sun 20210207
+- jim hacker austerity regime day 0
+- guitar intensive drill day 1
+- bv91: possible fucked cable, will try again
