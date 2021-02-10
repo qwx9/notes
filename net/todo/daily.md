@@ -904,5 +904,24 @@ installed silentpatches
 
 ## sun 20210207
 - jim hacker austerity regime day 0
-- guitar intensive drill day 1
+- guitar intensive drill day 1 → rsi
 - bv91: possible fucked cable, will try again
+- ⑨ST final sanding and paint tryout
+- began new post
+
+
+## mon 20210208
+- jim hacker austerity regime day 1: 1
+- bv91: fixed with μusb→usbc adaptor
+- ⑨ST paint
+- dporg
+- stage
+- sport
+
+
+## tue 20210209
+- jim hacker austerity regime day 2: 1
+- dporg
+- stage
+- gardening
+- sport

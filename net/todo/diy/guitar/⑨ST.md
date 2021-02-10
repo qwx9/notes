@@ -1,16 +1,13 @@
 # ⑨ST: (9) stratocaster
 
 ## todo: body
-- sand rest of body
-- moisture then sand at 240 one last time
-- enlarge tremolo cavity for corrected measurements (deepen),
-clean up edges
-- reapply acrylic paint everywhere
 - sand again 80→240 grit
 - apply wax
+- enlarge tremolo cavity for corrected measurements (deepen),
+clean up edges
 - drill tremolo support holes
 - drill tremolo spring plate holes and place the plate
-- drill strap peg holes (test the strapshits first)
+- drill strap peg holes (test the strapshits first), place pegs
 - drill pick guard holes
 - drill holes for jack plate
 - enlarge cavity if needed
@@ -20,19 +17,21 @@ clean up edges
 - cover cavities with copper tape
 - place wired pickguard and output jack plate
 - place tremolo bridge
-- place strings and springs and setup action, intonation for bstd(?)
+- place strings and springs and setup action, intonation for tuning
+(cstd? dstd? bstd? b♭std? dstd might be most useful)
 
 
 ## todo: neck
-- shorten neck back to bring it forward towards the bridge 2-3mm
+- shorten neck back to bring it forward towards the bridge 2-3mm (actually a lot more)
+- fit neck to the body, be able to fasten it for measurements and working on the bridge
 - head: cut fretboard for locking nut placement
 - head: drill for locking nut holes
 - head: drill for tension bar
 - extend fingerboard to 24 frets somehow? or just somehow place 2 more frets?
-- perhaps thin neck a bit? check if this would help
-- scallop frets? probably don't need to go super deep
 - etch some logo or something on the head? (carving also an option)
+- perhaps thin neck a bit? check if this would help (just with like sanding)
 - sand, wax, polish neck and head
+- scallop frets? probably don't need to go super deep
 - fingerboard finish
 - level, polish frets
 - possibly replace frets with jumbo xl, these are pretty low
@@ -43,7 +42,8 @@ clean up edges
 	* phase switch, split coils switch
 	* would be nice to get some additional useful combinations,
 	or maybe just have all of them and test all?
-- preamp? sustainer?
+		. we probably don't really need to switch between all of these quickly
+- preamp? sustainer? octave? octave would be great
 - move switch position further forward for easier access
 - perhaps move tone controls back, we mostly want volume; check what makes sense
 - cut, sand, drill pick guard to fit  humbuckers and altered body and neck
@@ -53,6 +53,9 @@ clean up edges
 
 
 ## log
+- painted all over and began sanding it away again
+- 180→240→water→240 sanding again
+- sanded all the paste away
 - spraying with water before final sanding particularly effective
 - lots of scratches and shit will remain...
 - enlarged tremolo cavity; it's no longer a snug fit on the sides;
