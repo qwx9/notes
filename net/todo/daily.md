@@ -925,3 +925,10 @@ installed silentpatches
 - stage
 - gardening
 - sport
+
+
+## wen 20210210
+- jim hacker austerity regime day 3: 2
+- dporg
+- stage
+- sport

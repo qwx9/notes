@@ -34,6 +34,9 @@ and it can be used as a simple test of the whole system
 
 
 ### Fixing compilation
+- there's no way to distinguish two functions with the same arguments
+but a different return type
+(esp when their returned values aren't assigned)
 - int cannot be dereferenced:
 probably collision between class name
 and current class variables;
