@@ -1,7 +1,7 @@
 # ⑨ST: (9) stratocaster
 
 ## todo: body
-- sand again 80→240 grit
+- sand paint to thin layer
 - apply wax
 - enlarge tremolo cavity for corrected measurements (deepen),
 clean up edges
@@ -17,14 +17,12 @@ clean up edges
 - cover cavities with copper tape
 - place wired pickguard and output jack plate
 - place tremolo bridge
-- place strings and springs and setup action, intonation for tuning
-(cstd? dstd? bstd? b♭std? dstd might be most useful)
+- place strings and springs and setup action, intonation for tuning: dstd
 
 
 ## todo: neck
 - shorten neck back to bring it forward towards the bridge 2-3mm (actually a lot more)
 - fit neck to the body, be able to fasten it for measurements and working on the bridge
-- head: cut fretboard for locking nut placement
 - head: drill for locking nut holes
 - head: drill for tension bar
 - extend fingerboard to 24 frets somehow? or just somehow place 2 more frets?
@@ -53,6 +51,10 @@ clean up edges
 
 
 ## log
+- cut down nut bolts to be flush against its base
+- head: cut and sand fretboard for locking nut placement
+- REpainted all over again; just the grain looks like shit,
+we'll paint again instead and sand to a thin layer so the grain shows
 - painted all over and began sanding it away again
 - 180→240→water→240 sanding again
 - sanded all the paste away

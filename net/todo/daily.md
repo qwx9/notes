@@ -932,3 +932,22 @@ installed silentpatches
 - dporg
 - stage
 - sport
+
+
+## thu 20210211
+- jim hacker austerity regime day 4: 2
+- dporg
+- sport
+- heavy guitar drill: the fucking problem is the picking technique, it sucks;
+need better angle and grip, to pick from underneath, using more of the arm
+(actually stay stiffer and preserve hand position across all strings),
+with a strong grip with thumb as far back as possible
+and the smaller tip surface exposed.
+the picking hand just can't keep up with the fretting hand.
+exercises: practice licks and across scales,
+descending/ascending/2-3-4-etc strokes/sweeping
+
+
+## fri 20210212
+- jim hacker austerity regime day 5: 2
+- ⑨ST: sanding/repaint/locking nut fitting

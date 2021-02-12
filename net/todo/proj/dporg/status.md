@@ -52,6 +52,22 @@ but rendering doesn't work at all
 - Seem identical even if djjad is a more recent build
 
 
+## Latest survey of decompilers
+- fernflower:
+- d4j: 
+- bytecode viewer:
+- androchef: useless, produces ambiguous names again
+- krakatau: never made it work
+- procyon: two different versions floating around,
+the latest one fucking brakes the decompiler's jar build
+(build.gradle had to be edited to set jar = true and a rev
+from before gradle tiddling checked out, fucking piece of shit)
+- cfr: new version with more options,
+seems like the best candidate still
+- was told about intellij and netbeans,
+but they just use the others internally
+
+
 ## Notes
 - Just renaming the class files in the file
 doesn't have an impact on compilation (class names),
