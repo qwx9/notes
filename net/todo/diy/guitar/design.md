@@ -1,4 +1,4 @@
-# hand-made guitar
+# Random design notes
 
 ## head
 

@@ -2,37 +2,37 @@
 
 ## todo: body
 - sand paint to thin layer
-- apply wax
 - enlarge tremolo cavity for corrected measurements (deepen),
-clean up edges
+clean up edges (watch the paint! and mark tremolo position on cavity walls)
+- apply wax
 - drill tremolo support holes
 - drill tremolo spring plate holes and place the plate
 - drill strap peg holes (test the strapshits first), place pegs
 - drill pick guard holes
 - drill holes for jack plate
 - enlarge cavity if needed
-- 2pass-sand/wax/finish guitar cavity
+- 2pass-sand/wax/finish guitar cavity (maybe no waxing, for mods)
+- cover cavity with copper tape
 - drill/enlarge whatever holes are needed for the wiring
-- end: fine sand + mirror polish
 - cover cavities with copper tape
+- mirror polish
 - place wired pickguard and output jack plate
-- place tremolo bridge
+- place tremolo bridge/springs
 - place strings and springs and setup action, intonation for tuning: dstd
 
 
 ## todo: neck
 - shorten neck back to bring it forward towards the bridge 2-3mm (actually a lot more)
 - fit neck to the body, be able to fasten it for measurements and working on the bridge
-- head: drill for locking nut holes
-- head: drill for tension bar
-- extend fingerboard to 24 frets somehow? or just somehow place 2 more frets?
 - etch some logo or something on the head? (carving also an option)
 - perhaps thin neck a bit? check if this would help (just with like sanding)
-- sand, wax, polish neck and head
+- sand, wax
+- drill for tuners and install them
 - scallop frets? probably don't need to go super deep
-- fingerboard finish
 - level, polish frets
 - possibly replace frets with jumbo xl, these are pretty low
+- fingerboard finish
+- polish neck and head
 
 
 ## todo: electronics
@@ -44,13 +44,15 @@ clean up edges
 - preamp? sustainer? octave? octave would be great
 - move switch position further forward for easier access
 - perhaps move tone controls back, we mostly want volume; check what makes sense
-- cut, sand, drill pick guard to fit  humbuckers and altered body and neck
+- cut, sand, drill pick guard to fit humbuckers and altered body and neck
 - plan for new pick guard template for blank, to be done later
 - cover pick guard inner side with copper tape
 - wire pick guard
 
 
 ## log
+- traced for tuner holes, will have to do everything else before drilling shit
+- drilled and installed locking nut and retainer bar
 - cut down nut bolts to be flush against its base
 - head: cut and sand fretboard for locking nut placement
 - REpainted all over again; just the grain looks like shit,

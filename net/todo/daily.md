@@ -951,3 +951,24 @@ descending/ascending/2-3-4-etc strokes/sweeping
 ## fri 20210212
 - jim hacker austerity regime day 5: 2
 - ⑨ST: sanding/repaint/locking nut fitting
+
+
+## sat 20210213
+- jim hacker austerity regime day 6: 2
+- ⑨ST: sanding
+- gardening
+
+
+## sun 20210214
+- jim hacker austerity regime day 7: 3
+- city: coding challenge
+- guitar drill
+
+
+## mon 20210215
+- jim hacker austerity regime day 8: 3
+- city: minor sim additions
+- ⑨ST++: sanding/color, nut and retainer bar placement
+- gardening
+- sport
+- guitar drill

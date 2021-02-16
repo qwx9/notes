@@ -23,3 +23,15 @@ must be done either from the top (glued fretboard),
 or the back.
 Either way, marking the fretboard will have to be done differently,
 since we don't just have a flat board to work with.
+
+
+## Exotics
+
+Black lamba looks GREAT.
+It's sold in slabs appropriate for a body for about 100eu on ebay.
+
+Olive wood looks nice too, but very expensive.
+
+Sycamore can be nice...  Search for handmade sycamore cutting boards,
+there are some really beautiful ones, but wouldn't be able to use them
+for a body...  OR WOULD WE?  Not a traditional one anyway!

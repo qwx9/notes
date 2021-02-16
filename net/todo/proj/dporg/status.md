@@ -17,6 +17,14 @@ the rest of the code refers to them with unique names
 - Can use regexp to automate this somewhat,
 but still need to fix many errors manually
 
+## cfr, third attempt
+- There's an intermittent lockup on startup,
+maybe a threading issue
+- WORKS!
+- Some of the old fixes still required
+- Less bugs, more code is resolved
+- Using latest cfr version, 0.151
+
 
 ## cfr, second attempt
 - There's a lot of annoyances preventing an easy diff
@@ -53,9 +61,9 @@ but rendering doesn't work at all
 
 
 ## Latest survey of decompilers
-- fernflower:
-- d4j: 
-- bytecode viewer:
+- fernflower: ?
+- d4j: ?
+- bytecode viewer: ?
 - androchef: useless, produces ambiguous names again
 - krakatau: never made it work
 - procyon: two different versions floating around,

@@ -40,8 +40,3 @@
 	* cardboard
 	* carbon
 	* nothing: frames, silent guitars, gittler
-
-
-## finish
-
-- rent material? ask a friend?

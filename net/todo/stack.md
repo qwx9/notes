@@ -31,6 +31,13 @@ this isn't very convenient for this type of info
 - integrate lectures + formatting
 - use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes
 
+### city
+- see [notes])(proj/city/notes)
+- basic logic
+- input and graphics
+- later: map size and huge maps
+- later: go from wheat fields to industry to spaceships, automation
+
 ### pitch
 - [notes](proj/pitch/notes)
 - modify to draw a spectrogram (vertically)
