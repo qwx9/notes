@@ -51,6 +51,10 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 
 
 ## log
+- cut head down to size, still 1mm off, have to be lopped off the front,
+not the sides, since it's flush; otherwise perfect!
+have to measure 25.5" from the *edge/end* of the saddles, not middle,
+so we're nearly perfect, and string clearance is fine, but have to watch out
 - traced for tuner holes, will have to do everything else before drilling shit
 - drilled and installed locking nut and retainer bar
 - cut down nut bolts to be flush against its base

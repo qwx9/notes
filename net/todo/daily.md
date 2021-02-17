@@ -972,3 +972,19 @@ descending/ascending/2-3-4-etc strokes/sweeping
 - gardening
 - sport
 - guitar drill
+
+
+## tue 20210216
+- jim hacker austerity regime day 9: 4
+- ⑨ST: head shortened by 6mm, front is flush but still 1mm off
+- gardening
+- guitar drill
+- sim: production logic!
+- dporg: merge notes
+- some patching
+
+
+## wen 20210217
+- jim hacker austerity regime day 10: 4
+- sport
+- sce: argb shadows and generation script fixes

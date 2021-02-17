@@ -4,6 +4,7 @@
 
 ### languages
 - learn ocaml, try out on data manipulation problems à la dplyr?
+- check out julia
 
 
 ## projects
@@ -33,7 +34,7 @@ this isn't very convenient for this type of info
 
 ### city
 - see [notes])(proj/city/notes)
-- basic logic
+- spawning/despawning
 - input and graphics
 - later: map size and huge maps
 - later: go from wheat fields to industry to spaceships, automation
@@ -58,7 +59,6 @@ this isn't very convenient for this type of info
 	* sce/... tools
 	* remove from /amd64 /386 /arm
 	* add in profile
-- [rgba for shawdows](proj/sce/rgba)
 - [draw lists](proj/sce/drawlists)
 - [notes](proj/sce/notes)
 - [pathfinding fixes and notes](proj/sce/pathfinding)

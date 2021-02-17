@@ -23,6 +23,7 @@ townhall:
 w
 	upkeep (20%): f1/f2,g2,t1/f3,g4,t2
 	production cost/output w1/w2/w3
+		don't need tools for lvl3?
 l
 	upkeep (20%) f 2 / f 3 t 1 g 3 / f 4 t 2 g 5
 	prod: 1:1, 1:2, w1t1:l3
@@ -49,7 +50,9 @@ smelter
 	prod w2:i1,w2:i2,w2,t1:i4
 smith
 	upkeep f2/f3,g1/f4,g2
+	prod: ?
 wepsmith s16,i14,t14,g26/f2/f3,t1,g3/f4,t2,g4
+	prod: ?
 market l15,s10,g30/g1/g2/g4
 	u1 l25,s25,g80
 	lvl1 can sell food,wood,stone, no lumber
