@@ -54,33 +54,21 @@ this isn't very convenient for this type of info
 - pitch: can use norm to amplify when above threshold
 
 ### sce
-- p/sce bin
-	* games/sce or sce/sce
-	* sce/... tools
-	* remove from /amd64 /386 /arm
-	* add in profile
-- [draw lists](proj/sce/drawlists)
 - [notes](proj/sce/notes)
-- [pathfinding fixes and notes](proj/sce/pathfinding)
-- [networking notes](proj/sce/networking)
-- [clean ups](proj/sce/cleanup)
-- [attack command](proj/sce/attack)
-- [sprite improvements](proj/sce/sprites)
-- [ofire.pcx adjustments](proj/sce/ofire)
-- [mineral patches](proj/sce/minerals)
+- decouple simulation time from client graphics
+	* fixes scrolling
+	* unit sprites etc still work in real time
+	even on minimum speed
 - fix halting distance using db halt values instead of shitty heuristic,
 still fails sometimes
-- pathfinding fucks out in rare instances (while moving?)
+- [attack command](proj/sce/attack)
+- [mineral patches](proj/sce/minerals)
 - start working on the client/server part
 - no ipconfig -> dial: no route -> fail to launch
 	* maybe don't use ip until we actually have to connect remotely,
 	and shunt all the networking stack for local
 - add an air unit: mutalisk (mutalid.grp):
 extract it, add it to scripts, get the offsets
-- decouple simulation time from client graphics
-	* fixes scrolling
-	* unit sprites etc still work in real time
-	even on minimum speed
 - it's slightly weird that units move
 with their upper left corner towards the destination,
 rather than the unit's center (esp. when scaling)
@@ -89,11 +77,6 @@ reused in various projects: nanosec() etc in treason et al
 - grab mouse and mouse scrolling, scrolling with keyboard, remove middle click
 - unit selection -> selection ellipses of varying size (on top of shadows?)
 - cursors?
-- extraction scripts could probably use an overhaul, after we deal with sprite db
-- genspr script
-	. add extract script, which should do grp -s and sctile and genmap
-	. add terrain sprites
-	. add grp -s shit to automate all extraction (in tree)
 - zerg spawn with 3 larvae THEN 4 workers (for blockmap)
 	. zerg species
 	. larva behavior
@@ -120,6 +103,30 @@ reused in various projects: nanosec() etc in treason et al
 	. requirements: resources, tech
 - building constraints per race
 - build trees
+
+#### small timeconsuming fixes
+- [ofire.pcx adjustments](proj/sce/ofire)
+- [sprite improvements](proj/sce/sprites)
+- pathfinding fucks out in rare instances (while moving?)
+
+#### refactoring/optimization
+- p/sce bin
+	* games/sce or sce/sce
+	* sce/... tools
+	* remove from /amd64 /386 /arm
+	* add in profile
+- [draw lists](proj/sce/drawlists)
+- [clean ups](proj/sce/cleanup)
+- extraction scripts could probably use an overhaul, after we deal with sprite db
+- genspr script
+	. add extract script, which should do grp -s and sctile and genmap
+	. add terrain sprites
+	. add grp -s shit to automate all extraction (in tree)
+
+#### research
+- [pathfinding fixes and notes](proj/sce/pathfinding)
+- [networking notes](proj/sce/networking)
+
 
 ### pplay
 - zooming is unbearable: at least let one use arrow keys to scroll

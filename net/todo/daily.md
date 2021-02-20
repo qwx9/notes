@@ -988,3 +988,25 @@ descending/ascending/2-3-4-etc strokes/sweeping
 - jim hacker austerity regime day 10: 4
 - sport
 - sce: argb shadows and generation script fixes
+
+
+## thu 20210218
+- jim hacker austerity regime day 11: 5
+- sport
+- gardening
+- guitar
+- voice
+- drums
+- sce networking
+
+
+## fri 20210219
+- jim hacker austerity regime day 12: 5
+- sce networking
+- ⑨ST neck work: cutting/sanding, first coat wax
+
+
+## sat 20210220
+- jim hacker austerity regime day 13: 6
+- sce networking
+- ⑨ST neck work: second coat

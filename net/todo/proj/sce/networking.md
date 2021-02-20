@@ -1,11 +1,41 @@
 # networking: general notes
 
+## decoupling
+
+- local server only: as before, but using a shunted network protocol
+as if the server is responding to network commands
+	. channel for communication
+	(always there if there is a client, remote server or not)
+	. no listener, no networking
+	. input on local is validated then executed by the local server
+	and sent to the remote one, if there is one (not here)
+- server only: listen for network events, as before
+	. initial map spawns like before
+	. heartbeats
+	. global sync message
+	. attaching new clients (at any time)
+- local client + remote server
+	. input on local is validated then executed by the local server
+	and sent to the remote one
+	. conflicts are resolved by sending sync messages
+	. remote server sends sync messages either for stale units/new commands/conflicts,
+	or for everything
+- graphical server only: toggle for no graphics,
+otherwise provide a godmode that works exactly the same
+
+
+give units unique identifiers between client and server
+so we don't guess number of units for other teams,
+we get a large enough range instead
+8 teams → 32 - 3 bits (4 if observer, but that has no units)
+
+don't execute any command client side until server has signed off?
+"prediction": execute before server gives the command, but be ready to resync
+
+
+
 ## random notes for now
 
-- network protocol and clear client/server separation
-	. split client sleep etc from server
-	. that way we can move the camera around etc while paused or while
-	  sleeping a tic delay
 - networking
 	. recvbuf and sendbuf for accumulating messages to flush to all clients
  	. server: spawn server + local client (by default)
@@ -13,9 +43,6 @@
  	. both initialize a simulation, but only the server modifies state
 - command line: choose whether or not to spawn a server and/or a client
    (default: both)
-- always spawn a server, always initialize loopback channel to it; client
-   should do the same amount of work but the server always has the last word
-   	. don't systematically announce a port
 - client: join observers on connect
 - program a lobby for both client and server
  	. server: kick/ban ip's, rate limit, set teams and rules
@@ -24,22 +51,15 @@
  	. if spawning a server only, local client just implements the lobby
  	  and a console interface, same as lobby, for controlling the server
  	. client: choose slot
-- server (sim.c) keeps track of all commited paths and uses map.c pathfinding to
-  recompute them when necessary; client only issues commands to change state or set
-  movement, etc. (if allowed)
-	. in other words, there is no need for a client blockmap, the client doesn't
-	  do pathfinding
-	. selection and issuing orders is done client-side
-	. server should not send information on non-visible objects to the client to
-	  avoid cheating, etc., but this is besides the point right now
-	. so, maybe client SHOULD maintain a blockmap based on known information? and
-	  it should do pathfinding to validate a command before issuing it?
-	. in other words, sim.c is server only; client and server have disparate
-	  views on the simulation
-		* however, the server should be able to inform the client when an
-		  object becomes visible or disappears -> how?
-		* it has to maintain some structure to check for visibility etc to
-		  inform the client of any visible changes
-		* client-side equivalent of sim.c which receives messages from server
-		  and updates known state
-	. the client/server separation can be done later
+- both server and client do pathfinding etc, and maintain their own simulation,
+however only the server sim is authoritative,
+only the server does any rand() shit,
+only it commits spawns, etc.
+	. client performs pathfinding and basic checks before sending to the server
+	. the idea is to keep network traffic to a minimum
+	. to make sure sims are synchronized, there can be sync messages at certain points
+		* spawn a unit
+		* move a unit, change angle, stop etc
+	. client only has a partial view of available information,
+	server handles fog of war etc and only hands information that the client can have
+	. traffic to a client must not contain information about other teams

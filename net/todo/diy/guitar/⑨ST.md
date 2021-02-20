@@ -22,12 +22,14 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 
 
 ## todo: neck
-- shorten neck back to bring it forward towards the bridge 2-3mm (actually a lot more)
-- fit neck to the body, be able to fasten it for measurements and working on the bridge
 - etch some logo or something on the head? (carving also an option)
-- perhaps thin neck a bit? check if this would help (just with like sanding)
-- sand, wax
+	. idea: print the logo/mark: ⑨ST the way we want it to appear and to size
+	(use inkscape)
+	. paper tape paint area
+	. then cut the shape out precisely into the tape
+	. then paint over that with black ink
 - drill for tuners and install them
+- drill for neck joint
 - scallop frets? probably don't need to go super deep
 - level, polish frets
 - possibly replace frets with jumbo xl, these are pretty low
@@ -51,6 +53,15 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 
 
 ## log
+- second coat of wax on neck; very important to have a clean environment
+so as to not embed shit in the wax,
+but here it's very dusty...
+makeshift clean chamber accessed only with gloves or something?
+- first coat of wax on neck
+- sand neck
+- lock nut screws are shit, one stripped completely, need replacement:
+m2 18mm black flat philips screw
+- shortened neck to fit the socket better, should be just fine now
 - cut head down to size, still 1mm off, have to be lopped off the front,
 not the sides, since it's flush; otherwise perfect!
 have to measure 25.5" from the *edge/end* of the saddles, not middle,

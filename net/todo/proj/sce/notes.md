@@ -88,6 +88,9 @@ file which sets attributes for sets of tiles
 
 ## regenerating graphics
 
+The thingy/tscglow is necessary!
+It's removed afterwards.
+
 	# clean up /sys/games/lib/sce first
 	mkdir /tmp/scbw2
 	cd /tmp/scbw2
