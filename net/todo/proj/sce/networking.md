@@ -2,6 +2,24 @@
 
 ## decoupling
 
+- cl/drw: Mobj *block shouldn't be set from drw, but from the server (race condition)
+	we need another, better way to get a unit (or uid) from a pixel value/path node
+	simple path matrix with unit uid? instead of visbuf/etc?
+- associative data structure for mo uid's, or a simpler way
+	. lists by subcategory of object and/or team? (selected by bitfield in uid?)
+	. simple hash table?
+	. more complex hash table, multiple functions? cf algo
+	. growing array with nonreusable buckets?
+- local<>remote communication
+	. sync and errors
+	. if local and client input, can just reject it
+	. if remote to local, something is fucked, unsynced state
+	. if master, send a syncing Rerror, invalid move: mo position, etc
+	. have to think about what can go wrong and how to recover
+	. also remote sending state to local (spawns etc)
+- protocol
+	. tmove: no error and not local only: prepare a Tpath to send through the wire
+
 - local server only: as before, but using a shunted network protocol
 as if the server is responding to network commands
 	. channel for communication
@@ -22,6 +40,8 @@ as if the server is responding to network commands
 	or for everything
 - graphical server only: toggle for no graphics,
 otherwise provide a godmode that works exactly the same
+
+local server by default; *argv != nil → remote; -L: listen on port -P
 
 
 give units unique identifiers between client and server

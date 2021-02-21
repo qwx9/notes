@@ -1009,4 +1009,12 @@ descending/ascending/2-3-4-etc strokes/sweeping
 ## sat 20210220
 - jim hacker austerity regime day 13: 6
 - sce networking
+- sport
 - ⑨ST neck work: second coat
+
+
+## sun 20210221
+- jim hacker austerity regime day 14: 6
+- gardening
+- sce networking
+- ⑨ST neck work: third coat, notes

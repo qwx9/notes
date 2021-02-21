@@ -5,6 +5,8 @@
 - enlarge tremolo cavity for corrected measurements (deepen),
 clean up edges (watch the paint! and mark tremolo position on cavity walls)
 - apply wax
+	. see notes on correct waxing below
+	. do it on the back over a small area first to test (with the paint/wood etc)
 - drill tremolo support holes
 - drill tremolo spring plate holes and place the plate
 - drill strap peg holes (test the strapshits first), place pegs
@@ -15,24 +17,32 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 - cover cavity with copper tape
 - drill/enlarge whatever holes are needed for the wiring
 - cover cavities with copper tape
-- mirror polish
+- sand wax + mirror polish (?)
 - place wired pickguard and output jack plate
 - place tremolo bridge/springs
 - place strings and springs and setup action, intonation for tuning: dstd
 
 
 ## todo: neck
-- etch some logo or something on the head? (carving also an option)
-	. idea: print the logo/mark: ⑨ST the way we want it to appear and to size
-	(use inkscape)
-	. paper tape paint area
-	. then cut the shape out precisely into the tape
-	. then paint over that with black ink
+- headstock logo
+	. tuttleglenda + ⑨ST or ⑨Stratocaster or ⑨Frankenstratocaster with fender font
+	. mock serial numbers etc, mostly for neck if we end up replacing it later
+	. try it out on a plank beforehand
+	. make sure surface is clean, level, well sanded
+	. transfer from inkjet and label paper to the wood
+	. careful when waxing over it
 - drill for tuners and install them
 - drill for neck joint
 - scallop frets? probably don't need to go super deep
+	. try it on the first position, fretboard is damaged there anyway
+	. make sure only the *middle* is scalloped, fret must be held tight
+	. could probably wax over it (maybe with the purple wax?
+	. would be nice to be able to test it out first (cut part of the fingerboard clean?
 - level, polish frets
 - possibly replace frets with jumbo xl, these are pretty low
+	. if we do that, have to do it now
+	. so maybe later on another headstock
+- extend fingerboard somehow?
 - fingerboard finish
 - polish neck and head
 
@@ -53,6 +63,14 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 
 
 ## log
+- third coat; overall result: not super great.
+seems we've applied too much wax and the top is bumpy from the residue;
+areas where it didn't apply cleanly are fucky;
+have to sand it to get anything good;
+holes aren't really covered or anything, that's good;
+doesn't really penetrate like the water based wax, just sits on top and can be peeled off;
+not sure this really provides that much shock resistance, more uv/heat which is meh;
+maybe parquet/stair wax is better here?
 - second coat of wax on neck; very important to have a clean environment
 so as to not embed shit in the wax,
 but here it's very dusty...
