@@ -32,26 +32,27 @@ this isn't very convenient for this type of info
 - integrate lectures + formatting
 - use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes
 
+### dporg
+- trace map loading
+
 ### city
 - see [notes])(proj/city/notes)
-- spawning/despawning
-- input and graphics
+- stats/hud: resources + income/cost, clock, upkeep
+- input: spawn a building
+- drw: select a building → status
+- input: destroy a building
+- graphical tiles
 - later: map size and huge maps
 - later: go from wheat fields to industry to spaceships, automation
 
-### pitch
-- [notes](proj/pitch/notes)
-- modify to draw a spectrogram (vertically)
-- additional processing
-- we want to know what notes are played in a music track
-- find simple pitch shifting/tempo shifting lib
-- split pitch todo into proj/stack entries
-	* display
-	* notes on fft
-	* analysis
-	* etc
-- pitch: check that mic recording replicates left chan to right
-- pitch: can use norm to amplify when above threshold
+### 3d/game programming
+- aap vectors, rodri programs
+- portals, doom-like engine with its tools
+- bisqwit block-based opengl dos engine
+- doityourself series, see w520:'~/tr/game'
+- wolf3d engine based on sanglard's book
+- tinyref tutorial
+- starred github repos with minimal software 3d libs, etc
 
 ### sce
 - [notes](proj/sce/notes)
@@ -127,6 +128,19 @@ reused in various projects: nanosec() etc in treason et al
 - [pathfinding fixes and notes](proj/sce/pathfinding)
 - [networking notes](proj/sce/networking)
 
+### pitch
+- [notes](proj/pitch/notes)
+- modify to draw a spectrogram (vertically)
+- additional processing
+- we want to know what notes are played in a music track
+- find simple pitch shifting/tempo shifting lib
+- split pitch todo into proj/stack entries
+	* display
+	* notes on fft
+	* analysis
+	* etc
+- pitch: check that mic recording replicates left chan to right
+- pitch: can use norm to amplify when above threshold
 
 ### pplay
 - zooming is unbearable: at least let one use arrow keys to scroll
@@ -166,16 +180,6 @@ keep the simple visualization/player separate
 	→ asif, etc
 - numerical recipes has sections on linear and dynamic programming,
 among others
-
-### 3d
-- starred github repos with minimal software 3d libs, etc
-- aap vectors
-- rodri programs
-- portals
-- bisqwit block-based opengl dos engine
-- wolf3d engine based on sanglard's book
-- doom-like engine
-- tinyref tutorial
 
 ### pico
 - syntax improvements

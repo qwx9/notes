@@ -1018,3 +1018,34 @@ descending/ascending/2-3-4-etc strokes/sweeping
 - gardening
 - sce networking
 - ⑨ST neck work: third coat, notes
+
+
+## mon 20210222
+- jim hacker austerity regime day 15: 7
+- stage
+- gardening
+- 3d: first steps
+- ⑨ST neck, body sanding
+
+
+## tue 20210223
+- jim hacker austerity regime day 16: 7
+- sport
+- stage
+- 8str setup, tuning, adjustments bow/action/intonation/pickup height;
+now sounds good, but capacitor is dead
+(this happens for the 2nd time wtf)
+
+
+## wen 20210224
+- jim hacker austerity regime day 17: 8
+- stage
+- 8str cap replacement; new diagnosis: pebcak
+- gardening
+- ⑨ST sanding/paint
+
+
+## thu 20210225
+- jim hacker austerity regime day 18: 8
+- stage
+- ⑨BD received, test

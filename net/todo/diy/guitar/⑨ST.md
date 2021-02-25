@@ -4,8 +4,8 @@
 - sand paint to thin layer
 - enlarge tremolo cavity for corrected measurements (deepen),
 clean up edges (watch the paint! and mark tremolo position on cavity walls)
-- apply wax
-	. see notes on correct waxing below
+- apply varnish
+	. see notes on correct varnish below
 	. do it on the back over a small area first to test (with the paint/wood etc)
 - drill tremolo support holes
 - drill tremolo spring plate holes and place the plate
@@ -13,11 +13,11 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 - drill pick guard holes
 - drill holes for jack plate
 - enlarge cavity if needed
-- 2pass-sand/wax/finish guitar cavity (maybe no waxing, for mods)
+- 2pass-sand/varnish/finish guitar cavity (maybe no varnish, for mods)
 - cover cavity with copper tape
 - drill/enlarge whatever holes are needed for the wiring
 - cover cavities with copper tape
-- sand wax + mirror polish (?)
+- sand varnish + wax + mirror polish (?)
 - place wired pickguard and output jack plate
 - place tremolo bridge/springs
 - place strings and springs and setup action, intonation for tuning: dstd
@@ -31,6 +31,8 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 	. make sure surface is clean, level, well sanded
 	. transfer from inkjet and label paper to the wood
 	. careful when waxing over it
+- varnish head/neck, and maybe leave polish for later
+since there's still a bunch of work that can damage it
 - drill for tuners and install them
 - drill for neck joint
 - scallop frets? probably don't need to go super deep
@@ -44,7 +46,7 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 	. so maybe later on another headstock
 - extend fingerboard somehow?
 - fingerboard finish
-- polish neck and head
+- polish neck and head (prior to putting in strings etc)
 
 
 ## todo: electronics
@@ -63,19 +65,24 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 
 
 ## log
+- scraped/sanded varnish away, painted back of guitar:
+wide strokes and push force help thin the paint down,
+so we won't have to sand like crazy;
+will apply glossy clear polyurethane floor varnish
+after cleaning with white spirit/steel wool real quick
 - third coat; overall result: not super great.
-seems we've applied too much wax and the top is bumpy from the residue;
+seems we've applied too much varnish and the top is bumpy from the residue;
 areas where it didn't apply cleanly are fucky;
 have to sand it to get anything good;
 holes aren't really covered or anything, that's good;
-doesn't really penetrate like the water based wax, just sits on top and can be peeled off;
+doesn't really penetrate like the water based varnish, just sits on top and can be peeled off;
 not sure this really provides that much shock resistance, more uv/heat which is meh;
-maybe parquet/stair wax is better here?
-- second coat of wax on neck; very important to have a clean environment
-so as to not embed shit in the wax,
+polyurethane floor varnish is a much better idea
+- second coat of varnish on neck; very important to have a clean environment
+so as to not embed shit in the varnish,
 but here it's very dusty...
 makeshift clean chamber accessed only with gloves or something?
-- first coat of wax on neck
+- first coat of varnish on neck
 - sand neck
 - lock nut screws are shit, one stripped completely, need replacement:
 m2 18mm black flat philips screw

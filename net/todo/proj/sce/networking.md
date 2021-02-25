@@ -2,6 +2,7 @@
 
 ## decoupling
 
+- see what we did for city
 - cl/drw: Mobj *block shouldn't be set from drw, but from the server (race condition)
 	we need another, better way to get a unit (or uid) from a pixel value/path node
 	simple path matrix with unit uid? instead of visbuf/etc?
