@@ -34,3 +34,4 @@
 - retuning to D♯ std + readjustments → good tone overall!
 - cap replacement, 47nF still;
 actually was probably unnecessary, misdiagnosis
+- straploks

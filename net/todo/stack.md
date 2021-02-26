@@ -46,7 +46,7 @@ this isn't very convenient for this type of info
 - later: go from wheat fields to industry to spaceships, automation
 
 ### 3d/game programming
-- aap vectors, rodri programs
+- aap vectors, rodri programs, deuteron's 3d, burnzez 3d?
 - portals, doom-like engine with its tools
 - bisqwit block-based opengl dos engine
 - doityourself series, see w520:'~/tr/game'
@@ -56,18 +56,11 @@ this isn't very convenient for this type of info
 
 ### sce
 - [notes](proj/sce/notes)
-- decouple simulation time from client graphics
-	* fixes scrolling
-	* unit sprites etc still work in real time
-	even on minimum speed
 - fix halting distance using db halt values instead of shitty heuristic,
 still fails sometimes
 - [attack command](proj/sce/attack)
 - [mineral patches](proj/sce/minerals)
 - start working on the client/server part
-- no ipconfig -> dial: no route -> fail to launch
-	* maybe don't use ip until we actually have to connect remotely,
-	and shunt all the networking stack for local
 - add an air unit: mutalisk (mutalid.grp):
 extract it, add it to scripts, get the offsets
 - it's slightly weird that units move

@@ -1046,6 +1046,14 @@ now sounds good, but capacitor is dead
 
 
 ## thu 20210225
-- jim hacker austerity regime day 18: 8
+- jim hacker austerity regime day 18: 9
 - stage
 - ⑨BD received, test
+- guitar
+- sce networking
+
+
+## fri 20210226
+- jim hacker austerity regime day 19: 9
+- stage
+- ⑨ST

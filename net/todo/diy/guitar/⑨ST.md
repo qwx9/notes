@@ -2,11 +2,14 @@
 
 ## todo: body
 - sand paint to thin layer
-- enlarge tremolo cavity for corrected measurements (deepen),
-clean up edges (watch the paint! and mark tremolo position on cavity walls)
 - apply varnish
 	. see notes on correct varnish below
 	. do it on the back over a small area first to test (with the paint/wood etc)
+- add wood to the neck joint sides, there's slack on both sides;
+glue wood then chip and sand
+- don't sand yet until the rest is done!
+- enlarge tremolo cavity for corrected measurements (deepen),
+clean up edges (watch the paint! and mark tremolo position on cavity walls)
 - drill tremolo support holes
 - drill tremolo spring plate holes and place the plate
 - drill strap peg holes (test the strapshits first), place pegs
@@ -24,6 +27,7 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 
 
 ## todo: neck
+- rename to something wittier than just ⑨ST
 - headstock logo
 	. tuttleglenda + ⑨ST or ⑨Stratocaster or ⑨Frankenstratocaster with fender font
 	. mock serial numbers etc, mostly for neck if we end up replacing it later
@@ -35,6 +39,7 @@ clean up edges (watch the paint! and mark tremolo position on cavity walls)
 since there's still a bunch of work that can damage it
 - drill for tuners and install them
 - drill for neck joint
+- nut! buy tusq blank? or install the one we already have for the ST?
 - scallop frets? probably don't need to go super deep
 	. try it on the first position, fretboard is damaged there anyway
 	. make sure only the *middle* is scalloped, fret must be held tight
@@ -55,6 +60,8 @@ since there's still a bunch of work that can damage it
 	* would be nice to get some additional useful combinations,
 	or maybe just have all of them and test all?
 		. we probably don't really need to switch between all of these quickly
+	* would be nice to have individual volume pots instead of 2 tone pots?
+	* would be even nicer to be able to test shit easily
 - preamp? sustainer? octave? octave would be great
 - move switch position further forward for easier access
 - perhaps move tone controls back, we mostly want volume; check what makes sense
@@ -65,6 +72,8 @@ since there's still a bunch of work that can damage it
 
 
 ## log
+- sand → second coat; paintbrush is a very bad idea, don't do that
+- first coat of floor varnish
 - scraped/sanded varnish away, painted back of guitar:
 wide strokes and push force help thin the paint down,
 so we won't have to sand like crazy;
@@ -126,14 +135,22 @@ place using post notches and neck position
 ## used parts and consumables
 - 26.90	white maple unfinished ST guitar body, 45x32x4cm (lwh), 55-57cm neck pocket
 - 30.85	maple neck + 22fret rosewood fingerboard, approx 67.5x5.5x2.5cm, 10mm peg holes, 48cm finger plate, 1.8cm neck depth, 2cm heel depth, adjustable truss rod, white inlays
-- 9.23	6 locking tuners
+- 9.23	6R locking tuners
 - 1.56	45mm tension bar, black
 - 1.57	single ply tremolo cover backplate
-- 2.32	strap lock
+- 4.64	2x strap lock
 - 5.10	2 jackplate + 1/4" jack
 - 13.61	tremolo locking bridge and nut assembly (without tension bar)
 - 4.95	3ply ST pickguard SSS
 - 4.78	neck plate
+
+## blackjack and hookers
+- 11.79	graphtech tusqxl pql-5000-00 43mm ST nut
+- 11.14	neck+bridge seymour duncan nazgûl clone pickups: adjustable metal double coil humbuckers
+- 15.86	entwistle xs62 single coil ceramic pickup, middle position
+- 4.01	2 switchcraft#11 1/4" output jack
+- 3.14	red copper neck plate
+- 8.05	3x black nickel knobs
 
 
 ## other parts
@@ -152,8 +169,6 @@ place using post notches and neck position
 - 19.05	brass/nylon fret hammer
 - 2.89	fret rocker
 - 14.85	12" radiused block
-- 11.79	graphtech tusqxl pql-5000-00 43mm ST nut
-- 4.01	2 switchcraft#11 1/4" output jack
 - 2.45	3x ST white top hat knobs
 
 
@@ -162,9 +177,7 @@ place using post notches and neck position
 - 4.20	10 on-off-on 3pos spdt switches
 - 3.94	10 on-off-on 3pos dpdt switches
 - 8.66	5way double pole superswitch
-- 11.14	neck+bridge seymour duncan nazgûl clone pickups: adjustable metal double coil humbuckers
 - 14.75	neck+bridge emg 81/85 clones + wires, jack, battery holder: active humbucking pickups
-- 15.86	entwistle xs62 single coil ceramic pickup, middle position
 - 12.32	mini hot rail blade humbucker, 12.6kΩ, belcat v ferrite
 - 7.02	4p6t rotary switch
 - 6.22	5x a500k pots

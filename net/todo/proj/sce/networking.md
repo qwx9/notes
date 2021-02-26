@@ -2,6 +2,10 @@
 
 ## decoupling
 
+- step 1: do like in city, just decouple sim from input, don't drop networking into it directly
+
+
+
 - see what we did for city
 - cl/drw: Mobj *block shouldn't be set from drw, but from the server (race condition)
 	we need another, better way to get a unit (or uid) from a pixel value/path node

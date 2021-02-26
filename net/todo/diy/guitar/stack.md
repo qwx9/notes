@@ -12,12 +12,12 @@ See [fender's todo](fender).
 See [⑨ST](⑨ST).
 
 
-## ⑨HD
+## ⑨BD
 Finishes and minor modifications (pickups etc) to new headless clone.
 
 
-## ⑨HDEN
-⑨HD with new Stranberg EndurNeck-like handmade
+## ⑨BDHEN
+⑨BD with new Stranberg EndurNeck-like handmade
 fan-fret 6 string neck,
 with necessary pickup/bridge modifications.
 

@@ -1,5 +1,10 @@
 # mixing setup
 
+## current problems
+- insanely noisy setup; the power supply itself amplifies the fuck out of it
+- passive pickups are just a horror show because of this,
+while kh602's active ones are silent
+
 ## current stack
 
 - caline cp-02 power supply
