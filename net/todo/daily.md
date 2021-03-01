@@ -1057,3 +1057,20 @@ now sounds good, but capacitor is dead
 - jim hacker austerity regime day 19: 9
 - stage
 - ⑨ST
+
+
+## sat 20210227
+- jim hacker austerity regime day 20: 9
+- guitar lesson 1, basic theory
+- gardening
+- fgd135, last varnish coats, sanding
+- rbmk: cutting, shaping, sanding neck
+- ⑨BD disassembly
+- guitar, picking for underneath works best, but conflicts with downpicking
+
+
+## sun 20210228
+- jim hacker austerity regime day 21: 10
+- rbmk: first two coats of neck varnish, first coat of body paint/varnish, body sanding
+- fgd135: logo, attempts at ink transfer
+- guitar, tried new picking style, works nicely
