@@ -1074,3 +1074,54 @@ now sounds good, but capacitor is dead
 - rbmk: first two coats of neck varnish, first coat of body paint/varnish, body sanding
 - fgd135: logo, attempts at ink transfer
 - guitar, tried new picking style, works nicely
+
+
+## mon 20210301
+- jim hacker austerity regime day 22: 11
+- stage
+- guitar
+- sport
+- rbmk: sanding front, paint back
+
+
+## tue 20210302
+- jim hacker austerity regime day 23: 12
+- stage
+- guitar
+- sport
+
+
+## wen 20210303
+- jim hacker austerity regime day 24: 13
+- dporg
+- stage
+- guitar
+- sport
+- rbmk: sanding
+
+
+## thu 20210304
+- jim hacker austerity regime day 25: 13
+- stage
+- nopenopenope.net: refreshed, updated werc, removed src/, updated audio and play posts
+- update a few scripts
+- rbmk: sanding + painting
+- repaired pkmn/crystal savegame, timer info is appended,
+can clear it by removing it from the file → fixed.
+i guess we fucked it up by cheating!
+
+
+## fri 20210305 - sun 20210307
+- jim hacker austerity regime day 28: 17
+- sce: networking, basic protocol and communication, small keyboard fixes
+- rbmk: varnishing
+- fgd135 sanding
+- guitar + lesson
+- gardening
+- sport++
+
+
+## mon 20210308
+- jim hacker austerity regime day 29: 18
+- application: presentation and talks
+- stage

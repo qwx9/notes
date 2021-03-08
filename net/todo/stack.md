@@ -60,7 +60,6 @@ this isn't very convenient for this type of info
 still fails sometimes
 - [attack command](proj/sce/attack)
 - [mineral patches](proj/sce/minerals)
-- start working on the client/server part
 - add an air unit: mutalisk (mutalid.grp):
 extract it, add it to scripts, get the offsets
 - it's slightly weird that units move

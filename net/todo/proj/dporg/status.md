@@ -1,5 +1,28 @@
 # Status
 
+## cfr4, fork
+- On the other hand, we CAN implement the library shit,
+like Graphics.* calls,
+but we still need a way to make the transcription as easy and fast/automatic as possible
+- So, transcription to c wouldn't be that useful at this point,
+unless we modify both at the same time...
+- One idea was to remove as much as possible java from the code,
+by moving shit around, removing keywords etc,
+so that transcription is trivial,
+but we can't, it's already fairly minimal:
+we can't add classes within a file,
+we can't have functions outside of classes,
+we can't remove most keywords which would conflict,
+etc etc etc
+- Now works, inexplicably
+but didn't (no op toString()s), added prints to all
+- Class.forName("s") → would obviously crash
+- Netbeans IDE sucks so much that it didn't build/run the right code?? So we missed some breakage
+- Renamed f to Sound, s to Map
+- Renamed all methods within each class so that there is no overloading/name conflicts
+- We conserve cfr3 as is for security
+
+
 ## jd
 - Take care: any time there are functions with the same arguments
 but a different return type, ALL of them must be renamed to avoid conflicts!
@@ -16,6 +39,7 @@ ie. code is unbroken aside from fucked references
 the rest of the code refers to them with unique names
 - Can use regexp to automate this somewhat,
 but still need to fix many errors manually
+
 
 ## cfr, third attempt
 - There's an intermittent lockup on startup,

@@ -2,11 +2,30 @@
 
 ## decoupling
 
-- step 1: do like in city, just decouple sim from input, don't drop networking into it directly
+
+- requests: move
+- client requests a move, it either works or it doesn't, period
+- atexit: send quit to all remote clients if master...
+
+a single packet should suffice for any message between two hosts
+	(including master to each client)
+
+listen: we opened a connection, but we haven't accepted a player or anything,
+we wait for an actual request from the client on the open connection
 
 
+local server by default; *argv != nil → remote; -L: listen on port -P
 
-- see what we did for city
+
+give units unique identifiers between client and server
+so we don't guess number of units for other teams,
+we get a large enough range instead
+8 teams → 32 - 3 bits (4 if observer, but that has no units)
+
+don't execute any command client side until server has signed off?
+"prediction": execute before server gives the command, but be ready to resync
+
+
 - cl/drw: Mobj *block shouldn't be set from drw, but from the server (race condition)
 	we need another, better way to get a unit (or uid) from a pixel value/path node
 	simple path matrix with unit uid? instead of visbuf/etc?
@@ -24,14 +43,8 @@
 	. also remote sending state to local (spawns etc)
 - protocol
 	. tmove: no error and not local only: prepare a Tpath to send through the wire
+	. tquit/drop/whatever: drop/detach remote client
 
-- local server only: as before, but using a shunted network protocol
-as if the server is responding to network commands
-	. channel for communication
-	(always there if there is a client, remote server or not)
-	. no listener, no networking
-	. input on local is validated then executed by the local server
-	and sent to the remote one, if there is one (not here)
 - server only: listen for network events, as before
 	. initial map spawns like before
 	. heartbeats
@@ -46,28 +59,9 @@ as if the server is responding to network commands
 - graphical server only: toggle for no graphics,
 otherwise provide a godmode that works exactly the same
 
-local server by default; *argv != nil → remote; -L: listen on port -P
-
-
-give units unique identifiers between client and server
-so we don't guess number of units for other teams,
-we get a large enough range instead
-8 teams → 32 - 3 bits (4 if observer, but that has no units)
-
-don't execute any command client side until server has signed off?
-"prediction": execute before server gives the command, but be ready to resync
-
-
 
 ## random notes for now
 
-- networking
-	. recvbuf and sendbuf for accumulating messages to flush to all clients
- 	. server: spawn server + local client (by default)
- 	. client: connect to server
- 	. both initialize a simulation, but only the server modifies state
-- command line: choose whether or not to spawn a server and/or a client
-   (default: both)
 - client: join observers on connect
 - program a lobby for both client and server
  	. server: kick/ban ip's, rate limit, set teams and rules

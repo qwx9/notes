@@ -1,15 +1,17 @@
 # ⑨BD: bj186-based boden clone
 
 ## TODO
-- disassemble
-- sand
 - shape neck → endurneck shape
 - other shape mods
-- finish
-	. idea: inkjet transfer of (color) image on sanded wood,
-	or with a thin coat of something
-	. b&w image → white-ish coat first?
-	. what image? mostly b&w seems cool
+- unsolder, remove pickups and other hardware
+- cavity or whatever else is necessary to install active pickups
+- make sure emg pickups will fit, etc
+- sand body
+- finish body
+	. check out how that's done again
+	. first coat of some white compound
+	. then inkjet transfer of b&w or color image
+		* the idea is a jigsaw of propaganda
 		* pjw
 		* tuttle glenda
 		* 9front propaganda: guitar: ending, etc.
@@ -25,12 +27,18 @@
 		* 9front release cover
 		* thinkvantage or similar
 		* picoart the fuck out of some of these?
-		* all of the above: jigsaw of propaganda?
-	. rename based on finish + logo
-- change pickups
-	. either install active emg clones
-	. or something else, maybe other adjustable pole pickups like the nazgul clones
+- sand neck
+- transfer neck logo, rename
+- transfer neck propaganda? or even finish like body
+- varnish body and neck
+- lemon oil/wax fretboard
 - level, file, etc frets
-- fretboard finish
+- possibly new tusq nut ± from blank
+- install pickups and electronics
+- reassemble
 - heavier gauge strings
-- tune/adjust for a♯ std, if it's too stupid, try c std or just do d std
+- d std tuning
+
+
+## Log
+- disassembled
