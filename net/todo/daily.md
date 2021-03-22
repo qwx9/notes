@@ -1125,3 +1125,23 @@ i guess we fucked it up by cheating!
 - jim hacker austerity regime day 29: 18
 - application: presentation and talks
 - stage
+
+
+## tue 20210309 - sun 20210314
+- jim hacker's front fell off
+- stage
+- application/mails/negociations
+- programming: 3d, dporg
+- guitar, drums
+- lutherie work, fgd135, rbmk1000; transfer tryouts
+- gardening, cleanup etc
+- sport++
+
+
+## 20210315 week
+- stage, admin
+- lutherie
+- 3d
+- guitar, drums
+- sport++
+- gardening, cleanup

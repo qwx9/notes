@@ -4,6 +4,19 @@
 See [random design notes](design).
 
 
+## Art
+- catclock
+- fuck computers, computers as fuck
+- peace through superior firepower, across neck
+- hatehatehate/nopenopenope
+- usa#1 military insignia or signs
+- pjw, pico art
+- shitty black metal covers
+- doom/quake/wolf3d etc
+- pico art of some propaganda
+- radioactive catclock
+
+
 ## Fender mim deluxe player's strat
 See [fender's todo](fender).
 

@@ -11,13 +11,17 @@
 
 ### global priorities
 - see programming todo's below
-- gtab, sce
-- pplay
-- gfx editing
+- city
 - 3d
+- dporg
+- wl3d/qk1/qk2/qk3
+- gtab
+- pplay
+- pico, gfx editing
+- asif
 - mod: sam, mothra
-- fix: vncv
-- debug: igfx
+- mod vmx, fix vncv, debug: igfx
+- random shit: kertex, notes maintenance and additions
 
 ### notes
 - [plumb rules](proj/notes/plumb)
@@ -30,18 +34,19 @@
 this isn't very convenient for this type of info
 - algo, dcd, taa + taocp → asif
 - integrate lectures + formatting
-- use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes
+- use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes ⇒ fn or script
 
 ### dporg
-- trace map loading
+- trace map loading → map format
 
 ### city
 - see [notes])(proj/city/notes)
+- graphical tiles
+- select tile, actions, menus, hud stats
+- spawn a building: fee, upkeep, production
 - stats/hud: resources + income/cost, clock, upkeep
-- input: spawn a building
 - drw: select a building → status
 - input: destroy a building
-- graphical tiles
 - later: map size and huge maps
 - later: go from wheat fields to industry to spaceships, automation
 
@@ -53,51 +58,18 @@ this isn't very convenient for this type of info
 - wolf3d engine based on sanglard's book
 - tinyref tutorial
 - starred github repos with minimal software 3d libs, etc
+- some small mit-licensed software renderer
 
 ### sce
 - [notes](proj/sce/notes)
-- fix halting distance using db halt values instead of shitty heuristic,
-still fails sometimes
-- [attack command](proj/sce/attack)
-- [mineral patches](proj/sce/minerals)
-- add an air unit: mutalisk (mutalid.grp):
-extract it, add it to scripts, get the offsets
+- [playable game stack](proj/sce/everything)
+
+#### small timeconsuming fixes
 - it's slightly weird that units move
 with their upper left corner towards the destination,
 rather than the unit's center (esp. when scaling)
-- move to using sigrid's clock logic;
-reused in various projects: nanosec() etc in treason et al
-- grab mouse and mouse scrolling, scrolling with keyboard, remove middle click
-- unit selection -> selection ellipses of varying size (on top of shadows?)
-- cursors?
-- zerg spawn with 3 larvae THEN 4 workers (for blockmap)
-	. zerg species
-	. larva behavior
-- drones should still spawn below hatchery? (wrt larvae)
-- movement waypoints, building rally points
-- implement unit behaviors in a lib.c file or something
-	. either point specifically to a db name
-	. or specify behaviors and attribute them in the db arbitrarily
-- implement creep
-- player races (and race-unspecific map starts)
-- gathering command and behavior
-- fog of war, sight range: building sight range, set to 1 for now
-- music and sound effects
-	. in their own proc?
-		* schedule sound effects via channels
-	. could just spawn audio/wavdec or audio/opusdec or even play(1)
-- better maps, converting from real maps to our own format
-- hud improvements
-	. multiple selection
-	. display resources
-	. reuse scbw graphics for this
-- spawning
-	. animations
-	. requirements: resources, tech
-- building constraints per race
-- build trees
-
-#### small timeconsuming fixes
+- fix halting distance using db halt values instead of shitty heuristic,
+still fails sometimes
 - [ofire.pcx adjustments](proj/sce/ofire)
 - [sprite improvements](proj/sce/sprites)
 - pathfinding fucks out in rare instances (while moving?)
@@ -115,6 +87,8 @@ reused in various projects: nanosec() etc in treason et al
 	. add extract script, which should do grp -s and sctile and genmap
 	. add terrain sprites
 	. add grp -s shit to automate all extraction (in tree)
+- move to using sigrid's clock logic (justify);
+reused in various projects: nanosec() etc in treason et al
 
 #### research
 - [pathfinding fixes and notes](proj/sce/pathfinding)

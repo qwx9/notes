@@ -1,5 +1,11 @@
 # lutherie apprenticeship
 
+## varnishes
+- best so far: le tonkinois oil based varnish,
+applied with a small thin and flexible brush
+- the others don't resist well at all
+
+
 ## assembly, small modifications
 
 - assemble guitar from parts from aliexpress
