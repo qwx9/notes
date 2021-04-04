@@ -60,9 +60,13 @@ this isn't very convenient for this type of info
 - starred github repos with minimal software 3d libs, etc
 - some small mit-licensed software renderer
 
+
 ### sce
 - [notes](proj/sce/notes)
 - [playable game stack](proj/sce/everything)
+
+#### 2d drawing
+- [draw order](proj/sce/drawlists)
 
 #### small timeconsuming fixes
 - it's slightly weird that units move
@@ -74,13 +78,18 @@ still fails sometimes
 - [sprite improvements](proj/sce/sprites)
 - pathfinding fucks out in rare instances (while moving?)
 
+#### pathfinding
+- [finding closest free spot to target object](proj/sce/pathfinding)
+- [current pathfinding bugs](proj/sce/pathfinding)
+- [non 8x8 grid](proj/sce/pathfinding)
+- [non octile movement](proj/sce/pathfinding)
+
 #### refactoring/optimization
 - p/sce bin
 	* games/sce or sce/sce
 	* sce/... tools
 	* remove from /amd64 /386 /arm
 	* add in profile
-- [draw lists](proj/sce/drawlists)
 - [clean ups](proj/sce/cleanup)
 - extraction scripts could probably use an overhaul, after we deal with sprite db
 - genspr script
@@ -91,8 +100,8 @@ still fails sometimes
 reused in various projects: nanosec() etc in treason et al
 
 #### research
-- [pathfinding fixes and notes](proj/sce/pathfinding)
 - [networking notes](proj/sce/networking)
+
 
 ### pitch
 - [notes](proj/pitch/notes)

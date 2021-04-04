@@ -1143,5 +1143,6 @@ i guess we fucked it up by cheating!
 - lutherie
 - 3d
 - guitar, drums
-- sport++
+- sport++, vtt
 - gardening, cleanup
+- suspend dailies

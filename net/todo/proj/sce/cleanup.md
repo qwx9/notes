@@ -11,3 +11,6 @@ straight from there at all, instead of the ofs1/ofs2 shit
 - rearrange dir defines so that we can just do 1<<θN, etc.
 - jumpeast seriously needs to be simplified somehow, it's
 incomprehensible and there's tons of assumptions
+
+## com.c pack/unpack
+- M verb for Mobj packing unpacking, or similar

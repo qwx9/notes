@@ -27,6 +27,31 @@
 	  still blocked, which makes sense
 
 
+## pathfinding to an object = pathfinding to nearest point
+- jps doesn't do that
+- if there's nothing around the target,
+eg. no blocks immediately adjacent to it,
+and mover isn't next to it:
+	* if there is no block, it's simple
+	* 1) extend target rectangle (r.min and r.max)
+	by mover's width and height
+	* 2) minimal distance to rectangle:
+		Δx = max(r.min.x - p.x, 0, p.x - r.max.x)
+		Δy = max(r.min.y - p.y, 0, p.y - r.max.y)
+		Δ = sqrt(Δx² + Δy²)
+	* 3) modify the above to calculate instead
+	an offset point (Δx,Δy) which gives us the target coords
+- if there is blockage, this turns into another pathfinding problem,
+find nearest free spot around target
+	* we could do bfs, but that won't give us path length,
+	since we may have to move around shit to reach the spot,
+	and another farther spot might actually be cheaper
+	wrt movement cost
+	* so, among all possible paths to the nodes encircling the
+	target, which is closest in terms of path length?
+	* jfs doesn't deal with this at all,
+	it optimizes a single path
+
 ## pathfinding not on a 8x8 grid?
 
 - units (and even buildings) are not multiples of 8x8 blocks

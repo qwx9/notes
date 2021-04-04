@@ -1,45 +1,32 @@
 # draw order, draw lists
 
-- would remove the need to treat shadows differently
-- use avltree or something: number is layer
-	* would have to be able to repair it
-		- when something moves
-		- when screen moves
-	* ordering: either just flat list, or a tree,
-	  or multiple trees (by layer)
-	* check for visible shit: just check if graphic would
-	  intersect with viewport, no arbitrary limits
-	* when panning, check neighbours until we reach non-visible?
-	  (to not scan entire map again)
-	  => same problem as before, arbitrary limits
-	  rather, we need to have a global tree or list of trees,
-	  and select within it
-	* what do we need to know? just lower left pixel?
-	  after all, if that's within the view port we have to draw it,
-	  but if not, there's no reason
-		- actually, lower right boundaries: we need the upper
-		  right there
-		- so maybe data structure that stores left or right
-		  boundaries, or both? partition space or something?
-- drw: visible units: use size of largest object
-- things are drawn right to left, not left to right (only units, not
-	  buildings?), it's weird
-- optimize redraw() to reduce overdraw (if necessary)
-	* possibly build a queue of shit to draw to avoid parsing map
-	* or parse once, putting shit into different "priority" queues,
-	  which are then concatenated
-	  	* creep set
-	  	* corpse set
-	  	* ground shadows set
-	  	* ground set
-	  	* air shadows set
-	  	* sprite set
-	  	* air set
-	* then just draw shit in order, this way we parse Map only once
-	* perhaps we could just have one Mobjl per object set anyway
-		. creep is per map tile, but is just a flag
-		. this way, there's a clear separation between selectable
-		  and non selectable sets too
-		. right now we don't even distinguish between sprites and
-		  air units
-	* implement selection using these "visibility lists" too
+- see rev db005316eeb552c68b6c54c7392bc119a69b12e0:
+
+	biggest change: move obj lists to map grid rather than node grid:
+	the idea was to attempt to find a better compromise between looking
+	up units for drawing and selection, etc.  map objects can be bigger
+	than both map and node grids, but we want minimum redundancy, so we
+	only store object lists in one place.  we don't want to redraw the
+	same object multiple times when scanning the drawing window, but we
+	also want to be able to easily look up map objects at a given
+	coordinate (client select or server map manipulation).  we could
+	segment the map as with k-d trees or r-trees variants, but this
+	blows up complexity for nothing.  quadtrees would still work with
+	buckets of units and don't solve overlaps.
+	previously, we just enlarged the search window to make sure we don't
+	miss units that are farther back (x or y axis) than the given node,
+	and it doesn't seem we can do better.
+	besides renaming and cleaning up everything for clarity, moving
+	object lists to the map grid reduces the number of nodes to scan by
+	a factor of 4.  we enlarge draw window 256px top and left (largest
+	unit assumed between 128 and 256px at most), and take scale into
+	account.
+	the problem really isn't completely solved either way: air/ground
+	units can overlap (esp. flocks of air units), and there has to be
+	some kind of heuristic to pick one out of all intersects.  ground
+	units intersect building pixels as well.
+
+- so, we couldn't easily do better than we already are, besides refactoring
+- HOWEVER: ordering isn't top→bottom,left→right
+	* Z-shape? top→bottom,right→left?
+	* only units, not buildings? it's weird, have to investigate
