@@ -1,5 +1,13 @@
 ## Everything needed for playable game
 
+## Last bugs
+- sprite offsets wrong
+- muta air but still uses ground pathfinding
+- blocking overwrites blocks of ground units (hatch)
+- spawn point invalid, inside hatch
+- air spawn should be fixed
+- drawing bugs at scale??
+
 ## Units behavior
 - add an air unit: mutalisk (mutalid.grp):
 extract it, add it to scripts, get the offsets
@@ -32,6 +40,8 @@ extract it, add it to scripts, get the offsets
 - keyboard shortcuts
 
 ## Graphics
+- just use ARGB32 images everywhere?
+- drw.c assumes that a shadow sprite exists?
 - unit selection -> selection ellipses of varying size (on top of shadows?)
 - cursors?
 - hud improvements
@@ -44,7 +54,6 @@ extract it, add it to scripts, get the offsets
 - music
 
 ## Protocol
-- Tmove
 - teams
 - observers
 - lobby or challenge and pass for joining
