@@ -1,7 +1,12 @@
 ## Everything needed for playable game
 
 ## Last bugs
-- sprite offsets wrong
+- where do you get the default shadow color from again?
+there was a pcx file or something
+	. shadow files have 0x2323ff
+- vspr:
+	; vspr -r hatchery 00 01 02 03 03 02 01 00
+	vspr: open: '/sys/games/lib/sce/hatchery.01.00.s.bit' does not exist
 - muta air but still uses ground pathfinding
 - blocking overwrites blocks of ground units (hatch)
 - spawn point invalid, inside hatch
@@ -9,8 +14,6 @@
 - drawing bugs at scale??
 
 ## Units behavior
-- add an air unit: mutalisk (mutalid.grp):
-extract it, add it to scripts, get the offsets
 - air units in general
 - spawning units
 - behavior framework
