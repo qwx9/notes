@@ -70,6 +70,7 @@
 	  sounds great for this one game :(
 	. easy solution: support for mp3 playback a la dmus
 - dswolf: nds wolf3d port
+	. naming: lup?
 - edwin: a program that berates your failures
 - ether589/etherelnk3: which should u17 be using again?
 - etheriwl: debug 4965 (u19,u20,u25): must have worked at some point
@@ -89,6 +90,7 @@
 - kiddie: uplink clone
 - lib/avgn: complete collection of memorable insults from the first couple
   dozen episodes
+- midi2mus
 - nds: nds emulator (haha)
 - nuke: unrealistic explosion simulator
 - p3n: insane gta-like openworld game project (HAHAHA)
@@ -115,9 +117,9 @@
 - radeon: try out new driver for u23 (in /tmp/s/)
 - rally: simple 3d game based on v-rally 3 on gba
 - rts: real-time strategy akin to starcraft
-- sam: column wrapper script usable from sam, working like gq in vim
-- shwf: shadowforge reimplementation
+- sc55: emulation akin to opl3(1)
 - scum: scumm reimplementation (haha)
+- shwf: shadowforge reimplementation
 - sf2: midi player with sf2 support
 - spd: reimplement
 - svs: svs image decoder, or a way to use 20gb tiff files

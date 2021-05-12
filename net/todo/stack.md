@@ -188,6 +188,12 @@ and merge with opl2 + adjust/simplify dmid
 - where the fuck did we get the fucking tempo value from and why
 isn't it 60*Te6/35 ??? (also where does the 0x101 value for quarter
 note duration come from) ⇒ recalculate right vars
+- old notes:
+	* maybe better to write only once to stdout for piping shit ← ?
+	* not checking if mcmd buffer gets too small (it shouldn't, but...) ← ?
+		. midi track length is u32int, not variable length
+		. variable length is 0xffffffff max in mus; max track length is
+		  0xffff → so calculate proper fucking size
 
 ### rio
 - [subrio labels on startup](9front/rio/subrio.labels)
@@ -214,6 +220,7 @@ note duration come from) ⇒ recalculate right vars
 	* list other grievances...
 - annoying jumps for u command, searches, where selection should be centered, not off-screen,
 and shouldn't move the display if it's visible, it's super confusing
+- column wrapper script usable from sam, like gq in vim
 
 ### rc
 - rc: ok, fuck rc quoting: add backwards compatible quoting system
