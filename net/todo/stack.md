@@ -36,7 +36,13 @@ this isn't very convenient for this type of info
 - use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes ⇒ fn or script
 
 ### dporg
-- trace map loading → map format
+- load fonts
+- primitive drawing functions
+- map loading
+- sprite/texture loading
+- renderer
+- scripts
+- rest of game fsm's
 
 ### city
 - see [notes])(proj/city/notes)
@@ -84,12 +90,28 @@ this isn't very convenient for this type of info
 - pitch: check that mic recording replicates left chan to right
 - pitch: can use norm to amplify when above threshold
 
+
+### wl3d
+- [notes](proj/wl3d/notes)
+- reimplement sound resampling, but better
+	* just convert pcm sounds when loading in fs.c?
+- revisit opl2 stuff → maybe fork and use opl2(1)
+- simplify fsm shit, look at dporg
+
+
+### weu
+- [notes](proj/weu/notes)
+
+
 ### pplay
 - zooming is unbearable: at least let one use arrow keys to scroll
 - check the controls
 - loading the waveform stops when pausing, sucks, and not fast enough
 - loop selection is stupid too
 - fplay integration
+	* memory corruption, segfaults when resizing multiple times
+	* play with imf007.sod, a short track:
+	pplay 567224: suicide: sys: trap: stack exception pc=0x215ce9
 - basic editing
 - fork into another project for all the new shit,
 keep the simple visualization/player separate
@@ -102,6 +124,7 @@ keep the simple visualization/player separate
 - pplay: better controls, esp looping/panning
 - pplay: better performance, esp redraw (riow -> force redraw)
 - pplay fork: modify controls
+
 
 ### asif
 - asif: dcd shit
@@ -155,9 +178,11 @@ vector calculus (other tool probably)
 - get fixes from dmid0
 - extract bank -> fmdrv.op2 for dkey
 
-### opl3
+### dmid/opl3
 - find a way to encode extended opl3 registers into 1 byte
-and merge with opl2
+and merge with opl2 + adjust/simplify dmid
+	. special command?
+- verify asspull workaround, see omidi etc
 
 ### mus
 - where the fuck did we get the fucking tempo value from and why
@@ -248,6 +273,14 @@ using an ascii delimiter like sigrid suggested
 
 ### usb, paint
 - pen stroke size with pressure for paint(1)
+
+### doom
+- ud e1nm0646 desync
+- doom playerview patch: score between viewers is fucked (see d2 deathmatch demo)
+	. either overwritten or 0 - score for one of the players (p2?)
+	. or not incremented or decremented
+- fix our chainsaw fix
+- proper networking protocol
 
 ### igfx
 - regression: t61p hwgc igfx no longer functions (w500 works fine)
