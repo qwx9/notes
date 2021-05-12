@@ -1,5 +1,8 @@
 # pathfinding
 
+## see also
+- lib/extra/unix/pathfinding: warthog etc
+
 ## sce bugs
 - click immediately right of unit
 	* the problem is that the unit doesn't extend to the edge of the node

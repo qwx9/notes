@@ -11,9 +11,8 @@
 
 ### global priorities
 - see programming todo's below
-- city
+- city/sce/dporg
 - 3d
-- dporg
 - wl3d/qk1/qk2/qk3
 - gtab
 - pplay
@@ -62,45 +61,13 @@ this isn't very convenient for this type of info
 
 
 ### sce
+- [mineral patches](proj/sce/minerals)
+- gather command, without pathfinding shortcuts/hacks
+- build command
+- spawn command
+- things get really hairy once we add attacks: range, movement, pathing, etc., so: wait
 - [notes](proj/sce/notes)
 - [playable game stack](proj/sce/everything)
-
-#### 2d drawing
-- [draw order](proj/sce/drawlists)
-
-#### small timeconsuming fixes
-- it's slightly weird that units move
-with their upper left corner towards the destination,
-rather than the unit's center (esp. when scaling)
-- fix halting distance using db halt values instead of shitty heuristic,
-still fails sometimes
-- [ofire.pcx adjustments](proj/sce/ofire)
-- [sprite improvements](proj/sce/sprites)
-- pathfinding fucks out in rare instances (while moving?)
-
-#### pathfinding
-- [finding closest free spot to target object](proj/sce/pathfinding)
-- [current pathfinding bugs](proj/sce/pathfinding)
-- [non 8x8 grid](proj/sce/pathfinding)
-- [non octile movement](proj/sce/pathfinding)
-
-#### refactoring/optimization
-- p/sce bin
-	* games/sce or sce/sce
-	* sce/... tools
-	* remove from /amd64 /386 /arm
-	* add in profile
-- [clean ups](proj/sce/cleanup)
-- extraction scripts could probably use an overhaul, after we deal with sprite db
-- genspr script
-	. add extract script, which should do grp -s and sctile and genmap
-	. add terrain sprites
-	. add grp -s shit to automate all extraction (in tree)
-- move to using sigrid's clock logic (justify);
-reused in various projects: nanosec() etc in treason et al
-
-#### research
-- [networking notes](proj/sce/networking)
 
 
 ### pitch
@@ -161,6 +128,7 @@ among others
 - add a -q flag to inhibit automatic plumb to page?
 - add a -e flag to exit on error?
 - add a way to add or preserve image offsets
+- bugs bugs bugs
 
 ### dmap
 - make a standalone nodebuilder
@@ -196,9 +164,6 @@ and merge with opl2
 isn't it 60*Te6/35 ??? (also where does the 0x101 value for quarter
 note duration come from) ⇒ recalculate right vars
 
-### dmid
-fix for noscroll etc?
-
 ### rio
 - [subrio labels on startup](9front/rio/subrio.labels)
 - [riostart adjustments for riow](9front/rio/riostart)
@@ -207,16 +172,13 @@ fix for noscroll etc?
 - rio exit menu item confirmation
 - [rio file menu too obstrusive with riow](9front/rio/riow.filemenu)
 - [rio integrated with sam](9front/rio/rio+sam)
-- generate /bin/riow patch
+- generate /bin/riow patch ← what?
 - tmux-like functionality: don't lose long jobs when killing rio, etc.
 
 ### sam
 - [default windows](9front/sam/windows)
 - [rsam plumbing](9front/sam/rsam.plumb)
-- bug: messing with window placement and plumbing files
-can cause freezing (?)
 - default focus on start up should be command window
-- resize -> window too small -> crash
 - sam: 1,.d → /dev/snarf doesn't get the contents, normal?
 - såmtörm: samterm fork with ham tweaks and other ± såm if we change shit
 	* -a by default
@@ -234,15 +196,13 @@ using an ascii delimiter like sigrid suggested
 	* this will help with passing shit to rio -k, window, eval, etc
 	* note: probably won't be merged since use will break compat with others
 	but patch is available
+	* how would that even help anything though? just char isn't enough
 
 ### vncv
 - vncv: match key against some fingerprint or something? i'd like to not have
   the same fucking key for the same host on different addresses
 - fucking clipboard issues
-	* utf8 from remote → garbled
-	* add utf8 shit to /dev/snarf → blabla not in bla
 	* fucking clipboard with openbsd firefox
-	* input of utf8 runes eats too, try placing ê, copy paste puts an invalid rune
 	* input of utf8 runes sometimes works after two tries, sometimes doesn't ever
 - vncv performance fucking BLOWS, ssh too(?), faster to vncviewer within vncv to another machine
 	* vncviewer uses compression etc
@@ -292,9 +252,6 @@ using an ascii delimiter like sigrid suggested
 ### igfx
 - regression: t61p hwgc igfx no longer functions (w500 works fine)
 - add support for haswell vga
-- figure out haswell edp link training time out ← out of haswell
-laptops
-- fix haswell code for x240/x250?
 - gm965 gtt fix: try a kernel side implementation, with a function
 called in kernel on modeset?
 

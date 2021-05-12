@@ -84,18 +84,3 @@ so we end up with 2 + 15*2 pics total
 
 - 32x32 tiles are composed of 8x8 subtiles, then grouped together in a cv5
 file which sets attributes for sets of tiles
-
-
-## regenerating graphics
-
-The thingy/tscglow is necessary!
-It's removed afterwards.
-
-	# clean up /sys/games/lib/sce first
-	mkdir /tmp/scbw2
-	cd /tmp/scbw2
-	cp /tmp/scbw/unit/terran/scv*.bit /tmp/scbw/unit/terran/control*bit /tmp/scbw/unit/zerg/drone.*bit /tmp/scbw/unit/zerg/hatchery.*bit /tmp/scbw/unit/zerg/zhashad.grp*bit /tmp/scbw/unit/terran/tccShad.grp*bit /tmp/scbw/unit/thingy/tscglow.grp*bit /tmp/scbw/tileset/badlands.^(wpe vr4 vx4) .
-	@{cd /tmp/scbw/unit/thingy; grp -sx ../../tileset/badlands/ofire.bit tscglow.grp && cp tscglow.grp*bit /tmp/scbw2/}
-	rm /sys/games/lib/sce/*
-	$home/p/sce/utils/genspr
-	cp -x $home/p/sce/sce/*.db /sys/games/lib/sce/
