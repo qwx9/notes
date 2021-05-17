@@ -72,7 +72,6 @@
 - dswolf: nds wolf3d port
 	. naming: lup?
 - edwin: a program that berates your failures
-- ether589/etherelnk3: which should u17 be using again?
 - etheriwl: debug 4965 (u19,u20,u25): must have worked at some point
 - etherwpi or new driver: add 2915abg support
 	. better: check compat with newer intel card

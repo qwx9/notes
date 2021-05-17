@@ -4,9 +4,12 @@
 - Cascadeur MTB
 - Shimano Altus CT10 dérailleurs, shifters, brakes and other misc parts.
 - 26·1.5 tires
-- maladjusted front dérailleur, saddle, stem, handlebar, brakes
+- maladjusted front dérailleur
+- saddle too low, too much backwards, incorrect angle
+- stem too low
+- maladjusted brake pads and tension, frayed, worn, rusted brake cables
 - front shifter either worn or damaged? shifting down to middle cog is fucky
-- frayed and worn brake cables
+- handlebar rotated outwards
 
 ## Shimano Altus CT10
 - manufacturer provides manuals online: $home/lib/doc/parts/shimano.altus.ct10
@@ -20,7 +23,7 @@
 - SI-R100C: rear drive system: dérailleur, shifters, etc. assembly
 - tube ended brake cables
 - need a thin 10mm wrench for easy adjustments
-- l-screw left, h-screw right
+- l-screw left (median), h-screw right (lateral)
 
 ## Status
 - adjusted front dérailleur
@@ -28,14 +31,23 @@
 - added bell
 - adjusted handlebar height and rotation
 - adjusted saddle in all 3 axes
-- changed brake cables
+- changed brake cables, readjusted brake pads
 - changed tires and corresponding tubes → 26·1.95
 - removed handlebar grips and replaced with double layer tape
 - added random front and rear mudflap and a broken gourd thing
+- higher saddle position again
+- fix handlebar axial plane angle,
+the bar was rotated almost opposite to what it should be
+- readjusted shifter and bell rotation
 - total cost: 50 + brake cables, tubes < 100
 
 ## TODO
+- better lubrication for brake cables
+- front brake stuck
+- brake lever rotation and rest position
 - properly resoldering the broken gourd thing would be nice,
 but don't have the tools
-- missing lights still
+- missing front light
 - front dérailleur still a bit off
+- wheel must be trued, wobbles way too much
+- missing rear light

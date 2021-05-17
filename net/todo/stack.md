@@ -4,23 +4,10 @@
 
 ### languages
 - learn ocaml, try out on data manipulation problems à la dplyr?
-- check out julia
+- check out julia, myrddin again, zyg
 
 
 ## projects
-
-### global priorities
-- see programming todo's below
-- city/sce/dporg
-- 3d
-- wl3d/qk1/qk2/qk3
-- gtab
-- pplay
-- pico, gfx editing
-- asif
-- mod: sam, mothra
-- mod vmx, fix vncv, debug: igfx
-- random shit: kertex, notes maintenance and additions
 
 ### notes
 - [plumb rules](proj/notes/plumb)
@@ -205,22 +192,51 @@ note duration come from) ⇒ recalculate right vars
 - [rio integrated with sam](9front/rio/rio+sam)
 - generate /bin/riow patch ← what?
 - tmux-like functionality: don't lose long jobs when killing rio, etc.
+- rlook or something
+- fork naming: rыo/ruin/riø/Ri₀/... ← ruin is nice
 
-### sam
-- [default windows](9front/sam/windows)
-- [rsam plumbing](9front/sam/rsam.plumb)
-- default focus on start up should be command window
+### samterm
+- [rsam and plumbing](9front/sam/rsam.plumb)
+- just ham mods
+	* default focus on start up should be command window
+- different snarf buffer behavior
+	* shared buffer like ham, but unhacked implementation?
+	* snarffs?
+	* multiple snarf buffers?
+	* see discussion
+- scroll past screen
+- large file handling
 - sam: 1,.d → /dev/snarf doesn't get the contents, normal?
-- såmtörm: samterm fork with ham tweaks and other ± såm if we change shit
-	* -a by default
-	* color tweaks (no direct display->white/black, etc)
-	* or break it down entirely and integrate with rio directly
-	* scroll past screen
-	* large file support
-	* list other grievances...
+- unnecessary/stupid jumps
+	* u, /, ?: selection on screen → shouldn't jump, otherwise fucking center the line
+	* pipes: ,|cmd: shouldn't really shift to the top
 - annoying jumps for u command, searches, where selection should be centered, not off-screen,
 and shouldn't move the display if it's visible, it's super confusing
 - column wrapper script usable from sam, like gq in vim
+- windowing
+	* default command window and new window placement
+		. sam.save, but not just on error?
+	* simple tiling implementation
+		. not guided by command window placement
+		. split window, stack windows
+			* could even have file lists per stack, not one huge one
+			* point or set to where a new window should stack
+			* pane/window commands
+			* save/restore positions like with sam.save
+			* check out wmii
+		. don't fuck shit up when resizing
+- too many files open → menu is super awkward
+	* multiple menus?
+	* folding? depending on context? subdir? alpha order?
+- rlook
+- fork naming:
+	* såm/såmtörm/samuil
+	* suckterm/sadterm/shiterm/snarkterm/sodterm, sicterm
+	* sidsucker/sidterm, siouxterm, scottie, satan/saterm
+	* sauerterm/scabterm/scaterm
+	* schlepterm/schmuckterm
+	* sisyph*, tantal*, solipsism
+	* bref
 
 ### rc
 - rc: ok, fuck rc quoting: add backwards compatible quoting system
@@ -235,7 +251,6 @@ using an ascii delimiter like sigrid suggested
   the same fucking key for the same host on different addresses
 - fucking clipboard issues
 	* fucking clipboard with openbsd firefox
-	* input of utf8 runes sometimes works after two tries, sometimes doesn't ever
 - vncv performance fucking BLOWS, ssh too(?), faster to vncviewer within vncv to another machine
 	* vncviewer uses compression etc
 	* because 9p? ssh→tmux sucks too
@@ -295,12 +310,17 @@ using an ascii delimiter like sigrid suggested
 - gm965 gtt fix: try a kernel side implementation, with a function
 called in kernel on modeset?
 
+### ether589
+- i mean i know the adaptor is sort of broken, but it kind of works on linuks;
+here it just fucks out and the driver just loses it after init,
+it's unusable
+	* check obsd maybe
+
 ### sys
 - reboot: hangs on u19, u20, u25 when on 2x2gb ram
 - report arm rc breakage
 - debug file(1) flac failures
 - page doesn't display a8r8g8b8 correctly (?)
-- image memory or w/e leak vncv/vt? dpms? slowdown of draw performance after a while
 
 ## master
 
