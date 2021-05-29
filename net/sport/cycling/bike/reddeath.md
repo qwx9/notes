@@ -25,7 +25,7 @@
 - need a thin 10mm wrench for easy adjustments
 - l-screw left (median), h-screw right (lateral)
 
-## Status
+## Log
 - adjusted front dérailleur
 - adjusted rear brakes
 - added bell
@@ -42,12 +42,11 @@ the bar was rotated almost opposite to what it should be
 - total cost: 50 + brake cables, tubes < 100
 
 ## TODO
+- wheel must be trued, wobbles way too much
+- reinstall brakes
 - better lubrication for brake cables
-- front brake stuck
-- brake lever rotation and rest position
 - properly resoldering the broken gourd thing would be nice,
 but don't have the tools
 - missing front light
 - front dérailleur still a bit off
-- wheel must be trued, wobbles way too much
 - missing rear light

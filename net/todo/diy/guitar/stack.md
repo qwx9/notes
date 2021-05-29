@@ -3,27 +3,23 @@
 ## General notes
 See [random design notes](design).
 
-
 ## Art
 - catclock
 - fuck computers, computers as fuck
 - peace through superior firepower, across neck
 - hatehatehate/nopenopenope
-- usa#1 military insignia or signs
-- pjw, pico art
+- usa#1 military insignia or signs, american imperium
 - shitty black metal covers
 - doom/quake/wolf3d etc
-- pico art of some propaganda
-- radioactive catclock
-
+- pico art of some propaganda, pjw, 9front release covers
+- radioactive/dissolve catclock
+- ever thus to deadbeats lebwoski
 
 ## Fender mim deluxe player's strat
 See [fender's todo](fender).
 
-
 ## ⑨ST
 See [⑨ST](⑨ST).
-
 
 ## ⑨BD
 Finishes and minor modifications (pickups etc) to new headless clone.

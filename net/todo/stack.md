@@ -80,9 +80,10 @@ this isn't very convenient for this type of info
 
 ### wl3d
 - [notes](proj/wl3d/notes)
-- reimplement sound resampling, but better
-	* just convert pcm sounds when loading in fs.c?
-- revisit opl2 stuff → maybe fork and use opl2(1)
+- reimplement sound resampling, but better (see notes)
+- revisit opl2 stuff → maybe fork and use opl2(1) like doom(1)
+	* do the same with pcmconv? turn it into a lib?
+	* see notes
 - simplify fsm shit, look at dporg
 
 

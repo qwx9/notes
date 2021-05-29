@@ -1,5 +1,13 @@
 # wl3d todo
 
+## new TODO haha
+- after discussions about resampling and work on opl3,
+reevaluate resampling used for pcm and use of opl2 code
+	* preconvert pcm using pcmconv? maximum number of forks is 46 for wl6
+	* otherwise have to use a better/simpler (and understood) method
+	* opl2: maybe just fork, like doom(1)
+- simplify fsm, do like in dporg
+
 ## Bugs
 - sound cracks up when changing the music track, and during sfx playback,
   and is infuriating
