@@ -11,9 +11,16 @@ See [random design notes](design).
 - usa#1 military insignia or signs, american imperium
 - shitty black metal covers
 - doom/quake/wolf3d etc
-- pico art of some propaganda, pjw, 9front release covers
+- pjw
 - radioactive/dissolve catclock
 - ever thus to deadbeats lebwoski
+- 9front covers, references
+- sl artwork (ask sl)
+- unix haters cover
+- this is fine
+- alles löschen
+- doom/wolf3d/quake/fo1, etc
+- pico art of any of the above
 
 ## Fender mim deluxe player's strat
 See [fender's todo](fender).
