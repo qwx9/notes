@@ -102,6 +102,7 @@ where do you get the default shadow color from again?
 there was a pcx file or something
 	. shadow files have 0x2323ff
 - [more accurate ofire approximation](ofire)
+- instead of AA, edges of units are faded to a dark color to make them look less jagged?
 
 ### Sound
 - sound effects

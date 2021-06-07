@@ -21,15 +21,17 @@ See [random design notes](design).
 - alles löschen
 - doom/wolf3d/quake/fo1, etc
 - pico art of any of the above
+- twin peaks
 
 ## Fender mim deluxe player's strat
 See [fender's todo](fender).
 
 ## ⑨ST
-See [⑨ST](⑨ST).
+See [⑨ST](fgd135).
 
 ## ⑨BD
-Finishes and minor modifications (pickups etc) to new headless clone.
+Finishes and minor modifications (pickups etc) to new headless clone;
+see [catclockorange](catclockorange)
 
 
 ## ⑨BDHEN

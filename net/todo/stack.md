@@ -18,13 +18,13 @@
 - update dcd lectures from linux disk
 - rewrite dcd in a more coherent and prosaic style,
 this isn't very convenient for this type of info
-- algo, dcd, taa + taocp → asif
+- algo, dcd, taa, etc + taocp → asif
 - integrate lectures + formatting
+- add notes from w520: algo, dcd, taa, web, etc
 - use unionfs to bind note resources together: unionfs -m /mnt/notes p/notes2 p/notes ⇒ fn or script
+- note/check, check invalid/hanging references
 
 ### dporg
-- load fonts
-- primitive drawing functions
 - map loading
 - sprite/texture loading
 - renderer
@@ -58,7 +58,7 @@ this isn't very convenient for this type of info
 - gather command, without pathfinding shortcuts/hacks
 - build command
 - spawn command
-- things get really hairy once we add attacks: range, movement, pathing, etc., so: wait
+- attack object command
 - [notes](proj/sce/notes)
 - [playable game stack](proj/sce/everything)
 
