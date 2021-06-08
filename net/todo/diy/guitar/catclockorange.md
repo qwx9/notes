@@ -2,20 +2,21 @@
 
 ## artwork
 - see [stack/art](stack)
-- idea 1: catclock orange, big catclock and a reference + jigsaw
+- idea 1: (mostly) black and white, catclock orange, big catclock and a reference + jigsaw
 - idea 2: nopenopenope, failure is imminent; some color at least
-- neck: peace through superior firepower (doesn't match the rest though)
-- logo on body
+- idea 3: sl artwork? see [notes](stack)
+- idea 4: all of the above
+- logo on body, rather than neck?
+- front and back
 
 ## neck
-- shape neck: see endurneck shape, it's not actually straight
-	. it's just checking it out anyway,
-	doesn't matter if it's not perfect
-	. 80 grit or use tools
-- 120-180-240 sanding
+- 120-240 sanding (don't have 180)
 - propaganda transfer? plan a neck finish
-- transfer
-- enact finish
+- neck art
+	. color?
+	. what text?
+- transfer art
+- varnish, this time with the transparent water-based poly
 - sand/polish/buff/wax
 - level, file or even replace frets
 - finish freboard

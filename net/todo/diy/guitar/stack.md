@@ -23,6 +23,12 @@ See [random design notes](design).
 - pico art of any of the above
 - twin peaks
 
+## sl
+- https://flickr.com/photos/stanleylieber
+	* not everything is archived at img.stanleylieber.com
+	* https://flickr.com/photos/stanleylieber/12060930765/in/photostream/
+- https://flickr.com/photos/robotbastard
+
 ## Fender mim deluxe player's strat
 See [fender's todo](fender).
 

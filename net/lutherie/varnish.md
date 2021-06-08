@@ -35,3 +35,5 @@ and retains less particles and other shit in the bristles,
 thus also staying flexible longer
 - when leaving in white spirit, make sure to turn and squeeze brush hairs every which way
 to ensure good penetration/exposure
+- NOTE: if there are fuckups, they should be fixed before applying more layers,
+otherwise it's a huge pain and things will have to be sanded down anyway
