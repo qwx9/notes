@@ -1,7 +1,14 @@
+# prevent the following two from matching urls
+type	is	text
+data	matches	'\[[^\]]*\]\((https?://[^\)]*)\)'
+data	set	$1
+plumb	to	web
+plumb	client	window $browser
+
 type	is text
-data	matches	'\(([^/][^\)]*)\)'
+data	matches	'\[[^\]]*\]\(([^/][^\)]*)\)'
 plumb	start	note/add $wdir/$1
 
 type	is text
-data	matches	'\(/([^\)]+)\)'
+data	matches	'\[[^\]]*\]\((/[^\)]+)\)'
 plumb	start	note/add $1
