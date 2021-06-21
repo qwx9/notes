@@ -108,6 +108,9 @@ there was a pcx file or something
 - sound effects
 - music
 
+### hud
+- ingame error messages? scrolling messages, slide up, w/ timeout
+
 
 ## Tools
 - vspr:

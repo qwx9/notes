@@ -1,5 +1,11 @@
 # sce
 
+## vspr et al
+
+	; vspr -cr mineral0 00 01 02 03
+	; vspr -r control0 00
+	; vspr mutalisk 00 01 02 03
+
 ## implementation
 
 - note, we can precompute vx and vy in facemobj if we only have octile
@@ -84,3 +90,12 @@ so we end up with 2 + 15*2 pics total
 
 - 32x32 tiles are composed of 8x8 subtiles, then grouped together in a cv5
 file which sets attributes for sets of tiles
+
+
+## stats
+
+	; awk 'BEGIN{OFS="\t"} NR==1 || $2 ~ /.*Resource_Mineral.*/{print $2, $29, $30, $31, $32, $33, $34, $35, $36}' lib/proj/scbw/'StarCraft UnitType Data - Sheet1.tsv'
+	Name	Width	Height	DimensionDown	DimensionLeft	DimensionRight	DimensionUp	TileWidth	TileHeight
+	Resource_Mineral_Field		64	32	15	32	31	16	2	1
+	Resource_Mineral_Field_Type_2	64	32	15	32	31	16	2	1
+	Resource_Mineral_Field_Type_3	64	32	15	32	31	16	2	1
