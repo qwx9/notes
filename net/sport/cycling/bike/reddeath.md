@@ -26,6 +26,12 @@
 - l-screw left (median), h-screw right (lateral)
 
 ## Log
+- tire pressure: around 22 front, 25 rear or something
+- added a saddle suspension or whatever
+- trued front wheel
+- readjusted shifter position
+- reinstalled brakes, rotated brakes downwards, moved inwards
+- readjusted handlebar
 - adjusted front dérailleur
 - adjusted rear brakes
 - added bell
@@ -42,11 +48,9 @@ the bar was rotated almost opposite to what it should be
 - total cost: 50 + brake cables, tubes < 100
 
 ## TODO
-- wheel must be trued, wobbles way too much
-- reinstall brakes
-- better lubrication for brake cables
-- properly resoldering the broken gourd thing would be nice,
-but don't have the tools
-- missing front light
-- front dérailleur still a bit off
-- missing rear light
+- rear wheel truing
+- gourd and holder
+- fukken glasses
+- front dérailleur readjustment again
+- rear dérailleur adjustment, starting to act up
+- clean and lube chain

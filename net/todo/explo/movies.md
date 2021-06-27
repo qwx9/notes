@@ -2,6 +2,8 @@
 
 ## movies
 
+- 1944 ivan the terrible, sergei eisenstein
+- 1977 the private files of edgar hoover
 - 1987 empire of the sun
 - 1980 dressed to kill
 - 1974 phantom of the paradise
@@ -11,14 +13,10 @@
 - 1928 the racket
 - 1930 hell's angels
 - 1961 westside story
-- 1967 stranger on the run
 - 1968 rosemary's baby
 - 1988 talk radio
-- 1989 field of dreams
 - 1992 unforgiven
-- 1993 heaven & earth
 - 1995 carlito's way
-- 1995 crimson tide
 - 1995 desperado
 - 1996 unforgettable
 - 1997 manhunter
@@ -26,7 +24,6 @@
 - 2000 down from the mountain
 - 2001 the royal tenenbaums
 - 2003 bad santa
-- 2003 intolerable cruelty
 - 2004 sidewas
 - 2004 the ladykillers
 - 2005 capote
@@ -34,7 +31,6 @@
 - 2005 romance & cigarettes
 - 2005 syriana
 - 2006 delirious
-- 2009 the doors: when you're strange
 - 2013 parker
 - 2017 before i fall
 - wet hot american summer
@@ -78,7 +74,6 @@
 ## series
 
 - 2010-2014 broadwalk empire
-- 2017 the deuce
 - homicide: life on the streets 1-7
 - 1975-79 starsky & hutch
 - 1977-83 chips
