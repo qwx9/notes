@@ -22,6 +22,7 @@ See [random design notes](design).
 - doom/wolf3d/quake/fo1, etc
 - pico art of any of the above
 - twin peaks
+- fork bomb
 
 ## sl
 - https://flickr.com/photos/stanleylieber

@@ -17,6 +17,13 @@
 
 
 ## artwork
+- consensus from below:
+	. remove veneer
+	. white stain
+	. draw catclock using black ink/wax/whatever and sand = fill grain
+	. draw whatever else with the same method
+	. possibly darken grain everywhere with other color or grey -> test
+	. then varnish over it: vernis we have or VITRIFIANT, extra strong
 - see [stack/art](stack)
 - front and back, neck also
 - idea 1: (mostly) black and white, catclock orange, big catclock and a reference + jigsaw

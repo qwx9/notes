@@ -15,6 +15,7 @@
 - levy, artificial life
 
 ## fiction
+- norman mailer, harlot's ghost
 - neal stephenson, the diamond age
 - proust, a la recherche du temps perdu pt 1
 - stalker

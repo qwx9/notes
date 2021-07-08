@@ -67,6 +67,7 @@ still fails sometimes
 - observers
 - lobby or challenge and pass for joining
 - fog of war, sight range: building sight range, set to 1 for now
+- team map table should become a hash table, different for each client
 
 ### Refactoring/optimization
 - p/sce bin
@@ -110,9 +111,3 @@ there was a pcx file or something
 
 ### hud
 - ingame error messages? scrolling messages, slide up, w/ timeout
-
-
-## Tools
-- vspr:
-	; vspr -r hatchery 00 01 02 03 03 02 01 00
-	vspr: open: '/sys/games/lib/sce/hatchery.01.00.s.bit' does not exist
